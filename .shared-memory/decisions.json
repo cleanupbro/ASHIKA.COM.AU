@@ -1,0 +1,60 @@
+{
+  "decisions": [
+    {
+      "id": "001",
+      "date": "2026-01-19",
+      "topic": "Tech Stack",
+      "decision": "Next.js 14 App Router + Supabase + Stripe + Tailwind",
+      "rationale": "Modern stack with great DX, free tiers, and strong community support",
+      "alternatives_considered": ["Remix", "Astro", "SvelteKit"]
+    },
+    {
+      "id": "002",
+      "date": "2026-01-19",
+      "topic": "State Management",
+      "decision": "React Context + useReducer for global state, no external libraries",
+      "rationale": "Simpler, no extra dependencies, sufficient for rental marketplace scale",
+      "alternatives_considered": ["Redux", "Zustand", "Jotai"]
+    },
+    {
+      "id": "003",
+      "date": "2026-01-19",
+      "topic": "Design System",
+      "decision": "Apple-inspired dark theme with ASHIKA brand color overrides",
+      "rationale": "Premium feel for luxury rental marketplace, reusing proven patterns",
+      "alternatives_considered": ["Material Design", "Tailwind UI", "Custom from scratch"]
+    },
+    {
+      "id": "004",
+      "date": "2026-01-19",
+      "topic": "Database",
+      "decision": "Supabase (PostgreSQL) with Row Level Security",
+      "rationale": "Built-in auth, real-time, free tier generous, RLS for security",
+      "alternatives_considered": ["PlanetScale", "Firebase", "MongoDB Atlas"]
+    },
+    {
+      "id": "005",
+      "date": "2026-01-19",
+      "topic": "Rental Period",
+      "decision": "7-day rental window (3 days before event, event day, 3 days return buffer)",
+      "rationale": "Balances customer flexibility with inventory availability",
+      "alternatives_considered": ["5-day window", "10-day window", "Variable by product"]
+    },
+    {
+      "id": "006",
+      "date": "2026-01-19",
+      "topic": "Bond Handling",
+      "decision": "$100 pre-authorized hold, released on successful return",
+      "rationale": "Standard industry practice, protects against damage without upfront charge",
+      "alternatives_considered": ["No bond", "Full capture upfront", "Variable by product value"]
+    },
+    {
+      "id": "007",
+      "date": "2026-01-20",
+      "topic": "Build Approach",
+      "decision": "Stage-by-stage build with mock data first, API integration last",
+      "rationale": "Allows full UI/UX development without API key dependencies",
+      "alternatives_considered": ["API-first development", "Full stack in parallel"]
+    }
+  ]
+}
