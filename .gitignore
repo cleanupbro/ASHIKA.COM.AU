@@ -82,3 +82,9 @@ logs/
 # Cache
 .cache/
 .parcel-cache/
+
+# Playwright MCP screenshots
+.playwright-mcp/
+
+# Design reference files (large images)
+.design-references/
