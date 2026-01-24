@@ -114,54 +114,54 @@
 
 | Requirement | Phase | Status |
 |-------------|-------|--------|
-| AUTH-01 | — | Pending |
-| AUTH-02 | — | Pending |
-| AUTH-03 | — | Pending |
-| AUTH-04 | — | Pending |
-| CATL-01 | — | Pending |
-| CATL-02 | — | Pending |
-| CATL-03 | — | Pending |
-| CATL-04 | — | Pending |
-| CATL-05 | — | Pending |
-| CATL-06 | — | Pending |
-| CATL-07 | — | Pending |
-| PROD-01 | — | Pending |
-| PROD-02 | — | Pending |
-| PROD-03 | — | Pending |
-| PROD-04 | — | Pending |
-| PROD-05 | — | Pending |
-| PROD-06 | — | Pending |
-| PROD-07 | — | Pending |
-| PROD-08 | — | Pending |
-| PROD-09 | — | Pending |
-| BOOK-01 | — | Pending |
-| BOOK-02 | — | Pending |
-| BOOK-03 | — | Pending |
-| BOOK-04 | — | Pending |
-| PAY-01 | — | Pending |
-| PAY-02 | — | Pending |
-| PAY-03 | — | Pending |
-| PAY-04 | — | Pending |
-| PAY-05 | — | Pending |
-| SHIP-01 | — | Pending |
-| SHIP-02 | — | Pending |
-| SHIP-03 | — | Pending |
-| SHIP-04 | — | Pending |
-| PAGE-01 | — | Pending |
-| PAGE-02 | — | Pending |
-| PAGE-03 | — | Pending |
-| PAGE-04 | — | Pending |
-| PAGE-05 | — | Pending |
-| DSGN-01 | — | Pending |
-| DSGN-02 | — | Pending |
-| DSGN-03 | — | Pending |
-| DSGN-04 | — | Pending |
+| AUTH-01 | Phase 1 | Pending |
+| AUTH-02 | Phase 1 | Pending |
+| AUTH-03 | Phase 1 | Pending |
+| AUTH-04 | Phase 1 | Pending |
+| CATL-01 | Phase 2 | Pending |
+| CATL-02 | Phase 2 | Pending |
+| CATL-03 | Phase 2 | Pending |
+| CATL-04 | Phase 2 | Pending |
+| CATL-05 | Phase 2 | Pending |
+| CATL-06 | Phase 2 | Pending |
+| CATL-07 | Phase 2 | Pending |
+| PROD-01 | Phase 2 | Pending |
+| PROD-02 | Phase 2 | Pending |
+| PROD-03 | Phase 3 | Pending |
+| PROD-04 | Phase 3 | Pending |
+| PROD-05 | Phase 2 | Pending |
+| PROD-06 | Phase 2 | Pending |
+| PROD-07 | Phase 2 | Pending |
+| PROD-08 | Phase 2 | Pending |
+| PROD-09 | Phase 2 | Pending |
+| BOOK-01 | Phase 3 | Pending |
+| BOOK-02 | Phase 3 | Pending |
+| BOOK-03 | Phase 3 | Pending |
+| BOOK-04 | Phase 3 | Pending |
+| PAY-01 | Phase 4 | Pending |
+| PAY-02 | Phase 4 | Pending |
+| PAY-03 | Phase 4 | Pending |
+| PAY-04 | Phase 4 | Pending |
+| PAY-05 | Phase 4 | Pending |
+| SHIP-01 | Phase 5 | Pending |
+| SHIP-02 | Phase 5 | Pending |
+| SHIP-03 | Phase 5 | Pending |
+| SHIP-04 | Phase 5 | Pending |
+| PAGE-01 | Phase 6 | Pending |
+| PAGE-02 | Phase 6 | Pending |
+| PAGE-03 | Phase 6 | Pending |
+| PAGE-04 | Phase 6 | Pending |
+| PAGE-05 | Phase 6 | Pending |
+| DSGN-01 | Phase 1 | Pending |
+| DSGN-02 | Phase 2 | Pending |
+| DSGN-03 | Phase 1 | Pending |
+| DSGN-04 | Phase 2 | Pending |
 
 **Coverage:**
-- v1 requirements: 37 total
-- Mapped to phases: 0
-- Unmapped: 37
+- v1 requirements: 42 total
+- Mapped to phases: 42
+- Unmapped: 0
 
 ---
 *Requirements defined: 2026-01-24*
-*Last updated: 2026-01-24 after initial definition*
+*Last updated: 2026-01-24 after roadmap creation*
