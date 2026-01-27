@@ -1,306 +1,240 @@
 # Codebase Structure
 
-**Analysis Date:** 2026-01-24
+**Analysis Date:** 2026-01-27
 
 ## Directory Layout
 
 ```
-/Users/shamalkrishna/Desktop/ASHIKA.COM.AU/
-├── src/                          # Application source code
-│   ├── app/                      # Next.js 14 App Router
-│   │   ├── page.tsx              # Home page
-│   │   ├── layout.tsx            # Root layout with providers
-│   │   ├── error.tsx             # Error boundary
-│   │   ├── not-found.tsx         # 404 page
-│   │   ├── globals.css           # Global Tailwind styles
-│   │   ├── shop/
-│   │   │   ├── page.tsx          # Shop listing page
-│   │   │   ├── shop-content.tsx  # Shop content with filters
-│   │   │   └── [id]/
-│   │   │       └── page.tsx      # Product detail page
-│   │   ├── checkout/
-│   │   │   ├── page.tsx          # Checkout page
-│   │   │   └── success/
-│   │   │       └── page.tsx      # Order confirmation
-│   │   ├── about/
-│   │   │   └── page.tsx
-│   │   ├── contact/
-│   │   │   └── page.tsx
-│   │   ├── faq/
-│   │   │   └── page.tsx
-│   │   ├── privacy/
-│   │   │   └── page.tsx
-│   │   └── terms/
-│   │       └── page.tsx
-│   │
-│   ├── components/               # React components by domain
-│   │   ├── ui/                   # Reusable base UI components
-│   │   │   ├── button.tsx
-│   │   │   ├── input.tsx
-│   │   │   ├── card.tsx
-│   │   │   ├── badge.tsx
-│   │   │   ├── accordion.tsx
-│   │   │   ├── skeleton.tsx
-│   │   │   └── index.ts          # Barrel export
-│   │   │
-│   │   ├── layout/               # Layout components
-│   │   │   ├── header.tsx
-│   │   │   ├── footer.tsx
-│   │   │   ├── container.tsx     # Max-width wrapper
-│   │   │   ├── mobile-nav.tsx
-│   │   │   └── index.ts
-│   │   │
-│   │   ├── home/                 # Home page sections
-│   │   │   ├── hero.tsx
-│   │   │   ├── trust-badges.tsx
-│   │   │   ├── categories-grid.tsx
-│   │   │   ├── featured-products.tsx
-│   │   │   ├── how-it-works.tsx
-│   │   │   ├── testimonials.tsx
-│   │   │   ├── newsletter.tsx
-│   │   │   └── index.ts
-│   │   │
-│   │   ├── product/              # Product-related components
-│   │   │   ├── product-card.tsx
-│   │   │   ├── product-grid.tsx
-│   │   │   ├── product-filters.tsx
-│   │   │   ├── product-images.tsx
-│   │   │   ├── product-info.tsx
-│   │   │   ├── sort-dropdown.tsx
-│   │   │   ├── active-filters.tsx
-│   │   │   └── ...
-│   │   │
-│   │   ├── booking/              # Booking/rental components
-│   │   │   ├── availability-calendar.tsx
-│   │   │   ├── date-selector.tsx
-│   │   │   ├── rental-summary.tsx
-│   │   │   └── index.ts
-│   │   │
-│   │   ├── checkout/             # Checkout flow components
-│   │   │   ├── shipping-form.tsx
-│   │   │   ├── payment-form.tsx
-│   │   │   ├── order-review.tsx
-│   │   │   └── ...
-│   │   │
-│   │   └── cart/                 # Cart display components
-│   │       ├── cart-drawer.tsx
-│   │       └── cart-item.tsx
-│   │
-│   ├── contexts/                 # React Context state management
-│   │   ├── cart-context.tsx      # Cart state + useCart hook
-│   │   └── index.ts
-│   │
-│   ├── lib/                      # Utilities and helpers
-│   │   ├── utils.ts              # Class merging utility (cn)
-│   │   └── mock-data/
-│   │       ├── products.ts       # Product definitions
-│   │       ├── availability.ts   # Availability logic & date helpers
-│   │       └── ...
-│   │
-│   ├── types/                    # Type definitions
-│   │   └── index.ts              # All shared types and RENTAL_CONFIG
-│   │
-│   └── hooks/                    # Custom React hooks (future)
-│       └── (Currently in contexts)
-│
-├── public/                       # Static assets
-│
-├── .claude/                      # AI assistant directives
-│   └── rules/                    # Business & coding rules
-│
-├── .planning/                    # Planning documents
-│   └── codebase/                 # Codebase analysis (this file)
-│
-├── skills/                       # Domain-specific skill guides
-├── supabase/                     # Supabase migrations & config
-├── 00-docs/                      # Business/design documentation
-├── scripts/                      # Build and utility scripts
-│
-├── package.json                  # Dependencies
-├── tsconfig.json                 # TypeScript config
-├── next.config.js                # Next.js config
-├── tailwind.config.js            # Tailwind CSS config
-└── postcss.config.js             # PostCSS config
+ashika.com.au/
+├── src/                    # Application source code
+│   ├── app/                # Next.js App Router pages
+│   ├── components/         # React components by domain
+│   ├── contexts/           # React Context providers
+│   ├── lib/                # Utilities and data layer
+│   └── types/              # TypeScript type definitions
+├── supabase/               # Database migrations
+├── skills/                 # AI agent skill definitions
+├── .claude/                # Claude-specific project rules
+├── .planning/              # GSD planning documents
+├── .shared-memory/         # Session state tracking
+├── 00-docs/                # Project documentation
+└── [config files]          # Next.js, TypeScript, Tailwind configs
 ```
 
 ## Directory Purposes
 
-**src/app:**
-- Purpose: Next.js 14 App Router routes and layouts
-- Contains: Page files (page.tsx), layout wrappers, error boundaries, metadata definitions
-- Key files: `page.tsx` (route handler), `layout.tsx` (layout wrapper)
-- Pattern: One directory per route, nested directories for subroutes
+**src/app/**
+- Purpose: Next.js App Router file-based routing
+- Contains: Pages, layouts, route handlers, metadata configuration
+- Key files: `layout.tsx` (root layout), `page.tsx` (routes), `globals.css` (Tailwind imports)
 
-**src/components:**
+**src/components/**
 - Purpose: Reusable React components organized by domain
-- Contains: Functional components with TypeScript interfaces
-- Subfolders organize by feature (product, booking, layout, etc.)
-- Pattern: Each component in its own file with barrel exports
+- Contains: UI primitives, feature-specific components, layout components
+- Key files: `index.ts` barrel exports in each subdirectory
 
-**src/lib:**
-- Purpose: Shared utilities, helpers, and data
-- Contains: Pure functions, constants, mock data
-- Key: `utils.ts` (cn function), `mock-data/` (products and availability)
+**src/components/ui/**
+- Purpose: Base UI components (design system primitives)
+- Contains: Button, Card, Input, Badge, Accordion, Skeleton
+- Key files: `src/components/ui/button.tsx`, `src/components/ui/card.tsx`, `src/components/ui/index.ts`
 
-**src/contexts:**
-- Purpose: React Context providers for state management
-- Contains: Context creation, reducer functions, hooks
-- Currently: CartContext is the primary state management
+**src/components/layout/**
+- Purpose: Persistent layout components
+- Contains: Header, Footer, Container wrapper
+- Key files: `src/components/layout/header.tsx`, `src/components/layout/footer.tsx`, `src/components/layout/container.tsx`
 
-**src/types:**
-- Purpose: Single source of truth for TypeScript types
-- Contains: Interfaces for Product, CartItem, Booking, and RENTAL_CONFIG constant
-- Exported: Used across all application layers
+**src/components/home/**
+- Purpose: Landing page sections
+- Contains: Hero, CategoriesGrid, FeaturedProducts, HowItWorks, Testimonials, Newsletter, TrustBadges
+- Key files: `src/components/home/hero.tsx`, `src/components/home/categories-grid.tsx`, `src/components/home/index.ts`
 
-**public:**
-- Purpose: Static assets served at root
-- Contains: Favicons, logos, static images (Next.js optimized images reference URLs, not files)
+**src/components/product/**
+- Purpose: Product browsing and detail components
+- Contains: ProductCard, ProductGrid, ProductFilters, ProductImages, ProductInfo, RelatedProducts
+- Key files: `src/components/product/product-card.tsx`, `src/components/product/product-grid.tsx`, `src/components/product/index.ts`
 
-**supabase:**
-- Purpose: Database schema and migrations
-- Contains: SQL migration files
-- Future: Will contain RLS policies, functions
+**src/components/booking/**
+- Purpose: Rental date selection components
+- Contains: DateSelector, AvailabilityCalendar, RentalSummary
+- Key files: `src/components/booking/date-selector.tsx`, `src/components/booking/availability-calendar.tsx`, `src/components/booking/index.ts`
 
-**.claude & .planning:**
-- Purpose: AI assistant directives and codebase documentation
-- Not deployed: Excluded from production builds
+**src/components/checkout/**
+- Purpose: Checkout flow components
+- Contains: ShippingForm, PaymentForm, OrderReview
+- Key files: `src/components/checkout/shipping-form.tsx`, `src/components/checkout/payment-form.tsx`, `src/components/checkout/index.ts`
+
+**src/components/cart/**
+- Purpose: Shopping cart UI components
+- Contains: CartDrawer (slide-out cart panel)
+- Key files: `src/components/cart/cart-drawer.tsx`, `src/components/cart/index.ts`
+
+**src/contexts/**
+- Purpose: Global state management with React Context
+- Contains: CartContext with reducer, localStorage persistence
+- Key files: `src/contexts/cart-context.tsx`, `src/contexts/index.ts`
+
+**src/lib/**
+- Purpose: Utilities, helpers, and data access layer
+- Contains: Mock data generators, utility functions
+- Key files: `src/lib/utils.ts`, `src/lib/mock-data/products.ts`, `src/lib/mock-data/availability.ts`
+
+**src/lib/mock-data/**
+- Purpose: Development data layer (placeholder for Supabase)
+- Contains: Product catalog, availability calculations
+- Key files: `src/lib/mock-data/products.ts`, `src/lib/mock-data/availability.ts`
+
+**src/types/**
+- Purpose: Shared TypeScript type definitions
+- Contains: Product types, Cart types, Booking types, rental configuration constants
+- Key files: `src/types/index.ts`
+
+**supabase/migrations/**
+- Purpose: Database schema version control
+- Contains: SQL migration files (not yet created)
+- Key files: None yet (prepared for future backend)
+
+**skills/**
+- Purpose: AI agent skill definitions and workflows
+- Contains: Rental logic, Stripe integration, Supabase setup, UI patterns
+- Key files: `skills/rental-logic/SKILL.md`, `skills/stripe-integration/SKILL.md`, `skills/SKILLS_INDEX.md`
+
+**.claude/rules/**
+- Purpose: Claude-specific coding rules by domain
+- Contains: Backend rules, frontend rules, database rules, rental logic rules
+- Key files: `.claude/rules/rental-logic.md`, `.claude/rules/frontend.md`, `.claude/CLAUDE.md`
+
+**.planning/**
+- Purpose: GSD planning system documents
+- Contains: Requirements, roadmap, project state, research
+- Key files: `.planning/REQUIREMENTS.md`, `.planning/ROADMAP.md`, `.planning/STATE.md`, `.planning/codebase/`
+
+**.shared-memory/**
+- Purpose: Cross-session memory for AI agents
+- Contains: Progress tracking, architectural decisions, context
+- Key files: `.shared-memory/progress.json`, `.shared-memory/decisions.json`, `.shared-memory/context.md`
+
+**00-docs/**
+- Purpose: Human-readable project documentation
+- Contains: Architecture docs, decision logs, implementation plans
+- Key files: `00-docs/ASHIKA-PROJECT-IMPLEMENTATION-DOCUMENT.md`, `00-docs/architecture/`
 
 ## Key File Locations
 
 **Entry Points:**
-- `src/app/page.tsx`: Home page
-- `src/app/shop/page.tsx`: Product listing
-- `src/app/shop/[id]/page.tsx`: Product details
+- `src/app/layout.tsx`: Root layout with providers and global structure
+- `src/app/page.tsx`: Home page (landing page)
+- `src/app/shop/page.tsx`: Product listing page
+- `src/app/shop/[id]/page.tsx`: Dynamic product detail page
 - `src/app/checkout/page.tsx`: Checkout flow
-- `src/app/layout.tsx`: Root layout with providers
 
 **Configuration:**
+- `next.config.mjs`: Next.js configuration (image domains)
+- `tsconfig.json`: TypeScript compiler options (strict mode, path aliases)
+- `tailwind.config.ts`: Tailwind CSS theme (brand colors, fonts)
+- `.eslintrc.json`: ESLint configuration (Next.js rules)
 - `package.json`: Dependencies and scripts
-- `tsconfig.json`: TypeScript settings with `@/*` alias
-- `tailwind.config.js`: Color palette and Tailwind config
-- `next.config.js`: Next.js build settings
 
 **Core Logic:**
-- `src/types/index.ts`: Type definitions + RENTAL_CONFIG
-- `src/lib/mock-data/availability.ts`: Availability calculations
-- `src/lib/mock-data/products.ts`: Product data
-- `src/contexts/cart-context.tsx`: Cart state management
+- `src/types/index.ts`: All TypeScript types and RENTAL_CONFIG constants
+- `src/lib/mock-data/products.ts`: Product catalog and helper functions
+- `src/lib/mock-data/availability.ts`: Rental timeline calculations
+- `src/contexts/cart-context.tsx`: Cart state management with reducer
 
 **Testing:**
-- No test files currently present
+- None yet (testing infrastructure not implemented)
 
 ## Naming Conventions
 
 **Files:**
-- Components: kebab-case (e.g., `product-card.tsx`, `availability-calendar.tsx`)
-- Hooks: use-[name].ts (e.g., `use-cart.ts` - currently in context)
-- Utilities: kebab-case.ts (e.g., `date-utils.ts`)
-- Types: index.ts or types.ts
-- Pages: page.tsx (Next.js convention)
-- Layouts: layout.tsx (Next.js convention)
+- Components: `kebab-case.tsx` (e.g., `product-card.tsx`, `availability-calendar.tsx`)
+- Utilities: `kebab-case.ts` (e.g., `utils.ts`)
+- Hooks: `use-*.ts` (e.g., `use-cart.ts` - via context)
+- Pages: `page.tsx` (Next.js App Router convention)
+- Types: `index.ts` or `types.ts`
 
 **Directories:**
-- Feature-based organization: `components/[feature]/`
-- Lowercase with hyphens: `shopping-cart`, `product-detail`
-- Plural for collections: `components/`, `lib/`, `hooks/`
+- `kebab-case` for all directories (e.g., `mock-data`, `cart-context`)
+- Next.js dynamic routes: `[param]` (e.g., `shop/[id]/`)
 
-**TypeScript/JavaScript:**
-- Interfaces: PascalCase (e.g., `ProductCardProps`, `CartState`)
-- Types: PascalCase (e.g., `ProductCategory`, `BookingStatus`)
-- Functions: camelCase (e.g., `isProductAvailable`, `formatRentalTimeline`)
-- Constants: SCREAMING_SNAKE_CASE (e.g., `RENTAL_CONFIG`, `STOCK_IMAGES`)
-- Variables: camelCase (e.g., `cartItems`, `eventDate`)
+**Components:**
+- Named exports: `export function ProductCard() {}`
+- PascalCase component names matching filename
+- Barrel exports via `index.ts`: `export * from './product-card'`
+
+**Types:**
+- PascalCase interfaces: `Product`, `CartItem`, `BookingStatus`
+- SCREAMING_SNAKE_CASE for constants: `RENTAL_CONFIG`, `STOCK_IMAGES`
 
 ## Where to Add New Code
 
 **New Feature:**
-1. **Primary code:** `src/components/[feature]/`
-   - Create components for that feature
-   - Use barrel exports via `index.ts`
-2. **Business logic:** `src/lib/[feature-logic].ts`
-   - Pure functions for calculations
-3. **Types:** Add to `src/types/index.ts`
-4. **State (if needed):** Add to or extend `src/contexts/`
-
-**Example (Add booking management):**
-```
-src/
-├── components/booking-management/
-│   ├── booking-list.tsx
-│   ├── booking-detail.tsx
-│   └── index.ts
-├── lib/booking-helpers.ts
-└── types/index.ts (add BookingManagement interface)
-```
+- Primary code: Component in appropriate `src/components/[domain]/` directory
+- Tests: Co-located `*.test.tsx` files (when testing is set up)
+- Types: Add to `src/types/index.ts` if shared, or keep local if component-specific
+- Page route: Add `page.tsx` in `src/app/[route]/`
 
 **New Component/Module:**
-- Location: `src/components/[category]/[component-name].tsx`
-- Export: Named export (no default exports)
-- Props: Define interface ending in `Props`
-- Pattern: Use existing components as reference
+- Implementation: `src/components/[domain]/[component-name].tsx`
+- Export: Add to `src/components/[domain]/index.ts` barrel
+- UI primitives: Add to `src/components/ui/` if reusable across domains
+- Feature-specific: Add to appropriate domain folder (product, booking, checkout, etc.)
 
 **Utilities:**
-- Shared helpers: `src/lib/[domain].ts`
-- Date utilities: `src/lib/mock-data/availability.ts` (already established)
-- Class utilities: `src/lib/utils.ts` (current home for `cn`)
+- Shared helpers: `src/lib/utils.ts` or new file in `src/lib/`
+- Data access: `src/lib/mock-data/` (until Supabase integration)
+- Future API routes: `src/app/api/[endpoint]/route.ts` (not yet implemented)
 
 **New Page:**
-1. Create directory: `src/app/[route-name]/`
-2. Add file: `page.tsx` with default export
-3. Add metadata: Define `Metadata` export
-4. Optional: Create `layout.tsx` for sub-routes
+- Route file: `src/app/[route]/page.tsx`
+- Server Component by default
+- Add 'use client' directive only if needed for interactivity
+- Dynamic routes: `src/app/[route]/[param]/page.tsx`
+
+**New Context:**
+- Provider: `src/contexts/[name]-context.tsx`
+- Export hook and provider from context file
+- Register in `src/contexts/index.ts` barrel
+
+**New Type:**
+- Shared types: `src/types/index.ts`
+- Local types: Within component file if not shared
+
+**Database Migration:**
+- Add SQL file: `supabase/migrations/[timestamp]_[description].sql`
+- (Not yet active - preparing for Supabase)
 
 ## Special Directories
 
-**src/lib/mock-data:**
-- Purpose: Development data and mock implementations
-- Generated: No, manually maintained
-- Committed: Yes, part of repo
-- Future: Will be replaced with real Supabase data via API routes
+**.next/**
+- Purpose: Next.js build output and cache
+- Generated: Yes (on `npm run dev` or `npm run build`)
+- Committed: No (in `.gitignore`)
 
-**supabase/migrations:**
-- Purpose: Database schema version control
-- Generated: No, hand-written SQL
-- Committed: Yes, must be committed
-- Current: Empty, ready for schema definition
+**node_modules/**
+- Purpose: Installed npm dependencies
+- Generated: Yes (on `npm install`)
+- Committed: No (in `.gitignore`)
 
-**.planning/codebase:**
-- Purpose: Codebase analysis documentation
-- Generated: Yes, by GSD codebase mapper
-- Committed: Yes, for team reference
-- Use: Reference when planning implementation
+**.planning/codebase/**
+- Purpose: GSD system codebase analysis documents
+- Generated: Yes (by `/gsd:map-codebase` command)
+- Committed: Yes (planning state tracked)
 
-**.claude/rules:**
-- Purpose: Business rules and coding directives
-- Generated: No, human-authored
+**.planning/research/**
+- Purpose: GSD research phase outputs
+- Generated: Yes (by `/gsd:research` command)
 - Committed: Yes
-- Use: Guide all implementation decisions
 
-## Import Path Patterns
+**.git/**
+- Purpose: Git version control metadata
+- Generated: Yes (by `git init`)
+- Committed: No (Git internal directory)
 
-**Alias Usage:**
-- `@/components/` → `src/components/`
-- `@/types` → `src/types/index.ts`
-- `@/lib/` → `src/lib/`
-- `@/contexts/` → `src/contexts/`
-
-**Import Organization:**
-1. External libraries (React, Next.js, third-party)
-2. Internal utilities (@/lib, @/utils)
-3. Types (@/types)
-4. Components (@/components)
-5. Contexts (@/contexts)
-
-**Example:**
-```typescript
-import { useState } from 'react';
-import { format } from 'date-fns';
-import { cn } from '@/lib/utils';
-import { Product, RENTAL_CONFIG } from '@/types';
-import { Button } from '@/components/ui';
-import { useCart } from '@/contexts/cart-context';
-```
+**public/** (not present yet)
+- Purpose: Static assets (images, fonts, favicon)
+- Generated: No (manually created)
+- Committed: Yes (when created)
 
 ---
 
-*Structure analysis: 2026-01-24*
+*Structure analysis: 2026-01-27*

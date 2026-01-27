@@ -1,476 +1,409 @@
 # Testing Patterns
 
-**Analysis Date:** 2026-01-24
+**Analysis Date:** 2026-01-27
 
-## Test Framework Status
+## Test Framework
 
-**Current State:** No automated test framework configured
+**Runner:**
+- None currently configured
+- No test files found in codebase
+- No test framework dependencies in `package.json`
 
-**Build & Type Safety:**
-- Build test: `npm run build` (validates Next.js compilation)
-- Type checking: `npm run type-check` (runs TypeScript compiler with `--noEmit`)
-- Linting: `npm run lint` (Next.js ESLint configuration)
+**Assertion Library:**
+- Not applicable (no tests)
 
 **Run Commands:**
 ```bash
-npm run build              # Builds Next.js application (must pass)
-npm run type-check         # Validates TypeScript compilation
-npm run lint               # Runs ESLint checks
-npm run dev                # Starts development server for manual testing
+# Not available - testing not yet implemented
 ```
 
-## Test Planning
-
-**Recommended Framework (Not Yet Implemented):**
-- Framework: Vitest (lightweight, ESM-native, fast)
-- Test Runner: Vitest
-- Assertion Library: Vitest's built-in assertions (or Chai)
-- Coverage Tool: Vitest coverage
-
-**Next Steps for Testing Implementation:**
-1. Install Vitest and testing utilities: `npm install -D vitest @testing-library/react @testing-library/jest-dom @vitest/ui`
-2. Create `vitest.config.ts` configuration
-3. Add test scripts to package.json: `"test": "vitest"`, `"test:ui": "vitest --ui"`
-4. Begin with unit tests for utilities and contexts
-5. Add component tests for critical UI elements
+**Recommendation:**
+Based on stack (Next.js 14, TypeScript, React 18), suggested setup:
+- Jest + React Testing Library (most common)
+- Vitest (faster, modern alternative)
+- Playwright (E2E testing)
 
 ## Test File Organization
 
-**Current Structure:**
-- No test files present in codebase
-- When tests are added, follow co-located pattern
+**Location:**
+- Not applicable (no tests exist)
 
-**Recommended Location:**
-- **Utilities:** `src/lib/utils.test.ts` (alongside `src/lib/utils.ts`)
-- **Contexts:** `src/contexts/cart-context.test.tsx` (alongside `src/contexts/cart-context.tsx`)
-- **Components:** `src/components/product/product-card.test.tsx` (alongside `src/components/product/product-card.tsx`)
-- **Hooks:** `src/hooks/use-*.test.ts` (alongside hook files)
+**Naming:**
+- No convention established
 
-**Naming Convention:**
-- Test files: `[filename].test.ts` or `[filename].test.tsx`
-- Or: `[filename].spec.ts` or `[filename].spec.tsx`
-- Prefer `.test.ts` for consistency
+**Structure:**
+```
+# Recommended structure based on project layout:
+src/
+├── components/
+│   ├── product/
+│   │   ├── product-card.tsx
+│   │   └── product-card.test.tsx    # Co-located pattern
+│   └── cart/
+│       ├── cart-drawer.tsx
+│       └── cart-drawer.test.tsx
+├── lib/
+│   ├── utils.ts
+│   └── utils.test.ts
+└── __tests__/                       # Alternative: centralized tests
+    ├── components/
+    └── integration/
+```
 
-## Manual Testing Checklist
+## Test Structure
 
-### Before Marking Any Feature Complete
+**Suite Organization:**
+- No established pattern
 
-1. **Build Validation**
-   ```bash
-   npm run build
-   npm run type-check
-   npm run lint
-   ```
-   All must pass with no errors.
-
-2. **Development Server Test**
-   ```bash
-   npm run dev
-   ```
-   Open http://localhost:3000
-
-3. **Happy Path Testing**
-   - [ ] Navigate through feature as primary user
-   - [ ] All interactions produce expected results
-   - [ ] No console errors
-   - [ ] No TypeScript errors
-
-4. **Responsive Design (Critical)**
-   - [ ] Mobile (375px): Single column, touch-friendly
-   - [ ] Tablet (768px): Two columns where applicable
-   - [ ] Desktop (1920px): Full layout
-   - [ ] All images load correctly
-   - [ ] All buttons/links clickable
-   - [ ] Text readable at all sizes
-
-5. **Edge Cases (Feature-Specific)**
-   - See feature-specific test cases below
-
-6. **Accessibility Baseline**
-   - [ ] Keyboard navigation works
-   - [ ] Color contrast sufficient
-   - [ ] Form labels associated with inputs
-   - [ ] Icons have alt text/aria-labels
-
-## Feature-Specific Test Cases
-
-### Cart Context (`src/contexts/cart-context.tsx`)
-
-**Manual Test Cases:**
-1. **Add Item to Cart**
-   - [ ] Click "Add to Cart" with product + size + date
-   - [ ] Cart opens automatically
-   - [ ] Item appears in cart
-   - [ ] Subtotal and bond total update
-   - [ ] Item count badge updates
-
-2. **Remove Item**
-   - [ ] Click remove icon on cart item
-   - [ ] Item disappears
-   - [ ] Cart totals recalculate
-   - [ ] Item count decreases
-
-3. **Clear Cart**
-   - [ ] Click "Clear Cart"
-   - [ ] All items removed
-   - [ ] Cart shows empty state
-   - [ ] Page redirects or shows empty message
-
-4. **Cart Persistence**
-   - [ ] Add items to cart
-   - [ ] Refresh page
-   - [ ] Items still in cart
-   - [ ] Expired items (past event date) filtered out
-
-5. **localStorage Failure**
-   - [ ] Disable localStorage in DevTools
-   - [ ] Add item to cart
-   - [ ] Check console for error handling
-   - [ ] App doesn't crash (error caught and logged)
-
-### Shipping Form (`src/components/checkout/shipping-form.tsx`)
-
-**Manual Test Cases:**
-1. **Required Field Validation**
-   - [ ] Submit empty form
-   - [ ] Error messages appear for: firstName, lastName, email, phone, address, suburb, state, postcode
-   - [ ] Errors clear when user types
-
-2. **Email Validation**
-   - [ ] Enter invalid email (no @)
-   - [ ] Error: "Please enter a valid email address"
-   - [ ] Enter valid email
-   - [ ] Error clears
-
-3. **Postcode Validation**
-   - [ ] Enter invalid postcode (letters, <4 digits, >9999, <200)
-   - [ ] Error: "Please enter a valid Australian postcode"
-   - [ ] Enter valid postcode (2000, 3141, 4000, etc.)
-   - [ ] Error clears
-
-4. **Form Submission**
-   - [ ] Fill all fields correctly
-   - [ ] Submit button clickable
-   - [ ] Form data passed to onSubmit callback
-   - [ ] Step changes to payment
-
-5. **State Preservation**
-   - [ ] Fill form partially
-   - [ ] Navigate away and back
-   - [ ] Data persists (if stored in parent state)
-
-### Payment Form (`src/components/checkout/payment-form.tsx`)
-
-**Manual Test Cases:**
-1. **Card Number Formatting**
-   - [ ] Type: "4111111111111111"
-   - [ ] Displayed as: "4111 1111 1111 1111"
-   - [ ] Only digits accepted
-   - [ ] Max 16 digits enforced
-
-2. **Expiry Date Formatting**
-   - [ ] Type: "1225"
-   - [ ] Displayed as: "12/25"
-   - [ ] Slash added automatically after 2 digits
-   - [ ] Only digits accepted
-
-3. **CVC Formatting**
-   - [ ] Type: "12345"
-   - [ ] Displayed as: "1234" (truncated to 4)
-   - [ ] Only digits accepted
-
-4. **Payment Validation**
-   - [ ] Card number < 13 digits: Error shown
-   - [ ] Invalid expiry format: Error shown
-   - [ ] Invalid CVC: Error shown
-   - [ ] Missing cardholder name: Error shown
-
-5. **Form Submission**
-   - [ ] All fields valid
-   - [ ] Submit button shows loading state
-   - [ ] onSubmit callback fires
-   - [ ] Loading state clears
-
-### Product Card (`src/components/product/product-card.tsx`)
-
-**Manual Test Cases:**
-1. **Image Display**
-   - [ ] Product thumbnail loads
-   - [ ] Image ratio maintained (aspect-[3/4])
-   - [ ] Hover effect: image scales smoothly
-
-2. **Quick View Hover**
-   - [ ] Hover over card
-   - [ ] "Quick View" button appears with animation
-   - [ ] Click navigates to product detail
-
-3. **Price Display**
-   - [ ] Rental price shown (teal, bold)
-   - [ ] "/week" text visible
-   - [ ] Retail price shown as strikethrough (lower value)
-
-4. **Tier Badge**
-   - [ ] Premium items show "premium" badge
-   - [ ] Lite items show "lite" badge
-   - [ ] Badge positioning correct
-
-5. **Size Availability**
-   - [ ] First 4 sizes displayed
-   - [ ] Available sizes: teal background
-   - [ ] Unavailable sizes: gray background
-   - [ ] "+N more" text shown if > 4 sizes
-
-### Checkout Page Flow
-
-**Manual Test Cases:**
-1. **Empty Cart Redirect**
-   - [ ] Navigate to /checkout with empty cart
-   - [ ] Redirect to /shop or show empty state
-   - [ ] "Browse Collection" link visible and clickable
-
-2. **Shipping Step**
-   - [ ] All form fields render
-   - [ ] Submit fills form data
-   - [ ] Step changes to "payment"
-   - [ ] Scroll to top on step change
-
-3. **Payment Step**
-   - [ ] "Back to Shipping" button works
-   - [ ] Payment form renders
-   - [ ] Submit with valid data shows loading
-   - [ ] Simulated delay (2 seconds) before success
-
-4. **Order Confirmation**
-   - [ ] Redirects to /checkout/success
-   - [ ] Order number generated (ASH-*)
-   - [ ] Order data stored in sessionStorage
-   - [ ] Cart cleared
-
-5. **Order Summary**
-   - [ ] Items listed with prices
-   - [ ] Shipping data displayed
-   - [ ] Subtotal calculated correctly
-   - [ ] Bond total calculated (items × $100)
-
-## Accessibility Testing
-
-**Screen Reader (Manual):**
-- [ ] Form labels read correctly
-- [ ] Error messages announced
-- [ ] Button purposes clear
-- [ ] Navigation structure logical
-
-**Keyboard Navigation (Manual):**
-- [ ] Tab through all interactive elements
-- [ ] Focus visible on all elements
-- [ ] Enter/Space activate buttons
-- [ ] Form submission via keyboard
-
-**Color Contrast:**
-- Use DevTools Lighthouse accessibility audit
-- All text must meet WCAG AA standards (4.5:1 for normal text)
-- Primary color (teal-600): sufficient contrast with white text
-
-## Performance Testing
-
-**Lighthouse (Manual):**
-1. Open page in Chrome
-2. DevTools → Lighthouse
-3. Run audit (Performance, Accessibility, Best Practices, SEO)
-4. Target scores:
-   - Performance: > 80
-   - Accessibility: > 90
-   - Best Practices: > 90
-   - SEO: > 90
-
-**Bundle Size:**
-- Monitor via: `npm run build` output
-- Aim to keep main bundle under 200KB gzipped
-
-## Automated Testing Examples (When Implemented)
-
-### Cart Context Unit Test Pattern
-
+**Recommended Pattern (based on project conventions):**
 ```typescript
-// src/contexts/cart-context.test.tsx
-import { describe, it, expect, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import { CartProvider, useCart } from '@/contexts/cart-context';
-import { Product } from '@/types';
+import { ProductCard } from './product-card';
+import { mockProduct } from '@/lib/mock-data/products';
 
-describe('CartContext', () => {
-  it('should add item to cart', () => {
-    const TestComponent = () => {
-      const { addItem, state } = useCart();
-      return (
-        <div>
-          <button onClick={() => addItem(mockProduct, 'M', new Date())}>
-            Add
-          </button>
-          <div>{state.items.length}</div>
-        </div>
-      );
-    };
-
-    render(
-      <CartProvider>
-        <TestComponent />
-      </CartProvider>
-    );
-
-    const addButton = screen.getByRole('button', { name: /Add/i });
-    addButton.click();
-
-    expect(screen.getByText('1')).toBeInTheDocument();
+describe('ProductCard', () => {
+  it('renders product name and price', () => {
+    render(<ProductCard product={mockProduct} />);
+    expect(screen.getByText(mockProduct.name)).toBeInTheDocument();
+    expect(screen.getByText(`$${mockProduct.rental_price}`)).toBeInTheDocument();
   });
 
-  it('should remove item from cart', () => {
-    // Test implementation
-  });
-
-  it('should persist to localStorage', () => {
-    // Test localStorage sync
+  it('displays tier badge', () => {
+    render(<ProductCard product={mockProduct} />);
+    expect(screen.getByText(mockProduct.tier)).toBeInTheDocument();
   });
 });
 ```
 
-### Form Validation Unit Test Pattern
+**Patterns to Follow:**
+- Descriptive test names using natural language
+- Arrange-Act-Assert pattern
+- One assertion per test (or related assertions)
 
+## Mocking
+
+**Framework:**
+- Not applicable (no tests)
+
+**Recommended Patterns:**
 ```typescript
-// src/components/checkout/shipping-form.test.tsx
-import { describe, it, expect } from 'vitest';
-import { render, screen, fireEvent } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
-import { ShippingForm } from '@/components/checkout/shipping-form';
-
-describe('ShippingForm', () => {
-  it('should validate required fields', async () => {
-    const mockOnSubmit = vi.fn();
-    const user = userEvent.setup();
-
-    render(<ShippingForm onSubmit={mockOnSubmit} />);
-
-    const submitButton = screen.getByRole('button', { name: /submit/i });
-    await user.click(submitButton);
-
-    expect(screen.getByText(/First name is required/)).toBeInTheDocument();
-    expect(mockOnSubmit).not.toHaveBeenCalled();
-  });
-
-  it('should validate postcode format', async () => {
-    const user = userEvent.setup();
-    render(<ShippingForm onSubmit={vi.fn()} />);
-
-    const postcodeInput = screen.getByDisplayValue(/postcode/i);
-    await user.type(postcodeInput, '123');
-
-    const submitButton = screen.getByRole('button', { name: /submit/i });
-    await user.click(submitButton);
-
-    expect(
-      screen.getByText(/Please enter a valid Australian postcode/)
-    ).toBeInTheDocument();
-  });
-});
-```
-
-### Utility Function Test Pattern
-
-```typescript
-// src/lib/utils.test.ts
-import { describe, it, expect } from 'vitest';
-import { cn } from '@/lib/utils';
-
-describe('cn utility', () => {
-  it('should merge class names', () => {
-    const result = cn('px-2', 'px-4'); // px-4 should win
-    expect(result).toContain('px-4');
-    expect(result).not.toContain('px-2');
-  });
-
-  it('should handle conditional classes', () => {
-    const result = cn('base', true && 'active', false && 'disabled');
-    expect(result).toContain('base');
-    expect(result).toContain('active');
-    expect(result).not.toContain('disabled');
-  });
-});
-```
-
-## Mocking Strategy
-
-**What to Mock:**
-- Supabase client calls (when API integration added)
-- Stripe API calls (payment processing)
-- Australia Post API (shipping labels)
-- External API endpoints
-
-**What NOT to Mock:**
-- React hooks (useState, useContext, useReducer)
-- Component renders
-- User interactions (use userEvent instead of fireEvent)
-- Browser APIs that are already stable (localStorage in tests can use in-memory alternative)
-
-**Mocking Example:**
-```typescript
-import { vi } from 'vitest';
-
-const mockSupabase = {
-  from: vi.fn().mockReturnValue({
-    select: vi.fn().mockResolvedValue({
-      data: [{ id: '1', name: 'Test Product' }],
-      error: null,
-    }),
+// Mock Next.js router
+jest.mock('next/navigation', () => ({
+  useRouter: () => ({
+    push: jest.fn(),
+    back: jest.fn(),
   }),
-};
+}));
 
-vi.mock('@/lib/supabase/client', () => ({
-  default: mockSupabase,
+// Mock cart context
+jest.mock('@/contexts/cart-context', () => ({
+  useCart: () => ({
+    state: { items: [], isOpen: false },
+    addItem: jest.fn(),
+    removeItem: jest.fn(),
+    itemCount: 0,
+    subtotal: 0,
+  }),
 }));
 ```
 
-## Test Coverage Goals (When Tests Implemented)
+**What to Mock:**
+- Next.js routing (`useRouter`, `useSearchParams`)
+- React Context (`CartProvider`)
+- localStorage (window.localStorage)
+- External APIs (when implemented: Stripe, Supabase, AusPost)
+- date-fns functions for consistent date testing
 
-**Target Coverage:**
-- Statements: 70%+
-- Branches: 65%+
-- Functions: 70%+
-- Lines: 70%+
+**What NOT to Mock:**
+- Pure utility functions (`cn()` from `@/lib/utils`)
+- Type definitions
+- Constants (`RENTAL_CONFIG`)
+- Simple React components (test real implementation)
 
-**Critical Paths (Priority):**
-- Cart context reducer (100% coverage)
-- Form validation (100% coverage)
-- Availability calculation (100% coverage)
-- Booking logic (100% coverage)
-- Payment processing (100% coverage)
+## Fixtures and Factories
+
+**Test Data:**
+- Mock data already exists in `src/lib/mock-data/products.ts`
+- Mock data in `src/lib/mock-data/availability.ts`
+
+**Existing Mock Patterns:**
+```typescript
+// Use existing mock factory
+import { products, getProductById } from '@/lib/mock-data/products';
+
+// Example fixture
+const mockProduct: Product = products[0];
+
+// Create custom test data
+const testProduct = createProduct(
+  '999',
+  'Test Product',
+  'saree',
+  100,
+  500,
+  0,
+  { featured: true }
+);
+```
+
+**Location:**
+- `src/lib/mock-data/` - Mock data for development and testing
+- Reuse existing mock factories for consistent test data
+
+**Pattern to Adopt:**
+```typescript
+// src/lib/test-utils/fixtures.ts (to be created)
+export const mockCartItem = (overrides?: Partial<CartItem>): CartItem => ({
+  id: '1-S-2026-02-01',
+  product: products[0],
+  size: 'S',
+  eventDate: '2026-02-01',
+  rentalTimeline: {
+    shipBy: '2026-01-29',
+    eventDate: '2026-02-01',
+    returnBy: '2026-02-04',
+  },
+  addedAt: '2026-01-27',
+  ...overrides,
+});
+```
+
+## Coverage
+
+**Requirements:**
+- None currently enforced
 
 **View Coverage:**
 ```bash
-npm run test:coverage
+# Not configured yet
+# Recommended: npm run test:coverage
 ```
 
-## Current Testing Reality
+**Recommended Targets:**
+- 80% line coverage for utilities
+- 70% coverage for components
+- 90% coverage for business logic (rental calculations, availability checks)
+- Focus on critical paths over 100% coverage
 
-**What Works:**
-- TypeScript compilation checks (strict mode enabled)
-- ESLint rules enforcement
-- Next.js build validation
-- Manual testing via dev server
+## Test Types
 
-**What's Missing:**
-- Unit tests for contexts
-- Component integration tests
-- Form validation tests
-- API mock tests
-- Visual regression tests
-- End-to-end tests
+**Unit Tests:**
+- Not implemented
 
-**When to Implement:**
-1. After core features are stable
-2. Before adding payment integration (critical path)
-3. Before shipping integration
-4. Before going live
+**Scope and Approach:**
+- Component rendering and props
+- Utility functions (`cn()`, validation functions)
+- Date calculations (`formatRentalTimeline`, availability checks)
+- Cart reducer logic
+
+**Example Priority:**
+```typescript
+// HIGH PRIORITY - Business logic
+- Rental date calculations (RENTAL_CONFIG)
+- Availability checking logic
+- Postcode validation (validatePostcode)
+- Cart reducer actions
+
+// MEDIUM PRIORITY - Component logic
+- Button variants and loading states
+- Form validation (ShippingForm)
+- Cart item calculations (subtotal, bondTotal)
+
+// LOW PRIORITY - Presentational
+- Static components (Hero, Footer)
+- Simple wrappers (Container)
+```
+
+**Integration Tests:**
+- Not implemented
+
+**Scope and Approach:**
+- User workflows (add to cart → checkout)
+- Context providers with components
+- Form submission flows
+- Multi-component interactions
+
+**E2E Tests:**
+- Framework: Not used
+
+**Recommendation:**
+- Playwright for critical user journeys
+- Test paths:
+  1. Browse → Product Detail → Add to Cart → Checkout
+  2. Cart management (add, remove, persist)
+  3. Form validation (shipping details, postcode)
+  4. Mobile navigation
+
+## Common Patterns
+
+**Async Testing:**
+```typescript
+// Pattern for future API integration
+it('loads products from API', async () => {
+  const { findByText } = render(<ProductGrid />);
+  expect(await findByText('Royal Blue Banarasi')).toBeInTheDocument();
+});
+
+// localStorage async behavior
+it('persists cart to localStorage', async () => {
+  const { result } = renderHook(() => useCart(), { wrapper: CartProvider });
+  act(() => {
+    result.current.addItem(mockProduct, 'M', new Date('2026-02-01'));
+  });
+  await waitFor(() => {
+    expect(localStorage.getItem('ashika_cart')).toBeTruthy();
+  });
+});
+```
+
+**Error Testing:**
+```typescript
+// Test error boundaries
+it('displays error UI when component throws', () => {
+  const ThrowError = () => {
+    throw new Error('Test error');
+  };
+  render(
+    <ErrorBoundary>
+      <ThrowError />
+    </ErrorBoundary>
+  );
+  expect(screen.getByText(/something went wrong/i)).toBeInTheDocument();
+});
+
+// Test validation errors
+it('shows error when postcode is invalid', () => {
+  render(<ShippingForm onSubmit={jest.fn()} />);
+  const postcodeInput = screen.getByLabelText(/postcode/i);
+  fireEvent.change(postcodeInput, { target: { value: '123' } });
+  fireEvent.blur(postcodeInput);
+  expect(screen.getByText(/valid Australian postcode/i)).toBeInTheDocument();
+});
+```
+
+**Context Testing:**
+```typescript
+// Test cart context provider
+import { renderHook, act } from '@testing-library/react';
+import { CartProvider, useCart } from '@/contexts/cart-context';
+
+const wrapper = ({ children }: { children: React.ReactNode }) => (
+  <CartProvider>{children}</CartProvider>
+);
+
+it('adds item to cart', () => {
+  const { result } = renderHook(() => useCart(), { wrapper });
+
+  act(() => {
+    result.current.addItem(mockProduct, 'M', new Date('2026-02-01'));
+  });
+
+  expect(result.current.itemCount).toBe(1);
+  expect(result.current.subtotal).toBe(mockProduct.rental_price);
+});
+```
+
+**Date Testing:**
+```typescript
+// Mock current date for consistent tests
+beforeAll(() => {
+  jest.useFakeTimers();
+  jest.setSystemTime(new Date('2026-01-27'));
+});
+
+afterAll(() => {
+  jest.useRealTimers();
+});
+
+it('calculates rental timeline correctly', () => {
+  const eventDate = new Date('2026-02-15');
+  const timeline = formatRentalTimeline(eventDate);
+
+  expect(timeline.shipBy).toEqual(new Date('2026-02-12'));
+  expect(timeline.returnBy).toEqual(new Date('2026-02-18'));
+});
+```
+
+## Testing Priorities
+
+**Phase 1 - Critical Business Logic:**
+1. RENTAL_CONFIG calculations (ship dates, return dates, cleaning buffer)
+2. Availability checking algorithm
+3. Cart reducer (add, remove, persist, hydrate)
+4. Postcode validation
+
+**Phase 2 - User Interactions:**
+1. ShippingForm validation
+2. Cart drawer (open/close, item display)
+3. Product filtering and sorting
+4. Mobile navigation
+
+**Phase 3 - Integration:**
+1. Add to cart → view cart → checkout flow
+2. Context providers with components
+3. localStorage persistence
+
+**Phase 4 - E2E:**
+1. Complete rental booking flow
+2. Form validation edge cases
+3. Responsive design testing
+
+## Test Setup Recommendations
+
+**Install Dependencies:**
+```bash
+npm install -D jest @testing-library/react @testing-library/jest-dom
+npm install -D @testing-library/user-event @testing-library/react-hooks
+npm install -D jest-environment-jsdom
+npm install -D @types/jest
+```
+
+**Jest Config (`jest.config.js`):**
+```javascript
+const nextJest = require('next/jest');
+
+const createJestConfig = nextJest({
+  dir: './',
+});
+
+const customJestConfig = {
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
+  testEnvironment: 'jest-environment-jsdom',
+  moduleNameMapper: {
+    '^@/(.*)$': '<rootDir>/src/$1',
+  },
+  collectCoverageFrom: [
+    'src/**/*.{js,jsx,ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/**/*.stories.tsx',
+  ],
+  coverageThresholds: {
+    global: {
+      branches: 70,
+      functions: 70,
+      lines: 70,
+      statements: 70,
+    },
+  },
+};
+
+module.exports = createJestConfig(customJestConfig);
+```
+
+**Jest Setup (`jest.setup.js`):**
+```javascript
+import '@testing-library/jest-dom';
+
+// Mock localStorage
+const localStorageMock = {
+  getItem: jest.fn(),
+  setItem: jest.fn(),
+  removeItem: jest.fn(),
+  clear: jest.fn(),
+};
+global.localStorage = localStorageMock;
+```
 
 ---
 
-*Testing analysis: 2026-01-24*
+*Testing analysis: 2026-01-27*

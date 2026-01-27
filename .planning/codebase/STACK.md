@@ -1,127 +1,87 @@
 # Technology Stack
 
-**Analysis Date:** 2026-01-24
+**Analysis Date:** 2026-01-27
 
 ## Languages
 
 **Primary:**
-- TypeScript 5.x - All source code, strict mode enabled
-- JavaScript (ES2024) - Build and configuration files
+- TypeScript 5.x - All application code (src/)
+- JavaScript (JSX/TSX) - React components via Next.js
 
 **Secondary:**
-- CSS - Via Tailwind CSS (no raw CSS)
-- SQL - Supabase PostgreSQL queries (via client SDK)
+- SQL - Database migrations (`supabase/migrations/`)
 
 ## Runtime
 
 **Environment:**
-- Node.js (latest LTS) - Development and build
-- Browser (modern ES2020+) - Client-side
+- Node.js >=16.0.0 (v25.2.0 detected on development machine)
 
 **Package Manager:**
-- npm 10.x - Package management
-- Lockfile: `package-lock.json` (present, v3)
+- npm (package-lock.json version 3)
+- Lockfile: Present (`package-lock.json`)
 
 ## Frameworks
 
 **Core:**
-- Next.js 14.2.35 - React framework with App Router
-- React 18.x - UI component library
-- React DOM 18.x - DOM rendering
+- Next.js 14.2.35 - Full-stack React framework with App Router
+- React 18.x - UI library
+- React DOM 18.x - React rendering
 
-**Styling:**
+**Testing:**
+- Not configured (no test framework detected)
+
+**Build/Dev:**
+- PostCSS 8.x - CSS processing
 - Tailwind CSS 3.4.1 - Utility-first CSS framework
-- PostCSS 8.x - CSS processing pipeline
-
-**Forms & Data:**
-- react-hook-form 7.x - Form state and validation
-- @hookform/resolvers 3.x - Form validation adapters
-- Zod 3.x - TypeScript-first schema validation
-
-**Utilities:**
-- date-fns 3.x - Date manipulation and formatting
-- lucide-react - Icon library (React components)
-- clsx 2.x - Conditional className utility
-- tailwind-merge 2.x - Tailwind class conflict resolution
-
-**Dev Tools:**
-- ESLint 8.x - Code linting (Next.js config preset)
-- TypeScript 5.x compiler (`tsc --noEmit` for type checking)
+- ESLint 8.x - Code linting with Next.js config
+- TypeScript Compiler 5.x - Type checking
 
 ## Key Dependencies
 
 **Critical:**
-- `next` 14.2.35 - Framework, build pipeline, API routes, image optimization
-- `@hookform/resolvers` 3.x - Bridges Zod validation with react-hook-form
-- `date-fns` 3.x - Rental date calculations, timeline formatting
-
-**UI & UX:**
-- `lucide-react` - SVG icons (Check, ArrowLeft, CreditCard, MapPin, ShoppingBag, etc.)
-- `clsx` + `tailwind-merge` - CSS class management without conflicts
+- `next` 14.2.35 - Framework foundation
+- `react` ^18 - UI rendering
+- `typescript` ^5 - Type safety
 
 **Infrastructure:**
-- `react` 18.x & `react-dom` 18.x - React rendering engine
-- `typescript` 5.x - Type checking and compilation
+- `date-fns` ^3 - Date manipulation for rental calculations
+- `zod` ^3 - Schema validation
+- `react-hook-form` ^7 - Form state management
+- `@hookform/resolvers` ^3 - Zod integration for forms
+
+**UI/Styling:**
+- `tailwindcss` ^3.4.1 - Styling system
+- `lucide-react` latest - Icon library
+- `clsx` ^2 - Conditional class names
+- `tailwind-merge` ^2 - Tailwind class merging utility
 
 ## Configuration
 
 **Environment:**
-- `.env.local` - Local development configuration (not committed)
-- `env/.env.example` - Template for required environment variables
-- `NEXT_PUBLIC_` prefix - Variables exposed to browser
-- Private variables - Available only on server side
+- Environment variables via `.env.local` (not committed)
+- Template: `env/.env.example`
+- Mock data mode available via `USE_MOCK_DATA=true`
 
-**Key Configuration Files:**
-- `tsconfig.json` - TypeScript strict mode, path aliases (`@/*` → `./src/*`)
-- `tailwind.config.ts` - Theme extensions (brand colors: teal, gold, cream)
-- `postcss.config.mjs` - PostCSS plugins (Tailwind CSS integration)
-- `next.config.mjs` - Image domain whitelisting (Unsplash, Pexels)
-- `.eslintrc.json` - ESLint preset (`next/core-web-vitals`, `next/typescript`)
+**Build:**
+- `next.config.mjs` - Next.js configuration (image optimization)
+- `tsconfig.json` - TypeScript settings (strict mode enabled)
+- `tailwind.config.ts` - Brand colors (teal, gold), custom fonts
+- `.eslintrc.json` - ESLint rules (Next.js + TypeScript)
+- `postcss.config.mjs` - PostCSS with Tailwind plugin
 
 ## Platform Requirements
 
 **Development:**
-- Node.js 18.17+ (for npm 10)
-- macOS, Linux, or Windows with WSL2
-- 2GB RAM minimum
-- ~500MB disk space for node_modules
+- Node.js 18+ (recommended)
+- npm or yarn
+- API keys for Supabase, Stripe, Australia Post (see `env/.env.example`)
 
 **Production:**
-- Deployment: Vercel (configured in `vercel.json`)
+- Vercel (configured via `vercel.json`)
+- Framework: Next.js
 - Build command: `next build`
-- Output directory: `.next`
-- Node.js runtime compatible
-
-**Browser Support:**
-- Modern browsers (ES2020+)
-- Chrome 90+, Firefox 88+, Safari 14+, Edge 90+
-- Mobile: iOS 12+, Android 8+
-
-## Build & Deployment
-
-**Dev Server:**
-```bash
-npm run dev        # Runs on http://localhost:3000
-```
-
-**Production Build:**
-```bash
-npm run build      # Creates .next optimized build
-npm start          # Serves production build
-```
-
-**Quality Checks:**
-```bash
-npm run lint       # ESLint check
-npm run type-check # TypeScript type checking
-```
-
-**Hosting:**
-- Platform: Vercel (Next.js first-class support)
-- Zero-config deployment from Git
-- Automatic HTTPS, CDN, edge caching
-- Free tier sufficient for current scale
+- Output: `.next/`
 
 ---
 
-*Stack analysis: 2026-01-24*
+*Stack analysis: 2026-01-27*

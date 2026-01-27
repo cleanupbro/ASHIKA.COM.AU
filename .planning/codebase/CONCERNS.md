@@ -1,269 +1,238 @@
 # Codebase Concerns
 
-**Analysis Date:** 2026-01-24
+**Analysis Date:** 2026-01-27
 
 ## Tech Debt
 
-**Mock Data in Production Path:**
-- Issue: Entire rental availability and product catalog is hardcoded mock data. The system uses mock blocks, mock products, and mock reviews throughout the user journey.
-- Files: `src/lib/mock-data/products.ts`, `src/lib/mock-data/availability.ts`, `src/components/product/product-reviews.tsx`
-- Impact: Cannot serve real products or handle real bookings. Payment processing is simulated (2-second delay). No real inventory management possible.
-- Fix approach: Implement Supabase integration layer (`src/lib/supabase/server.ts`, `src/lib/supabase/client.ts`) to fetch products, availability blocks, and reviews from database. Create API routes for real booking creation.
+**Mock Data in Production-Ready Frontend:**
+- Issue: Entire frontend built with hardcoded mock data, no backend integration exists
+- Files: `src/lib/mock-data/products.ts` (289 lines), `src/lib/mock-data/availability.ts` (167 lines)
+- Impact: All 63+ components render mock Unsplash images and fake product data. Cart system uses localStorage only (no server persistence). Availability calendar shows dummy blocked dates. Zero database or API integration.
+- Fix approach: Phase 1-2 work (Database + Auth setup). Replace mock imports with real Supabase queries. Cart context needs server-side booking creation on checkout.
 
-**Missing Payment Integration:**
-- Issue: Payment form collects card details but passes them to a mock handler that simply waits 2 seconds. No actual Stripe payment processing occurs.
-- Files: `src/components/checkout/payment-form.tsx`, `src/app/checkout/page.tsx` (line 58-85)
-- Impact: No transactions are processed. Bond pre-authorization is not implemented. No payment intent creation or capture logic.
-- Fix approach: Implement Stripe PaymentIntent creation in `src/app/api/payments/route.ts`. Use `@stripe/stripe-js` and `stripe` SDK. Handle card tokenization securely without client-side card data handling.
+**No Backend Implementation:**
+- Issue: Zero API routes, no Supabase client configuration, no authentication system, no payment integration
+- Files: `src/app/api/` directory does not exist, no `src/lib/supabase/` directory
+- Impact: Beautiful frontend that cannot accept real bookings, process payments, or store user data. Entire rental transaction flow is non-functional.
+- Fix approach: Systematic backend buildout per roadmap. Database schema → Auth → Booking engine → Payments → Webhooks. Estimated 40-60 hours of work across Phases 1-4.
 
-**No Real Authentication:**
-- Issue: No user authentication system is implemented. Cart is stored in localStorage using a hardcoded key, not tied to user accounts.
-- Files: `src/contexts/cart-context.tsx` (uses `CART_STORAGE_KEY = 'ashika_cart'`)
-- Impact: Users are not authenticated. Bookings are not tied to user IDs. Multiple users on same device share cart. No user dashboard or order history.
-- Fix approach: Integrate Supabase Auth (`@supabase/supabase-js`). Add protected routes with auth checks. Store cart in user context instead of localStorage.
+**Missing Critical Dependencies:**
+- Issue: Package.json lacks essential backend packages despite being specified in CLAUDE.md rules
+- Files: `package.json` missing `@supabase/supabase-js`, `@supabase/ssr`, `stripe`, `@stripe/stripe-js`, `@stripe/react-stripe-js`
+- Impact: Cannot connect to database or payment provider. Frontend code ready but backend integration impossible without dependencies.
+- Fix approach: Install packages in phases: Supabase packages (Phase 1), Stripe packages (Phase 3). Total ~8 packages to add.
 
-**Order Data Stored in SessionStorage:**
-- Issue: Order confirmation data is stored in sessionStorage and cleared after reading. No server-side order persistence.
-- Files: `src/app/checkout/page.tsx` (line 68-78), `src/app/checkout/success/page.tsx` (line 44-48)
-- Impact: Order data is lost if user refreshes success page or closes tab. No order history or tracking possible. No audit trail for business operations.
-- Fix approach: Store orders in Supabase `bookings` table immediately after payment succeeds. Use booking ID to fetch order on success page, not sessionStorage.
+**Architectural Mismatch in Bond Logic:**
+- Issue: CLAUDE.md specifies pre-authorization bond pattern, but research shows Stripe auth windows (5-7 days) expire before rental cycle completes (10 days: 3 pre + event + 3 return + 3 cleaning)
+- Files: `.claude/rules/rental-logic.md` line 91-108, `CLAUDE.md` line 116-140
+- Impact: Bond holds will expire before item return, making damage charges impossible. Business cannot capture $100 bond if item returned damaged after day 7.
+- Fix approach: Switch to saved-card pattern before Phase 3 (Payments). Save payment method with `setup_future_usage: 'off_session'`, create new PaymentIntent for damage charge only if needed after return. Documented in `.planning/research/PITFALLS.md` lines 90-149.
 
-**Hardcoded Rental Logic with Date Calculation Concerns:**
-- Issue: Date calculations for availability blocking are complex and embedded in multiple places with inconsistent period calculation.
-- Files: `src/lib/mock-data/availability.ts` (line 38, 60-61), `src/contexts/cart-context.tsx` (line 75-78)
-- Impact: Discrepancies between how blocking periods are calculated in different functions could lead to double bookings or availability display errors.
-- Fix approach: Centralize availability calculation in a single utility module. Add comprehensive test coverage for edge cases (same day rental, adjacent bookings, cleaning buffer overlaps).
+**No Environment Configuration:**
+- Issue: Zero environment files exist, no API keys configured
+- Files: No `.env.local`, `.env.example` template exists in `env/` directory but not referenced
+- Impact: Cannot run development build with real services. Supabase URLs, Stripe keys, API credentials all missing.
+- Fix approach: Create `.env.local` from `env/.env.example` template during Phase 1 setup. Never commit real keys (already in .gitignore).
 
----
+**Firebase Debug Log Committed:**
+- Issue: Firebase debug log contains user email and auth attempts, should not be in repository
+- Files: `firebase-debug.log` at project root (committed, exposes hafsahnuzhat1303@gmail.com)
+- Impact: Minor security concern, PII leakage. Indicates Firebase tooling used but no Firebase configuration in codebase (potential abandoned approach).
+- Fix approach: Delete file, ensure .gitignore catches future `*-debug.log` files (already in .gitignore line 42-45, but file committed before gitignore added).
 
 ## Known Bugs
 
-**Postcode Validation Range Issue:**
-- Symptoms: Postcode validation allows 0200-9999, but valid Australian postcodes range 0200-9999 in populated areas. Postcode "0001" would be rejected but might be valid in some contexts.
-- Files: `src/components/checkout/shipping-form.tsx` (line 50-53)
-- Trigger: Enter postcode "0100" or "0150" during checkout
-- Workaround: None currently. Users with some valid postcodes may be incorrectly rejected.
+**Race Condition Double Bookings (Critical, Unimplemented):**
+- Symptoms: Two users can book same product for overlapping dates if availability check and booking creation are separate operations
+- Files: No booking logic exists yet, will affect future `src/app/api/bookings/route.ts`
+- Trigger: Concurrent requests to checkout for same product+date. Both pass availability SELECT query, both create bookings, inventory double-allocated.
+- Workaround: None (feature doesn't exist yet)
+- Fix: Implement PostgreSQL `create_booking_atomic()` function with `FOR UPDATE` row lock before availability check. Documented in `.planning/research/PITFALLS.md` lines 15-86. Must be implemented from day one, not retrofitted.
 
-**Availability Overlap Detection Has Edge Case:**
-- Symptoms: Calendar may show overlapping available/blocked dates at month boundaries when checking multiple overlapping interval conditions.
-- Files: `src/lib/mock-data/availability.ts` (line 107-113) - Complex overlapping conditions using isWithinInterval multiple times
-- Trigger: Book a product on the last day of month and check next month's calendar
-- Workaround: None. Behavior is undefined for adjacent bookings that share boundaries.
+**Timezone Bugs in Date Calculation (High Risk, Unimplemented):**
+- Symptoms: Rental date calculations cross DST boundaries (AEST ↔ AEDT), causing off-by-one-day errors for events near April/October transitions
+- Files: No date utility exists yet, will affect `src/lib/utils/dates.ts` (to be created)
+- Trigger: Event date on first Sunday of April or October. Server (Vercel US region) calculates `rental_start = event_date - 3 days` with timestamp arithmetic instead of date arithmetic. DST shift causes wrong dates.
+- Workaround: None (feature doesn't exist yet)
+- Fix: Use DATE type (not TIMESTAMPTZ) in database. Use date-fns with plain date arithmetic on ISO date strings `YYYY-MM-DD`. Never pass Date objects between client/server for rental logic. Documented in `.planning/research/PITFALLS.md` lines 264-327.
 
-**localStorage Hydration Race Condition:**
-- Symptoms: Cart may not hydrate from localStorage if page is navigated away quickly after mount.
-- Files: `src/contexts/cart-context.tsx` (line 146-160)
-- Trigger: User lands on checkout page directly without visiting shop first
-- Workaround: Cart may appear empty even if items were saved.
-
-**Unfiltered Product Reviews:**
-- Symptoms: Same mock reviews appear on every product detail page regardless of productId.
-- Files: `src/components/product/product-reviews.tsx` (line 79-83) - productId prop is unused with eslint-disable
-- Trigger: Navigate to any product detail page
-- Workaround: None. Cannot distinguish reviews by product.
-
----
+**Form State Loss on Navigation (App Router Pattern):**
+- Symptoms: User fills checkout form, navigates back to product page, returns to checkout. All form data lost.
+- Files: `src/app/checkout/page.tsx` (225 lines) - client component with local state only
+- Trigger: Browser back/forward during checkout flow. React Server Components unmount on route change, destroying local state.
+- Current mitigation: None
+- Fix: Single-page checkout with step state (no route changes during form). Persist critical data (product ID, event date) in URL search params. SessionStorage fallback for accidental navigation. Documented in `.planning/research/PITFALLS.md` lines 387-436.
 
 ## Security Considerations
 
-**Client-Side Card Data Collection (Future Risk):**
-- Risk: PaymentForm collects and processes card data on client-side. This violates PCI-DSS compliance if data is ever sent to server or stored.
-- Files: `src/components/checkout/payment-form.tsx` (line 29-34, 96)
-- Current mitigation: Form data is only used in local state and submitted to mock handler (not sent to server).
-- Recommendations: When integrating real Stripe, use Stripe Elements or Stripe.js tokenization. Never send raw card data to your server. Implement PaymentIntent on backend only.
+**Client-Side Price Manipulation (Critical, Unimplemented):**
+- Risk: Future checkout API could trust client-provided prices instead of fetching from database
+- Files: Will affect `src/app/api/checkout/route.ts` (not yet created)
+- Current mitigation: None (no payment flow exists)
+- Recommendations: ALWAYS fetch rental_price from Supabase products table in server action. Never trust FormData or request body for prices. Document in `.claude/rules/backend.md` lines 145-188 already addresses this.
 
-**Environment Variables Not Validated:**
-- Risk: No validation that required environment variables exist or are correctly formatted at startup.
-- Files: `env/.env.example` shows template but no runtime validation in code
-- Current mitigation: Application will fail with unclear error if env vars missing
-- Recommendations: Add startup check in `src/app/layout.tsx` or create `lib/env.ts` that validates all required vars using Zod.
+**No Row Level Security Policies:**
+- Risk: Supabase tables will be created without RLS, allowing users to read/modify any booking data
+- Files: No Supabase migrations exist yet (`supabase/migrations/` directory empty)
+- Current mitigation: None
+- Recommendations: Define RLS policies in first migration: `products` (public read), `bookings` (user reads own via auth.uid()), `inventory_blocks` (public read for calendar), `profiles` (user reads own). Never use service role key in client code.
 
-**SessionStorage Order Data Has No CSRF Protection:**
-- Risk: Order data stored in sessionStorage can be read by any script on the page. No CSRF token validates the order creation request.
-- Files: `src/app/checkout/page.tsx` (line 68-78)
-- Current mitigation: Mock data only, no real transaction
-- Recommendations: When implementing real payments, use Stripe's built-in CSRF protection. Store sensitive order data server-side only.
+**Missing Postcode Validation:**
+- Risk: Invalid Australian postcodes (0000, 10000) or remote area postcodes accepted, causing shipping failures
+- Files: `src/components/checkout/shipping-form.tsx` (226 lines) likely has basic regex only
+- Current mitigation: Form validation exists but strength unknown (no Zod schemas imported)
+- Recommendations: Implement range-based validation with VALID_POSTCODE_RANGES (200-299 ACT, 1000-2999 NSW, etc). Reject invalid postcodes at form level. Consider surcharge notice for remote areas (NT 800-999). Pattern documented in `.planning/research/PITFALLS.md` lines 587-642.
 
-**No Rate Limiting on Potential API Routes:**
-- Risk: Future API routes for booking creation could be hit repeatedly to create fake bookings.
-- Files: No API routes currently exist (system is frontend-only mock)
-- Current mitigation: No API routes means no attack surface yet
-- Recommendations: When creating `src/app/api/bookings/route.ts`, implement rate limiting per IP/user and validate postcode and dates on server.
-
-**Unsanitized Dynamic Content in FAQ/Terms:**
-- Risk: Text content like FAQ answers and terms are hardcoded strings but could contain user-submitted content in future.
-- Files: `src/app/faq/page.tsx`, `src/app/terms/page.tsx` contain HTML strings
-- Current mitigation: All content is developer-controlled
-- Recommendations: Use next/sanitize or DOMPurify if content ever comes from database or user input.
-
----
+**API Keys in Repository Risk:**
+- Risk: Developers may commit real API keys to `.env.local` or hardcode in source
+- Files: `.gitignore` correctly excludes `.env*.local` but developers can override
+- Current mitigation: .gitignore configured, CLAUDE.md section 10 (API Key Protection) warns against key exposure
+- Recommendations: Use environment variable validation at build time (fail if NEXT_PUBLIC_SUPABASE_URL undefined). Pre-commit hooks to scan for key patterns (`sk_live_`, `pk_live_`). Never log env vars in server-side code.
 
 ## Performance Bottlenecks
 
-**Full Calendar Recalculation on Every Month Change:**
-- Problem: `getBlockedDates()` iterates through every single day in the month and calls `isProductAvailable()` for each, which loops through all product blocks.
-- Files: `src/components/booking/availability-calendar.tsx` (line 45-49 memoization), calls `getBlockedDates()` on every month change
-- Cause: O(days * blocks) complexity. With 30 days and 50 blocks per product, 1500 function calls per month view.
-- Improvement path: Cache blocked dates by month. Use a Set for O(1) lookup instead of array.some(). Consider server-side pre-computation of blocked dates.
+**No Image Optimization on Free Tier:**
+- Problem: Supabase Storage free tier has no server-side image transformations. Full-resolution uploads (2-5MB each) will be served directly.
+- Files: `src/lib/mock-data/products.ts` currently uses Unsplash URLs (externally optimized). Real product images will be uploaded to Supabase Storage.
+- Cause: Supabase Image Transformations require Pro plan ($25/month). Free tier serves exact uploaded file.
+- Improvement path: Pre-optimize images before upload. Generate 3 variants (thumb: 400px/200KB, medium: 800px/500KB, full: 1200px/800KB) as WebP. 30 products × 5 images × 3 variants = 450 files at ~300KB avg = 135MB total (within 1GB limit). Documented in `.planning/research/PITFALLS.md` lines 199-254.
 
-**useEffect Dependencies in CartProvider May Cause Excessive Renders:**
-- Problem: Cart persistence effect runs on every state.items change. If state object is recreated unnecessarily, this could cause excessive localStorage writes.
-- Files: `src/contexts/cart-context.tsx` (line 163-169)
-- Cause: No memoization of dispatch functions. Every dispatch creates new action object.
-- Improvement path: Wrap dispatch callbacks in useCallback. Consider debouncing localStorage writes.
+**Vercel Cold Starts on Low-Traffic Checkout:**
+- Problem: Checkout API route not invoked in 30+ minutes experiences 3-5 second cold start + Stripe API latency (2-3s). Total 5-8 seconds for first checkout attempt.
+- Files: Will affect `src/app/api/checkout/route.ts` (not yet created)
+- Cause: Vercel Hobby tier serverless functions cold start after inactivity. Expected for niche rental platform with low initial traffic.
+- Improvement path: UI mitigation (disable button on submit, show loading state). Stripe idempotency keys prevent double-charge on retry. Move non-critical work (emails, shipping labels) to webhooks (separate function invocation). Documented in `.planning/research/PITFALLS.md` lines 816-856.
 
-**Product List Doesn't Paginate:**
-- Problem: Shop page loads all products into memory. With large inventory, this could cause memory issues in browser.
-- Files: `src/lib/mock-data/products.ts` exports full array, `src/app/shop/shop-content.tsx` filters entire list
-- Cause: No pagination or virtual scrolling implemented
-- Improvement path: Implement cursor-based pagination on backend. Use React Query or SWR with intersection observer for infinite scroll.
-
-**Image URLs Are Not Optimized:**
-- Problem: Product images load directly from Unsplash URLs without Next.js Image optimization, which means no automatic resize, format conversion, or CDN caching.
-- Files: `src/lib/mock-data/products.ts` (lines 6-43 load 1920x1280 and 1200x1600 images)
-- Cause: Using direct URLs instead of next/image component with proper sizes
-- Improvement path: Store images in Supabase Storage with CDN. Use next/image with proper width/height. Implement responsive srcset.
-
----
+**Mock Product Data Load:**
+- Problem: 289-line products.ts file with 30+ mock products imported on every page load
+- Files: `src/lib/mock-data/products.ts` (289 lines hardcoded product objects)
+- Cause: No database, using static imports. Bundle includes all product data even on pages that show 6 products.
+- Improvement path: Replace with Supabase queries that fetch only needed data. Example: product grid loads `select id,name,category,rental_price,images[0]` (not full product objects). Product detail page loads single product by ID.
 
 ## Fragile Areas
 
-**Availability Calculation Logic:**
-- Files: `src/lib/mock-data/availability.ts` - Functions `calculateBlockingPeriod()`, `isProductAvailable()`, `getBlockedDates()`
-- Why fragile: Multiple overlapping date range checks with complex boolean logic. Edge cases around date boundaries not well-tested. Mock data generation is separate from validation logic.
-- Safe modification: Add comprehensive unit tests for every edge case. Create test fixture with specific date scenarios. Use property-based testing (fast-check) to generate random date ranges.
-- Test coverage: Unknown. No test files found. Gaps likely in: same-day overlaps, cleaning buffer boundary conditions, minimum booking days validation.
+**Cart Context Synchronization:**
+- Files: `src/contexts/cart-context.tsx` (227 lines)
+- Why fragile: Cart uses localStorage for persistence but complex reducer state with derived rental timeline calculations. Adding/removing items recalculates dates with date-fns but no validation against real availability.
+- Safe modification: Always use provided `addItem`/`removeItem` actions. Never mutate `state.items` directly. Timeline calculations use `formatRentalTimeline` from availability.ts (mock implementation).
+- Test coverage: No tests exist (entire project has zero test files)
 
-**Cart Context Serialization/Deserialization:**
-- Files: `src/contexts/cart-context.tsx` - Lines 148-156 parse localStorage JSON, line 165 serialize back
-- Why fragile: JSON.parse can throw if corrupted data. Date fields are ISO strings but not validated as valid dates. CartItem schema not validated with Zod.
-- Safe modification: Use Zod to validate cart data shape on hydration. Wrap JSON.parse in try-catch. Validate eventDate is future. Reset cart if validation fails.
-- Test coverage: No tests for corrupted localStorage, invalid dates, or schema mismatches.
+**Product Filters State Management:**
+- Files: `src/components/product/product-filters.tsx` (256 lines)
+- Why fragile: Large client component with complex filter state (category, size, price range, occasion, availability date). Multiple useEffect hooks synchronize URL params with local state. Easy to introduce infinite re-render loops.
+- Safe modification: Avoid adding new useEffect hooks. Use debouncing for search inputs (not currently implemented). When replacing mock data with Supabase queries, move filtering to server-side WHERE clauses, not client-side array operations.
+- Test coverage: None
 
-**PaymentForm and ShippingForm Validation:**
-- Files: `src/components/checkout/payment-form.tsx` (line 70-97), `src/components/checkout/shipping-form.tsx` (line 50-92)
-- Why fragile: Regex validation for email and postcode is simplistic. No integration with form library (react-hook-form imported but not used). Manual error state management.
-- Safe modification: Use react-hook-form with Zod resolver. Create reusable validation schemas. Add server-side validation mirrors for when these become API routes.
-- Test coverage: No tests for validation edge cases (email with +, postcode edge values).
+**Checkout Form Multi-Step State:**
+- Files: `src/app/checkout/page.tsx` (225 lines), `src/components/checkout/shipping-form.tsx` (226 lines), `src/components/checkout/payment-form.tsx` (223 lines)
+- Why fragile: Multi-step checkout with react-hook-form per step. No shared form state between steps. Likely requires refactor to single-page checkout to prevent state loss (see Known Bugs).
+- Safe modification: Test navigation during checkout. Validate form data persists between steps. When integrating Stripe, use client-side confirmation (Elements) not server-side redirect flow.
+- Test coverage: None
 
-**Availability Calendar Usability:**
-- Files: `src/components/booking/availability-calendar.tsx` - Complex calendar rendering with many className conditionals
-- Why fragile: Button click handlers (line 79-92) and date blocking logic (line 51-67) are tightly coupled. If date calculation changes, calendar display breaks silently.
-- Safe modification: Extract calendar rendering to separate component. Write snapshot tests for blocked date display. Add visual regression testing.
-- Test coverage: No tests for calendar rendering with various blocked date patterns.
-
----
+**Date Selection and Availability Calendar:**
+- Files: `src/components/booking/availability-calendar.tsx` (152 lines), `src/components/booking/date-selector.tsx`
+- Why fragile: Calendar component calculates blocked dates from mock data. Real implementation requires querying `inventory_blocks` table for date ranges, then blocking all dates in range PLUS cleaning buffer. Off-by-one errors likely when integrating real data.
+- Safe modification: When replacing mock `getBlockedDates()`, ensure query includes cleaning_end date, not just rental_end. Use DATE type comparisons, not timestamp math. Add visual distinction for "event date" vs "blocked dates" in calendar UI.
+- Test coverage: None
 
 ## Scaling Limits
 
-**Mock Data Cannot Scale to Real Inventory:**
-- Current capacity: ~16 hardcoded products with random availability
-- Limit: Cannot support >50-100 products without significant code changes. Each product requires manual definition in products.ts. Availability blocks are generated statically.
-- Scaling path: Migrate to Supabase with proper indexing on (product_id, block_start, block_end). Use RLS policies to control access. Implement server-side availability check with database query optimization.
+**Supabase Database Size (500MB Free Tier):**
+- Current capacity: 0 MB used (no database exists)
+- Limit: 500MB on free tier, database enters read-only mode on exceed
+- Scaling path: With proper patterns (no base64 images, product images in Storage not DB), 500MB supports 1000+ bookings + 30 products + user profiles. Unlikely to hit limit in first 6 months. Monitor at 400MB, upgrade to Pro ($25/month) if needed.
 
-**localStorage Cart Cannot Scale to Multiple Devices:**
-- Current capacity: Single device/browser only
-- Limit: User loses cart on different device or browser. No cross-device synchronization.
-- Scaling path: Move cart to user account in database. Implement cart sync API endpoint. Use optimistic updates with SWR or React Query.
+**Supabase Storage (1GB Free Tier):**
+- Current capacity: 0 GB used (no storage bucket created)
+- Limit: 1GB total file storage
+- Scaling path: Pre-optimized WebP images (30 products × 5 images × 3 variants = 450 files at 300KB avg = 135MB). Leaves 865MB headroom for additional products. Can reach 100+ products before hitting limit. Documented in `.planning/research/PITFALLS.md` lines 547-584.
 
-**SessionStorage Order Data Cannot Scale to Order History:**
-- Current capacity: Single successful order in sessionStorage
-- Limit: No order history or tracking. Customers cannot access past bookings.
-- Scaling path: Create `bookings` table in Supabase with proper indexes. Add order history page. Implement order tracking with status updates.
+**Supabase Auto-Pause (7 Days Inactivity):**
+- Current capacity: N/A (not deployed)
+- Limit: Free tier pauses after 7 days with no database queries. Site returns 500 errors. Manual restore required.
+- Scaling path: CRITICAL - Implement GitHub Actions ping job (every 3 days) before launch. Queries `products` table to keep database active. Alternative: upgrade to Pro ($25/month) before launch (Pro projects never pause). Documented in `.planning/research/PITFALLS.md` lines 153-196.
 
-**Frontend-Only Architecture Cannot Scale to Business Operations:**
-- Current capacity: Demo/prototype only
-- Limit: No backend for inventory management, payment processing, shipping integration, damage assessment, or customer support ticketing.
-- Scaling path: Build API layer with routes for bookings, payments, shipping, returns, damage claims. Implement admin dashboard. Add staff portal for inventory and returns.
-
----
+**Vercel Function Timeout (10 Seconds Hobby Tier):**
+- Current capacity: No serverless functions exist
+- Limit: 10-second hard timeout on API routes. Cannot be extended on free tier.
+- Scaling path: Design checkout API route to complete in <7 seconds (leaving 3s buffer for cold start). Move non-critical operations (emails, shipping labels) to Stripe webhooks (separate function invocation with own 10s timeout). If unavoidable, upgrade to Vercel Pro ($20/month, 60s timeout).
 
 ## Dependencies at Risk
 
-**lucide-react Uses latest Version:**
-- Risk: `"lucide-react": "latest"` in package.json means unpredictable updates. Major versions could break icon names or import paths.
-- Impact: Icons disappear or component imports fail after npm update
-- Migration plan: Pin lucide-react to specific version (e.g., `^1.263.0`). Test icon names before deploy.
+**Missing Core Dependencies:**
+- Risk: Project cannot build or run with real services
+- Impact: All backend features blocked
+- Migration plan: Install per roadmap phases. Phase 1: `@supabase/supabase-js`, `@supabase/ssr`. Phase 3: `stripe`, `@stripe/stripe-js`, `@stripe/react-stripe-js`. Optionally Phase 4: `shippo` (Node.js SDK) or Australia Post eParcel API SDK.
 
-**No Stripe or Supabase Integration Yet:**
-- Risk: When Stripe and Supabase are added as dependencies, they will introduce breaking changes and version conflicts.
-- Impact: Needs careful version pinning and testing
-- Migration plan: Start with `@supabase/supabase-js@^2.38.0` and `stripe@^14.0.0`. Set up pre-commit hooks to test integration.
+**Deprecated package.json Warnings:**
+- Risk: package-lock.json shows deprecated packages: `@eslint/config-array`, `@eslint/object-schema`, eslint 8.x ("This version is no longer supported")
+- Impact: Security vulnerabilities in linting tools (dev-only, not production risk)
+- Migration plan: Upgrade to eslint 9.x when Next.js 15 stable (current Next.js 14.2.35 uses eslint-config-next with eslint 8 peer dependency). Non-urgent, no production impact.
 
-**date-fns and zod Have No Version Pinning:**
-- Risk: `"date-fns": "^3"` and `"zod": "^3"` allow minor version changes that could include breaking changes
-- Impact: Unexpected date formatting or validation behavior changes
-- Migration plan: After deploying, pin to specific minor version (e.g., `^3.3.1`). Add integration tests for date handling.
-
----
+**date-fns v3 Edge Cases:**
+- Risk: DST boundary calculations with date-fns documented as problematic in GitHub issues
+- Impact: Off-by-one-day rental dates for April/October events
+- Migration plan: Use DATE type in database (not timestamps) to avoid timezone conversion entirely. Pass dates as `YYYY-MM-DD` strings. Use date-fns for formatting only, not for date arithmetic with timezones. Documented in `.planning/research/PITFALLS.md` lines 264-327.
 
 ## Missing Critical Features
 
-**No User Authentication System:**
-- Problem: System has no login/signup. Customers cannot create accounts, view their bookings, or manage their profile.
-- Blocks: Order history, customer support, damage claims, refund tracking, wishlist, saved sizes/preferences
-- Workaround: None. Manual email/SMS communication needed for customer support.
+**No Backend Exists:**
+- Problem: Zero server-side functionality for core rental operations
+- Blocks: Accepting real bookings, storing user data, processing payments, sending confirmation emails, generating shipping labels, admin order management
+- Priority: HIGH - All Phase 1-4 work is implementing missing backend
 
-**No Real Payment Processing:**
-- Problem: Checkout flow is completely mocked. No actual Stripe payments processed.
-- Blocks: Cannot accept real orders. No revenue collection. Bond pre-authorization not implemented.
-- Workaround: None. Business cannot operate with current implementation.
+**No Authentication System:**
+- Problem: No user registration, login, session management, or password reset
+- Blocks: User accounts, booking history, saved addresses, repeat customer flows
+- Priority: HIGH - Phase 1 deliverable (Supabase Auth integration)
 
-**No Shipping Integration:**
-- Problem: No Australia Post API integration. No labels generated. No tracking numbers provided to customers.
-- Blocks: Cannot fulfill orders. No tracking updates to customers.
-- Workaround: Manual label generation and shipping.
-
-**No Admin Dashboard:**
-- Problem: No inventory management interface. No ability to view bookings, process returns, assess damage, or manage staff.
-- Blocks: Cannot operate business at scale. No data visibility.
-- Workaround: Manual spreadsheet tracking.
+**No Admin Interface:**
+- Problem: No way to manage inventory, view bookings, update order status, process returns, handle damage claims
+- Blocks: Day-to-day operations after launch
+- Priority: MEDIUM - v1 decision: use Supabase dashboard directly for admin tasks (documented in STATE.md line 45). Custom admin panel deferred to v2.
 
 **No Email Notifications:**
-- Problem: No transactional emails for order confirmation, shipping updates, damage assessment, refunds.
-- Blocks: Customers cannot track orders. No communication channel for issues.
-- Workaround: Manual email contact needed for all customer communications.
+- Problem: No confirmation emails, shipping notifications, return reminders, or late-return warnings
+- Blocks: Professional user experience, reduces customer service inquiries
+- Priority: HIGH - Phase 4 deliverable (Resend integration via webhooks)
 
----
+**No Real Product Data:**
+- Problem: Mock Unsplash images, fake product descriptions, dummy availability
+- Blocks: Launch with real catalog
+- Priority: HIGH - Blocked on product photography session (external dependency, documented in STATE.md line 54)
 
 ## Test Coverage Gaps
 
-**No Tests for Availability Calculation:**
-- What's not tested: `isProductAvailable()`, `getBlockedDates()`, `calculateBlockingPeriod()` functions have zero test coverage
-- Files: `src/lib/mock-data/availability.ts`
-- Risk: Critical business logic for preventing double-bookings is untested. Edge cases at date boundaries unknown.
-- Priority: **CRITICAL** - This is core rental logic that must be correct.
+**Zero Test Files in Entire Codebase:**
+- What's not tested: All components, all business logic, all utility functions
+- Files: No `*.test.ts`, `*.test.tsx`, or `*.spec.ts` files exist. No test runner configured (no jest.config or vitest.config).
+- Risk: Rental date calculations could be wrong. Availability logic could have race conditions. Checkout flow could double-charge. Bond calculations could fail. All undetected until production.
+- Priority: HIGH - Critical for rental logic (date calculations, availability checks, bond handling). Unit tests for `create_booking_atomic()` SQL function, rental date utils, Stripe payment flow. Integration tests for checkout end-to-end.
 
-**No Tests for Cart Context:**
-- What's not tested: Add/remove items, persistence to localStorage, hydration on mount, bond calculation
-- Files: `src/contexts/cart-context.tsx`
-- Risk: Cart bugs (duplicate items, lost items) reach production. localStorage corruption is not handled.
-- Priority: **HIGH** - Cart is core user flow.
+**No Rental Logic Validation:**
+- What's not tested: 7-day rental period, 3-day delivery buffer, 3-day cleaning buffer, date overlap detection, bond amount calculations
+- Files: `.claude/rules/rental-logic.md` defines immutable business rules but no tests verify implementation
+- Risk: Off-by-one errors in date math cause customer receiving item late or not having enough time to return. Overlapping bookings accepted. Wrong bond amount charged.
+- Priority: CRITICAL - Must be implemented with booking engine (Phase 2). Test matrix documented in `.planning/research/PITFALLS.md` includes edge cases (DST boundaries, same-day bookings, cleaning buffer conflicts).
 
-**No Tests for Form Validation:**
-- What's not tested: Shipping form postcode validation, payment form card number formatting, email validation
-- Files: `src/components/checkout/shipping-form.tsx`, `src/components/checkout/payment-form.tsx`
-- Risk: Invalid data submitted to backend. Postcode edge cases not caught.
-- Priority: **HIGH** - Data quality depends on client validation.
+**No Payment Flow Testing:**
+- What's not tested: Stripe PaymentIntent creation, webhook handling, bond hold/capture, idempotency, error scenarios
+- Files: Will affect `src/app/api/checkout/route.ts`, `src/app/api/webhooks/stripe/route.ts` (not yet created)
+- Risk: Silent payment failures. Double-charging on retry. Bond never released. Webhook signature validation bypass.
+- Priority: HIGH - Phase 3 deliverable. Use Stripe test mode, test with Stripe CLI webhook forwarding. Documented test cases in `.planning/research/PITFALLS.md` lines 816-856.
 
-**No Tests for Page Components:**
-- What's not tested: Shop page filtering, product detail page, checkout flow, success page
-- Files: `src/app/shop/page.tsx`, `src/app/shop/[id]/page.tsx`, `src/app/checkout/page.tsx`
-- Risk: UI regressions, broken links, missing data on page load
-- Priority: **MEDIUM** - Integration tests would catch obvious breaks.
+**No E2E Checkout Flow Testing:**
+- What's not tested: Browse → Select product → Choose date → Add to cart → Checkout → Enter shipping → Pay → Confirmation
+- Files: Entire flow spans 15+ components and 0 have tests
+- Risk: Broken user journey undetected. Form validation bypassed. Cart state corrupted. Checkout never completes.
+- Priority: MEDIUM - Add Playwright E2E tests after backend integration complete (Phase 4+). Manual testing sufficient for MVP.
 
-**No Tests for Calendar Component:**
-- What's not tested: Month navigation, date selection, blocked date highlighting
-- Files: `src/components/booking/availability-calendar.tsx`
-- Risk: Users unable to select dates or unable to see blocked dates correctly
-- Priority: **MEDIUM** - Visual bugs in calendar affect UX significantly.
-
-**No E2E Tests:**
-- What's not tested: Complete user journey from browsing to checkout to success page
-- Files: All user-facing flows
-- Risk: Major regressions go unnoticed until production
-- Priority: **HIGH** - E2E tests would catch broken flows immediately.
+**No Availability Calendar Testing:**
+- What's not tested: Date blocking logic, DST transitions, overlapping bookings, calendar UI date selection
+- Files: `src/components/booking/availability-calendar.tsx` (152 lines), `src/lib/mock-data/availability.ts` (167 lines)
+- Risk: Users can select blocked dates. Calendar shows available when product actually booked. Off-by-one-day errors on DST boundaries.
+- Priority: HIGH - Critical for double-booking prevention. Test with Supabase `inventory_blocks` query, verify blocked dates include cleaning buffer, test April/October DST boundaries.
 
 ---
 
-*Concerns audit: 2026-01-24*
+*Concerns audit: 2026-01-27*

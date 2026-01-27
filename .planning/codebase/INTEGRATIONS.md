@@ -1,151 +1,119 @@
 # External Integrations
 
-**Analysis Date:** 2026-01-24
+**Analysis Date:** 2026-01-27
 
 ## APIs & External Services
 
-**Payment Processing:**
-- Stripe - Payment intent processing, bond pre-authorization, payment capture
-  - SDK/Client: `@stripe/stripe-js` (frontend), `stripe` (backend)
-  - Auth: `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` (client), `STRIPE_SECRET_KEY` (server)
-  - Config: `STRIPE_WEBHOOK_SECRET` for webhook signature verification
+**Payments:**
+- Stripe - Payment processing and bond pre-authorization
+  - SDK/Client: Not yet installed (planned: `stripe`, `@stripe/stripe-js`)
+  - Auth: `STRIPE_SECRET_KEY`, `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
+  - Webhook: `STRIPE_WEBHOOK_SECRET`
 
-**Shipping & Logistics:**
-- Australia Post (AusPost) - Parcel shipping, tracking, label generation
+**Shipping:**
+- Australia Post API - Label generation and tracking
+  - SDK/Client: Direct API integration (no SDK detected)
   - Auth: `AUSPOST_API_KEY`, `AUSPOST_ACCOUNT_NUMBER`, `AUSPOST_PASSWORD`
-  - Scope: Domestic Australian parcel delivery, return tracking
-
-**Email (Optional):**
-- Resend - Transactional email delivery (commented in config, not yet integrated)
-  - Auth: `RESEND_API_KEY` (optional)
-  - Planned for: Order confirmations, shipping notifications, return reminders
+  - Purpose: Outbound and return shipping labels
 
 ## Data Storage
 
 **Databases:**
-- Supabase (PostgreSQL) - Primary data store
-  - Connection: `NEXT_PUBLIC_SUPABASE_URL` (client), `SUPABASE_SERVICE_ROLE_KEY` (server)
-  - Client: `@supabase/supabase-js` (currently not in package.json—needs to be added)
-  - Authentication: Built-in Supabase Auth for user accounts
-  - Features: RLS (Row Level Security), real-time subscriptions capability
+- Supabase (PostgreSQL)
+  - Connection: `NEXT_PUBLIC_SUPABASE_URL`, `NEXT_PUBLIC_SUPABASE_ANON_KEY`, `SUPABASE_SERVICE_ROLE_KEY`
+  - Client: Not yet installed (planned: `@supabase/supabase-js`)
+  - Migrations: `supabase/migrations/` (directory exists, currently empty)
 
 **File Storage:**
-- Supabase Storage (S3-compatible) - Product images and assets
-  - Scope: Product catalog images, customer booking documents
-  - Access: Via Supabase client SDK
+- Supabase Storage (planned)
+  - Purpose: Product images, user uploads
+  - Currently: External images from Unsplash/Pexels (configured in `next.config.mjs`)
 
 **Caching:**
-- Browser cache - Next.js automatic caching for static assets
-- Vercel edge caching - CDN caching for pages and API responses
-- No server-side caching layer currently configured
+- None (relying on Next.js built-in caching)
 
 ## Authentication & Identity
 
 **Auth Provider:**
-- Supabase Auth - User authentication and session management
-  - Method: Email/password authentication
-  - Session: JWT tokens stored in browser
-  - Scope: User registration, login, account recovery
-
-**Authorization:**
-- Row Level Security (RLS) - Defined in Supabase PostgreSQL policies
-- Implementation: Database-level security (no code-based checks needed)
-- Scope: Users can only access their own bookings, orders, and data
+- Supabase Auth (planned)
+  - Implementation: Row-level security (RLS) policies
+  - Client-side: Browser client via `@supabase/supabase-js`
+  - Server-side: Server client for API routes
 
 ## Monitoring & Observability
 
 **Error Tracking:**
-- Browser console logging - Local development only
-- Vercel deployment logs - Production error capture
-- Not integrated: Sentry, Datadog, or similar
+- None configured (Google Analytics ID placeholder exists)
 
 **Logs:**
-- `console.error()` - Application error logging
-- Next.js server logs - Vercel deployment logs
-- SessionStorage - Temporary order data for success page
-
-**Analytics:**
-- Google Analytics (optional, not yet configured)
-  - Config var: `NEXT_PUBLIC_GA_ID` (commented in example)
+- Console logging (standard Node.js)
+- Firebase debug log present (`firebase-debug.log`) but Firebase not configured in dependencies
 
 ## CI/CD & Deployment
 
 **Hosting:**
-- Vercel - Next.js hosting and deployment
-  - Config file: `vercel.json` (framework: nextjs, buildCommand: next build)
-  - Automatic deployments on Git push to main branch
-  - Free tier with auto-scaling
+- Vercel
+  - Config: `vercel.json`
+  - Framework detection: Next.js
+  - Build: `next build`
+  - Output directory: `.next`
 
 **CI Pipeline:**
-- Vercel built-in - Automatic builds on push
-- Pre-deployment: Type checking via `tsc --noEmit`
-- Pre-deployment: Linting via `next lint`
-- No separate CI tool (GitHub Actions, Jenkins, etc.)
+- None (deployment via Vercel Git integration)
 
 ## Environment Configuration
 
-**Required Environment Variables (from `env/.env.example`):**
+**Required env vars:**
+Core functionality:
+- `NEXT_PUBLIC_SUPABASE_URL`
+- `NEXT_PUBLIC_SUPABASE_ANON_KEY`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `STRIPE_SECRET_KEY`
+- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY`
 
-**Application Config:**
-- `NEXT_PUBLIC_APP_URL` - Application domain (e.g., http://localhost:3000)
-- `NEXT_PUBLIC_APP_NAME` - "ASHIKA"
-- `NEXT_PUBLIC_APP_TAGLINE` - "Indian Wear Hire Australia"
+Shipping (optional for MVP):
+- `AUSPOST_API_KEY`
+- `AUSPOST_ACCOUNT_NUMBER`
+- `AUSPOST_PASSWORD`
 
-**Supabase (Database & Auth):**
-- `NEXT_PUBLIC_SUPABASE_URL` - Project URL
-- `NEXT_PUBLIC_SUPABASE_ANON_KEY` - Anon key (client-side queries)
-- `SUPABASE_SERVICE_ROLE_KEY` - Service role (server-side privileged access)
+Email (optional):
+- `RESEND_API_KEY`
 
-**Stripe (Payments):**
-- `NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY` - Public key for client library
-- `STRIPE_SECRET_KEY` - Private key for payment processing
-- `STRIPE_WEBHOOK_SECRET` - Webhook signature verification
+Analytics (optional):
+- `NEXT_PUBLIC_GA_ID`
 
-**Australia Post (Shipping):**
-- `AUSPOST_API_KEY` - API authentication
-- `AUSPOST_ACCOUNT_NUMBER` - Account identifier
-- `AUSPOST_PASSWORD` - Account password
-
-**Optional:**
-- `RESEND_API_KEY` - Email service (not yet integrated)
-- `NEXT_PUBLIC_GA_ID` - Google Analytics tracking ID (not yet integrated)
-
-**Development:**
-- `USE_MOCK_DATA=true` - Flag to use mock data instead of real API calls (default: true)
-
-**Secrets Location:**
-- Development: `.env.local` (local machine, never committed)
-- Production: Vercel environment variables dashboard
-- Reference: `/Users/shamalkrishna/Documents/cleanupbros-os/.secrets/API_KEYS.md` (separate vault)
+**Secrets location:**
+- Development: `.env.local` (gitignored)
+- Production: Vercel dashboard environment variables
+- Template: `env/.env.example`
 
 ## Webhooks & Callbacks
 
-**Incoming Webhooks:**
-- Stripe webhook endpoint - `POST /api/webhooks/stripe` (needs implementation)
-  - Triggers: `payment_intent.succeeded`, `charge.dispute.created`, `charge.refunded`
-  - Signature verification: Uses `STRIPE_WEBHOOK_SECRET`
-  - Scope: Process bond captures, order confirmations, refunds
+**Incoming:**
+- Stripe webhooks (planned)
+  - Path: Not yet implemented
+  - Events: Payment completion, bond capture/release
+  - Verification: `STRIPE_WEBHOOK_SECRET`
 
-- Australia Post webhook endpoint - (needs implementation)
-  - Triggers: Parcel tracking updates, delivery status changes
-  - Scope: Update booking status, notify customers of shipment progress
+**Outgoing:**
+- None
 
-**Outgoing Webhooks:**
-- Stripe PaymentIntent events - Sent to Vercel app
-- Australia Post tracking - Polled via API (not webhook-based currently)
+## Image Sources
 
-## Image & Asset Delivery
+**External CDNs:**
+- Unsplash (`images.unsplash.com`, `plus.unsplash.com`)
+- Pexels (`images.pexels.com`)
 
-**External Image Sources (configured in `next.config.mjs`):**
-- Unsplash (`images.unsplash.com`, `plus.unsplash.com`) - Demo product images
-- Pexels (`images.pexels.com`) - Demo product images
-- Supabase Storage - Production product images (own domain, future)
+Configured in `next.config.mjs` for Next.js image optimization.
 
-**Image Optimization:**
-- Next.js Image Component - Automatic optimization, responsive sizing
-- Format conversion - WEBP fallback for browsers
-- Lazy loading - Images load on demand
+## Notes
+
+**Integration Status:**
+- Planning phase - Core SDKs (Supabase, Stripe) not yet installed
+- Mock data mode available (`USE_MOCK_DATA=true`) for development without API keys
+- Infrastructure prepared with environment templates and configuration files
+- Firebase appears in debug logs but not configured in project dependencies
 
 ---
 
-*Integration audit: 2026-01-24*
+*Integration audit: 2026-01-27*
