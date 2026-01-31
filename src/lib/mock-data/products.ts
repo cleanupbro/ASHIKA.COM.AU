@@ -1,45 +1,42 @@
 import { Product, ProductCategory } from '@/types';
 
-// Stock images from Unsplash for demo purposes
-// Higher resolution (1200x1600) for product detail pages
+// Stock images from Pexels for demo purposes (more reliable than Unsplash)
 export const STOCK_IMAGES = {
   sarees: [
-    'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1583391733956-6c78276477e0?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1594736797933-d0501ba2fe65?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1602910344008-22f323cc1817?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1614252369475-531eba835eb1?w=1200&h=1600&fit=crop&q=80',
+    'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/3014853/pexels-photo-3014853.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/6712360/pexels-photo-6712360.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/7148442/pexels-photo-7148442.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/3014853/pexels-photo-3014853.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
   ],
   lehengas: [
-    'https://images.unsplash.com/photo-1630316856044-73d17b66f9c8?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1609948543911-7613208f1a0d?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1515372039744-b8f02a3ae446?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1607631568010-a87245c0daf8?w=1200&h=1600&fit=crop&q=80',
+    'https://images.pexels.com/photos/6712374/pexels-photo-6712374.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/8818967/pexels-photo-8818967.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/6712374/pexels-photo-6712374.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/8818967/pexels-photo-8818967.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
   ],
   sherwanis: [
-    // Verified sherwani/Indian menswear images
-    'https://plus.unsplash.com/premium_photo-1682090750840-24385023afca?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1601362840469-51e4d8d58785?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1519735777090-ec97162dc266?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1621188988909-fbef0a88dc04?w=1200&h=1600&fit=crop&q=80',
+    'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
   ],
   salwar_kameez: [
-    // Unique images - no duplicates from other categories
-    'https://images.unsplash.com/photo-1619428387833-d92ca5d0ea15?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1603125656655-09bfc08f98ff?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1614252235316-8c857d38b5f4?w=1200&h=1600&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1583391733981-8b530e07b352?w=1200&h=1600&fit=crop&q=80',
+    'https://images.pexels.com/photos/6712352/pexels-photo-6712352.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/7148620/pexels-photo-7148620.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/6712352/pexels-photo-6712352.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/7148620/pexels-photo-7148620.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
   ],
   hero: [
-    'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=1920&h=1280&fit=crop&q=80',
-    'https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1920&h=1280&fit=crop&q=80',
+    'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
+    'https://images.pexels.com/photos/3014853/pexels-photo-3014853.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
   ],
   categories: {
-    saree: 'https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=800&h=1000&fit=crop&q=80',
-    lehenga: 'https://images.unsplash.com/photo-1630316856044-73d17b66f9c8?w=800&h=1000&fit=crop&q=80',
-    sherwani: 'https://plus.unsplash.com/premium_photo-1682090750840-24385023afca?w=800&h=1000&fit=crop&q=80',
-    salwar_kameez: 'https://images.unsplash.com/photo-1619428387833-d92ca5d0ea15?w=800&h=1000&fit=crop&q=80',
+    saree: 'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
+    lehenga: 'https://images.pexels.com/photos/6712374/pexels-photo-6712374.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
+    sherwani: 'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
+    salwar_kameez: 'https://images.pexels.com/photos/6712352/pexels-photo-6712352.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
   },
 };
 

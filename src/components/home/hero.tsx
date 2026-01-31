@@ -16,7 +16,7 @@ export function Hero() {
       {/* Full-width hero image */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.unsplash.com/photo-1617627143750-d86bc21e42bb?w=1920&h=1280&fit=crop&q=80"
+          src="https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop"
           alt="Woman wearing elegant Indian saree with traditional jewelry"
           fill
           className="object-cover object-center"

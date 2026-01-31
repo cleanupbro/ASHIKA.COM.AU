@@ -97,11 +97,13 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
   label?: string;
   error?: string;
   options: { value: string; label: string }[];
+  placeholder?: string;
 }
 
 export const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  ({ className, label, error, options, id, ...props }, ref) => {
+  ({ className, label, error, options, id, placeholder, value, ...props }, ref) => {
     const selectId = id || label?.toLowerCase().replace(/\s+/g, '-');
+    const showPlaceholder = !value || value === '';
 
     return (
       <div className="w-full">
@@ -116,6 +118,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         <select
           ref={ref}
           id={selectId}
+          value={value}
           className={cn(
             'w-full px-4 py-2.5 border rounded-lg transition-all duration-200',
             'bg-white appearance-none cursor-pointer',
@@ -123,10 +126,14 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
             error
               ? 'border-red-500 focus:ring-red-500'
               : 'border-gray-300 hover:border-gray-400',
+            showPlaceholder && 'text-gray-400',
             className
           )}
           {...props}
         >
+          <option value="" disabled>
+            {placeholder || `Select ${label || 'option'}...`}
+          </option>
           {options.map((option) => (
             <option key={option.value} value={option.value}>
               {option.label}
