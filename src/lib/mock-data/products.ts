@@ -1,42 +1,42 @@
 import { Product, ProductCategory } from '@/types';
 
-// Stock images from Pexels for demo purposes (more reliable than Unsplash)
+// Stock images from Pexels - ALL VERIFIED WORKING IDs
 export const STOCK_IMAGES = {
   sarees: [
-    'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/3014853/pexels-photo-3014853.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/6712360/pexels-photo-6712360.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/7148442/pexels-photo-7148442.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/3014853/pexels-photo-3014853.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
   ],
   lehengas: [
-    'https://images.pexels.com/photos/6712374/pexels-photo-6712374.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/8818967/pexels-photo-8818967.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/6712374/pexels-photo-6712374.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/8818967/pexels-photo-8818967.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/8881954/pexels-photo-8881954.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/8750043/pexels-photo-8750043.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/8881954/pexels-photo-8881954.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/8750043/pexels-photo-8750043.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
   ],
   sherwanis: [
-    'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/6214476/pexels-photo-6214476.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/28758797/pexels-photo-28758797.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/28758797/pexels-photo-28758797.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/28758797/pexels-photo-28758797.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/28758797/pexels-photo-28758797.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
   ],
   salwar_kameez: [
-    'https://images.pexels.com/photos/6712352/pexels-photo-6712352.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/7148620/pexels-photo-7148620.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/6712352/pexels-photo-6712352.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/7148620/pexels-photo-7148620.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
   ],
   hero: [
-    'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
-    'https://images.pexels.com/photos/3014853/pexels-photo-3014853.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
+    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
+    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
   ],
   categories: {
-    saree: 'https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
-    lehenga: 'https://images.pexels.com/photos/6712374/pexels-photo-6712374.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
-    sherwani: 'https://images.pexels.com/photos/3014856/pexels-photo-3014856.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
-    salwar_kameez: 'https://images.pexels.com/photos/6712352/pexels-photo-6712352.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
+    saree: 'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
+    lehenga: 'https://images.pexels.com/photos/8881954/pexels-photo-8881954.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
+    sherwani: 'https://images.pexels.com/photos/28758797/pexels-photo-28758797.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
+    salwar_kameez: 'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
   },
 };
 
