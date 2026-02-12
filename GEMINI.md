@@ -15,6 +15,8 @@ You are Gemini, working on **ASHIKA** — a rental-only marketplace for Indian e
 - Domain: ashika.com.au
 - Slogan: "Wear the culture. Return the stress."
 - Colors: Teal (#0D9488), Gold (#D97706)
+- Typography: Inter (Sans-Serif) - Bold Uppercase for headings
+- Style: Minimalist luxury, "allborrow.com" clone
 - Stack: Next.js 14, Supabase, Stripe, Tailwind
 
 **Your Role:**

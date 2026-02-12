@@ -11,10 +11,10 @@
 **Slogan:** "Wear the culture. Return the stress."
 
 **Visual Identity:**
-- Primary: Deep Teal (#0D9488) / Emerald Green (#059669)
+- Primary: Teal (#0D9488) / White (#FFFFFF)
 - Accent: Gold (#D97706) / Cream (#FEF3C7)
-- Typography: Playfair Display (headings), Inter (body)
-- Style: Minimalist luxury, clean, modern
+- Typography: Inter (Sans-Serif) - Bold Uppercase for headings
+- Style: Minimalist luxury, clean, modern, "allborrow.com" aesthetic
 
 ---
 

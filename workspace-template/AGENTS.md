@@ -105,3 +105,22 @@ Actual values go in `.env` files and platform dashboards.
 - Never hardcode secrets — use `.env`
 - Never push or deploy without explicit approval
 - If uncertain, ask — don't guess
+
+## Project Identity
+
+**Name:** ASHIKA  
+**Tagline:** Indian Wear Hire Australia  
+**Domain:** ashika.com.au  
+**Slogan:** "Wear the culture. Return the stress."
+
+**Visual Identity:**
+- Primary: Teal (#0D9488) / White (#FFFFFF)
+- Accent: Gold (#D97706) / Cream (#FEF3C7)
+- Typography: Inter (Sans-Serif) - Bold Uppercase for headings
+- Style: Minimalist luxury, clean, modern, "allborrow.com" aesthetic
+
+**Business Rules:**
+- 7-day rental period
+- $100 refundable bond
+- Free shipping both ways
+- Mock data first, API integration later (Supabase/Stripe/AusPost)

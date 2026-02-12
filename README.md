@@ -1,173 +1,123 @@
-# ASHIKA — Indian Wear Hire Australia
 
-> "Wear the culture. Return the stress."
+```text
+    _    ____  _   _ ___ _  __    _    
+   / \  / ___|| | | |_ _| |/ /   / \   
+  / _ \ \___ \| |_| || || ' /   / _ \  
+ / ___ \ ___) |  _  || || . \  / ___ \ 
+/_/   \_\____/|_| |_|___|_|\_\/_/   \_\
+                                       
+INDIAN WEAR HIRE AUSTRALIA • EST. 2026
+```
 
-A rental marketplace for premium Indian ethnic wear in Australia.
+# ASHIKA
 
-**Live Site:** [ashika.com.au](https://www.ashika.com.au)
+> **"Wear the culture. Return the stress."**
 
----
-
-## Overview
-
-ASHIKA offers a curated selection of sarees, lehengas, salwar kameez, and sherwanis for rent. Perfect for weddings, festivals, and special occasions.
-
-### Key Features
-
-- **7-day rental period** — Includes delivery buffer and return time
-- **Free shipping** — Both ways, Australia-wide
-- **$100 refundable bond** — Returned after successful inspection
-- **Availability calendar** — Real-time inventory checking
+A premium, rental-only marketplace for Indian ethnic wear in Australia. Built with modern tech, designed with timeless elegance.
 
 ---
 
-## Tech Stack
+## 📜 About The Project
 
-| Layer | Technology |
-|-------|------------|
-| Framework | Next.js 14 (App Router) |
-| Language | TypeScript |
-| Styling | Tailwind CSS |
-| Database | Supabase (PostgreSQL) |
-| Auth | Supabase Auth |
-| Payments | Stripe |
-| Shipping | Australia Post API |
-| Hosting | Vercel |
+ASHIKA is a Next.js-powered platform designed to revolutionize the ethnic wear market in Australia. By bridging the gap between luxury Indian fashion and accessibility, ASHIKA allows users to rent high-end Sarees, Lehengas, and Sherwanis for a fraction of the retail price.
+
+The platform features a sophisticated "Teal & Gold" aesthetic, mirroring the high standards of our inventory. From real-time availability checks to seamless bond handling, every feature is crafted to provide a stress-free experience for your special occasions.
+
+### Core Philosophy
+*   **Sustainability:** Reducing fashion waste by promoting a circular economy.
+*   **Accessibility:** Making designer wear affordable for everyone.
+*   **Quality:** Only the finest fabrics and craftsmanship make it to our catalog.
 
 ---
 
-## Getting Started
+## 🛠 Tech Stack
+
+**Frontend:**
+*   **Framework:** Next.js 14 (App Router)
+*   **Language:** TypeScript
+*   **Styling:** Tailwind CSS (Custom Teal/Gold Theme)
+*   **Icons:** Lucide React
+*   **Fonts:** Inter (Sans-Serif)
+
+**Backend (Planned/In-Progress):**
+*   **Database:** Supabase (PostgreSQL)
+*   **Auth:** Supabase Auth
+*   **Payments:** Stripe (Payment Intents + Bond Holds)
+*   **Shipping:** Australia Post API integration
+
+---
+
+## 🎨 Visual Identity
+
+| Element | Value | Usage |
+| :--- | :--- | :--- |
+| **Primary** | `Teal (#0D9488)` | Buttons, Links, Headers |
+| **Secondary** | `Gold (#D97706)` | Accents, Highlights, Borders |
+| **Background** | `White / Cream` | Clean, Minimalist Layouts |
+| **Typography** | `Inter` | Bold, Uppercase for Impact |
+
+---
+
+## 🚀 Getting Started
 
 ### Prerequisites
-
 - Node.js 18+
 - npm or yarn
-- Supabase account
-- Stripe account
 
-### Setup
+### Installation
 
-1. **Clone the repository:**
-   ```bash
-   git clone https://github.com/cleanupbro/ASHIKA.COM.AU.git
-   cd ASHIKA.COM.AU
-   ```
+1.  **Clone the repository**
+    ```bash
+    git clone https://github.com/cleanupbro/ASHIKA.COM.AU.git
+    cd ASHIKA.COM.AU
+    ```
 
-2. **Run setup script:**
-   ```bash
-   ./scripts/setup-dev.sh
-   ```
+2.  **Install dependencies**
+    ```bash
+    npm install
+    ```
 
-3. **Configure environment:**
-   ```bash
-   cp env/.env.example .env.local
-   # Edit .env.local with your API keys
-   ```
+3.  **Set up environment**
+    Copy `.env.example` to `.env.local` and fill in your API keys (Supabase, Stripe).
 
-4. **Start development server:**
-   ```bash
-   npm run dev
-   ```
+4.  **Run development server**
+    ```bash
+    npm run dev
+    ```
 
-5. **Open browser:**
-   ```
-   http://localhost:3000
-   ```
+5.  **Open browser**
+    Visit `http://localhost:3000` to see the site.
 
 ---
 
-## Project Structure
+## 📂 Project Structure
 
 ```
-.
-├── .claude/          # Claude Code directives
-├── .gemini/          # Gemini directives (mirror)
-├── .shared-memory/   # LLM state synchronization
-├── 00-docs/          # Documentation
-│   ├── PRD/
-│   ├── architecture/
-│   ├── decisions/
-│   └── roadmap/
-├── env/              # Environment templates
-├── scripts/          # Setup and utility scripts
-├── skills/           # LLM skill files
-├── src/              # Source code (Next.js)
-├── supabase/         # Database migrations
-├── CLAUDE.md         # Main Claude directives
-└── GEMINI.md         # Main Gemini directives
+src/
+├── app/           # Next.js App Router pages
+├── components/    # Reusable React components
+│   ├── ui/        # Atomic UI elements (Buttons, Inputs)
+│   ├── product/   # Product-specific components
+│   └── booking/   # Booking logic components
+├── lib/           # Utilities and helper functions
+├── hooks/         # Custom React hooks
+└── types/         # TypeScript definitions
 ```
 
 ---
 
-## Build Stages
+## 📄 License
 
-### Stage 1: Foundation ← Current
-- [x] Workspace setup
-- [x] Git + Vercel connected
-- [ ] Next.js initialization
-- [ ] Tailwind + brand colors
-- [ ] Base UI components
-
-### Stage 2: Static Pages
-- [ ] Homepage with hero
-- [ ] Shop page with grid
-- [ ] Product detail page
-- [ ] Static pages (About, FAQ, Contact)
-
-### Stage 3: Rental Logic
-- [ ] Availability calendar
-- [ ] Date selection flow
-- [ ] Mock booking system
-
-### Stage 4: Checkout
-- [ ] Order summary
-- [ ] Address form
-- [ ] Mock payment UI
-
-### Stage 5: Admin Dashboard
-- [ ] Products CRUD
-- [ ] Orders management
-- [ ] Return processing
-
-### Stage 6: API Integration
-- [ ] Supabase connection
-- [ ] Stripe payments
-- [ ] Australia Post shipping
+Distributed under the **MIT License**. See `LICENSE` for more information.
 
 ---
 
-## Documentation
+## 📞 Contact
 
-| Document | Purpose |
-|----------|---------|
-| `CLAUDE.md` | Master directives for Claude Code |
-| `GEMINI.md` | Mirror directives for Gemini |
-| `00-docs/ASHIKA-PROJECT-IMPLEMENTATION-DOCUMENT.md` | Full PRD |
-| `00-docs/roadmap/execution-plan.md` | Week-by-week plan |
-| `skills/SKILLS_INDEX.md` | Auto-invoke matrix |
+**Clean Up Bros** (Parent Company)  
+Liverpool, NSW, Australia  
+Email: [cleanupbros.au@gmail.com](mailto:cleanupbros.au@gmail.com)
 
 ---
 
-## Brand
-
-| Element | Value |
-|---------|-------|
-| Primary Color | Teal #0D9488 |
-| Accent Color | Gold #D97706 |
-| Cream | #FEF3C7 |
-| Heading Font | Playfair Display |
-| Body Font | Inter |
-
----
-
-## License
-
-Private. All rights reserved.
-
----
-
-## Contact
-
-**Clean Up Bros** (Parent Company)
-Liverpool, NSW, Australia
-Email: cleanupbros.au@gmail.com
+*Built with ❤️ by Gemini CLI*
