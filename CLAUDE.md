@@ -18,6 +18,14 @@
 
 ---
 
+## DEPLOYMENT & SAFETY
+
+- **Main Repository:** `https://github.com/cleanupbro/ASHIKA.COM.AU`
+- **Vercel Hook:** Automatic on `push` to `main`
+- **CRITICAL RULE:** DO NOT edit, delete, or touch any other projects on this system. All work must be confined to the `ASHIKA.COM.AU` directory.
+
+---
+
 ## CORE MANDATE
 
 You are building a rental-only marketplace for Indian ethnic wear in Australia. Your role is to implement features correctly, efficiently, and in alignment with the business rules defined below.

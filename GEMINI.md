@@ -17,7 +17,12 @@ You are Gemini, working on **ASHIKA** — a rental-only marketplace for Indian e
 - Colors: Teal (#0D9488), Gold (#D97706)
 - Typography: Inter (Sans-Serif) - Bold Uppercase for headings
 - Style: Minimalist luxury, "allborrow.com" clone
+- Repo: `https://github.com/cleanupbro/ASHIKA.COM.AU`
 - Stack: Next.js 14, Supabase, Stripe, Tailwind
+
+**Strict Safety Rules:**
+- DO NOT edit, delete, or touch any other repos/projects.
+- confinement: Work only in `ASHIKA.COM.AU`.
 
 **Your Role:**
 - Continue where Claude left off (check `.shared-memory/progress.json`)

@@ -113,6 +113,12 @@ Actual values go in `.env` files and platform dashboards.
 **Domain:** ashika.com.au  
 **Slogan:** "Wear the culture. Return the stress."
 
+## Deployment Configuration
+
+- **GitHub Repository:** `https://github.com/cleanupbro/ASHIKA.COM.AU`
+- **Vercel Deployment:** Production branch `main`
+- **Safety Rule:** NEVER delete, edit, or modify any other repositories or projects on this system. Focus is 100% on ASHIKA.
+
 **Visual Identity:**
 - Primary: Teal (#0D9488) / White (#FFFFFF)
 - Accent: Gold (#D97706) / Cream (#FEF3C7)
