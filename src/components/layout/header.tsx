@@ -113,10 +113,7 @@ export function Header() {
               <Link
                 key={item.name}
                 href={item.href}
-                className={cn(
-                  "py-4 text-sm font-semibold tracking-wide border-b border-gray-100 last:border-0 uppercase",
-                  item.highlight ? "text-red-600" : "text-black"
-                )}
+                className="py-4 text-[10px] font-black tracking-[0.2em] border-b border-brand-teal/5 last:border-0 uppercase text-gray-900 hover:text-brand-teal transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}

@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Facebook, Instagram, Mail, Twitter, Youtube } from 'lucide-react';
+import { Facebook, Instagram, Twitter } from 'lucide-react';
 import { Container } from './container';
 
 const footerLinks = {

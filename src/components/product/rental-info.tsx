@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { ChevronDown, Truck, Calendar, Shield, RotateCcw } from 'lucide-react';
+import { ChevronDown, Truck, Calendar, RotateCcw } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface AccordionItemProps {

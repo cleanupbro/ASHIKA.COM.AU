@@ -1,10 +1,8 @@
 'use client';
 
 import { useState } from 'react';
-import { Badge } from '@/components/ui';
 import { DateSelector } from '@/components/booking';
 import { Product } from '@/types';
-import { Check, Ruler } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { useCart } from '@/contexts/cart-context';
 

@@ -12,7 +12,7 @@ import {
   type PaymentData,
 } from '@/components/checkout';
 import { useCart } from '@/contexts/cart-context';
-import { ArrowLeft, ShoppingBag, Check } from 'lucide-react';
+import { ArrowLeft, Check } from 'lucide-react';
 import { Button } from '@/components/ui';
 
 type CheckoutStep = 'shipping' | 'payment';

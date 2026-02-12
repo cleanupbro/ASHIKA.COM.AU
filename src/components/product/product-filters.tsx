@@ -175,6 +175,7 @@ export function ProductFilters({
 
       {/* Filter sections */}
       <div className={cn('flex-1 overflow-y-auto', isMobile && 'pb-24')}>
+        {filterSections.map((section) => (
           <div key={section.id} className="border-b border-gray-100 last:border-0">
             <button
               onClick={() => toggleSection(section.id)}

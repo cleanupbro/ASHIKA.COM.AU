@@ -12,7 +12,6 @@ interface CartItemProps {
 
 export function CartItem({ item, onRemove }: CartItemProps) {
   const eventDate = new Date(item.eventDate);
-  const shipBy = new Date(item.rentalTimeline.shipBy);
   const returnBy = new Date(item.rentalTimeline.returnBy);
 
   return (

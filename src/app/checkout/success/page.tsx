@@ -5,9 +5,6 @@ import Link from 'next/link';
 import { Container } from '@/components/layout';
 import {
   CheckCircle,
-  Calendar,
-  ArrowRight,
-  Home,
 } from 'lucide-react';
 import { format } from 'date-fns';
 import { Button } from '@/components/ui';

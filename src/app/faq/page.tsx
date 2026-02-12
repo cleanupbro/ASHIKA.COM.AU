@@ -124,16 +124,19 @@ export default function FAQPage() {
                 </h2>
                 <div className="bg-white border-b border-brand-teal/5 last:border-0 overflow-hidden">
                   <Accordion type="single" className="divide-y divide-brand-teal/5">
-                    {category.faqs.map((faq, index) => (
-                      <AccordionItem key={index} value={`${category.title}-${index}`} className="border-0">
-                        <AccordionTrigger className="text-[13px] font-bold uppercase tracking-widest text-gray-900 py-6 text-left hover:text-brand-teal transition-colors">
-                          {faq.question}
-                        </AccordionTrigger>
-                        <AccordionContent className="text-[13px] text-gray-500 font-medium leading-relaxed pb-8">
-                          {faq.answer}
-                        </AccordionContent>
-                      </AccordionItem>
-                    ))}
+                    {category.faqs.map((faq, index) => {
+                      const value = `${category.title}-${index}`;
+                      return (
+                        <AccordionItem key={index} value={value} className="border-0">
+                          <AccordionTrigger value={value} className="text-[13px] font-bold uppercase tracking-widest text-gray-900 py-6 text-left hover:text-brand-teal transition-colors">
+                            {faq.question}
+                          </AccordionTrigger>
+                          <AccordionContent value={value} className="text-[13px] text-gray-500 font-medium leading-relaxed pb-8">
+                            {faq.answer}
+                          </AccordionContent>
+                        </AccordionItem>
+                      );
+                    })}
                   </Accordion>
                 </div>
               </div>

@@ -2,11 +2,10 @@
 
 import { useEffect } from 'react';
 import Link from 'next/link';
-import { X, ArrowRight } from 'lucide-react';
+import { X } from 'lucide-react';
 import { useCart } from '@/contexts/cart-context';
 import { CartItem } from './cart-item';
 import { Button } from '@/components/ui';
-import { RENTAL_CONFIG } from '@/types';
 import { cn } from '@/lib/utils';
 
 export function CartDrawer() {
