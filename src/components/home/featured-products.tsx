@@ -1,86 +1,35 @@
 import Link from 'next/link';
 import { Container } from '@/components/layout';
-import { Button, Badge } from '@/components/ui';
+import { Button } from '@/components/ui';
 import { getFeaturedProducts } from '@/lib/mock-data/products';
-import Image from 'next/image';
-import { ArrowRight } from 'lucide-react';
+import { ProductCard } from '@/components/product';
 
 export function FeaturedProducts() {
   const products = getFeaturedProducts(8);
 
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-24 bg-white">
       <Container>
-        <div className="flex items-end justify-between mb-12">
-          <div>
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-teal-900 mb-4">
-              Featured Collection
-            </h2>
-            <p className="text-gray-600 max-w-xl">
-              Our most loved pieces, handpicked for special occasions
-            </p>
-          </div>
-          <Link href="/shop" className="hidden md:block">
-            <Button variant="ghost" className="group">
-              View All
-              <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
-            </Button>
-          </Link>
+        <div className="text-center mb-16">
+          <h2 className="text-3xl font-black uppercase tracking-[0.2em] text-brand-teal mb-4">
+            Trending Now
+          </h2>
+          <div className="w-16 h-1 bg-brand-gold mx-auto mb-6"></div>
+          <p className="text-xs text-gray-500 uppercase tracking-[0.2em] font-bold">
+            Most Loved Styles This Week
+          </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-6 gap-y-12">
           {products.map((product) => (
-            <Link
-              key={product.id}
-              href={`/shop/${product.id}`}
-              className="group"
-            >
-              <div className="bg-white rounded-xl border border-gray-100 overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1">
-                {/* Image */}
-                <div className="relative aspect-[3/4] bg-gray-100 overflow-hidden">
-                  <Image
-                    src={product.thumbnail}
-                    alt={product.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1200px) 33vw, 25vw"
-                  />
-                  {/* Tier badge */}
-                  <div className="absolute top-3 left-3">
-                    <Badge variant={product.tier === 'premium' ? 'premium' : 'lite'}>
-                      {product.tier}
-                    </Badge>
-                  </div>
-                </div>
-
-                {/* Content */}
-                <div className="p-4">
-                  <p className="text-xs text-gray-500 uppercase tracking-wide mb-1">
-                    {product.category.replace('_', ' ')}
-                  </p>
-                  <h3 className="font-medium text-gray-900 line-clamp-2 mb-2 group-hover:text-teal-600 transition-colors">
-                    {product.name}
-                  </h3>
-                  <div className="flex items-baseline gap-2">
-                    <span className="text-lg font-bold text-teal-600">
-                      ${product.rental_price}
-                    </span>
-                    <span className="text-sm text-gray-400">/week</span>
-                  </div>
-                  <p className="text-xs text-gray-400 mt-1">
-                    Retail ${product.retail_price}
-                  </p>
-                </div>
-              </div>
-            </Link>
+            <ProductCard key={product.id} product={product} />
           ))}
         </div>
 
-        {/* Mobile CTA */}
-        <div className="mt-8 text-center md:hidden">
+        <div className="mt-20 text-center">
           <Link href="/shop">
-            <Button variant="primary" className="w-full max-w-xs">
-              View All Products
+            <Button variant="outline" size="lg" className="min-w-[280px] h-14 text-sm font-bold tracking-[0.2em]">
+              VIEW ALL COLLECTIONS
             </Button>
           </Link>
         </div>

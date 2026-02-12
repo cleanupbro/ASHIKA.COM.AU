@@ -1,22 +1,24 @@
 import Link from 'next/link';
-import { Facebook, Instagram, Mail, Phone } from 'lucide-react';
+import { Facebook, Instagram, Mail, Twitter, Youtube } from 'lucide-react';
 import { Container } from './container';
 
 const footerLinks = {
-  shop: [
-    { name: 'Sarees', href: '/shop?category=saree' },
-    { name: 'Lehengas', href: '/shop?category=lehenga' },
-    { name: 'Salwar Kameez', href: '/shop?category=salwar_kameez' },
-    { name: 'Sherwanis', href: '/shop?category=sherwani' },
+  ashika: [
+    { name: 'About Us', href: '/about' },
+    { name: 'The Ashika Story', href: '/story' },
+    { name: 'Careers', href: '/careers' },
+    { name: 'Blog', href: '/blog' },
+    { name: 'Sustainability', href: '/sustainability' },
   ],
   help: [
-    { name: 'How It Works', href: '/#how-it-works' },
+    { name: 'Help Center', href: '/help' },
+    { name: 'How It Works', href: '/how-it-works' },
+    { name: 'Delivery & Returns', href: '/delivery' },
+    { name: 'Fit Guarantee', href: '/fit-guarantee' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Contact Us', href: '/contact' },
-    { name: 'Size Guide', href: '/size-guide' },
   ],
-  company: [
-    { name: 'About Us', href: '/about' },
+  legal: [
     { name: 'Terms of Service', href: '/terms' },
     { name: 'Privacy Policy', href: '/privacy' },
   ],
@@ -24,132 +26,110 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="bg-teal-950 text-white">
+    <footer className="bg-[#F8FBFA] pt-24 pb-12 border-t border-brand-teal/10">
       <Container>
-        <div className="py-12 md:py-16">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
-            {/* Brand */}
-            <div className="col-span-2 md:col-span-1">
-              <Link href="/" className="inline-block">
-                <span className="font-display text-2xl font-bold text-white">
-                  ASHIKA
-                </span>
-              </Link>
-              <p className="mt-3 text-sm text-teal-200">
-                Indian Wear Hire Australia
-              </p>
-              <p className="mt-2 text-sm text-teal-300 italic">
-                &quot;Wear the culture. Return the stress.&quot;
-              </p>
-
-              {/* Social */}
-              <div className="flex gap-4 mt-6">
-                <a
-                  href="https://instagram.com/ashika.com.au"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-teal-300 hover:text-white transition-colors"
-                  aria-label="Instagram"
-                >
-                  <Instagram className="w-5 h-5" />
-                </a>
-                <a
-                  href="https://facebook.com/ashika.com.au"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-teal-300 hover:text-white transition-colors"
-                  aria-label="Facebook"
-                >
-                  <Facebook className="w-5 h-5" />
-                </a>
-              </div>
-            </div>
-
-            {/* Shop */}
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-teal-200">
-                Shop
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {footerLinks.shop.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-teal-300 hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Help */}
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-teal-200">
-                Help
-              </h3>
-              <ul className="mt-4 space-y-3">
-                {footerLinks.help.map((link) => (
-                  <li key={link.name}>
-                    <Link
-                      href={link.href}
-                      className="text-sm text-teal-300 hover:text-white transition-colors"
-                    >
-                      {link.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            {/* Contact */}
-            <div>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-teal-200">
-                Contact
-              </h3>
-              <ul className="mt-4 space-y-3">
-                <li>
-                  <a
-                    href="mailto:info@ashika.com.au"
-                    className="flex items-center gap-2 text-sm text-teal-300 hover:text-white transition-colors"
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
+          {/* ASHIKA Column */}
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-brand-teal mb-8">
+              ASHIKA
+            </h3>
+            <ul className="space-y-4">
+              {footerLinks.ashika.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-brand-teal transition-colors"
                   >
-                    <Mail className="w-4 h-4" />
-                    info@ashika.com.au
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
-                <li>
-                  <a
-                    href="tel:+61400000000"
-                    className="flex items-center gap-2 text-sm text-teal-300 hover:text-white transition-colors"
+              ))}
+            </ul>
+          </div>
+
+          {/* HELP Column */}
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-brand-teal mb-8">
+              CUSTOMER CARE
+            </h3>
+            <ul className="space-y-4">
+              {footerLinks.help.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-brand-teal transition-colors"
                   >
-                    <Phone className="w-4 h-4" />
-                    +61 400 000 000
-                  </a>
+                    {link.name}
+                  </Link>
                 </li>
-                <li className="pt-2">
-                  <span className="text-sm text-teal-300">
-                    Sydney, Australia
-                  </span>
-                </li>
-              </ul>
+              ))}
+            </ul>
+          </div>
+
+          {/* FOLLOW US Column */}
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-brand-teal mb-8">
+              STAY CONNECTED
+            </h3>
+            <div className="flex gap-6 mb-8">
+              <a href="#" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Instagram className="w-6 h-6 stroke-[1.5]" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Facebook className="w-6 h-6 stroke-[1.5]" />
+              </a>
+              <a href="#" className="text-gray-400 hover:text-brand-teal transition-colors">
+                <Twitter className="w-6 h-6 stroke-[1.5]" />
+              </a>
             </div>
+            <div className="bg-white p-6 shadow-sm border border-brand-teal/5">
+               <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-2">
+                 Need styling help?
+               </h4>
+               <p className="text-[11px] font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
+                 Chat with our experts <br /> Monday - Friday
+               </p>
+            </div>
+          </div>
+
+          {/* NEWSLETTER Column */}
+          <div>
+            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-brand-teal mb-8">
+              THE BORROWHOOD
+            </h3>
+            <p className="text-xs font-medium text-gray-500 mb-6 uppercase tracking-widest leading-relaxed">
+              Sign up for style updates & <br /> exclusive early access.
+            </p>
+            <form className="flex flex-col gap-3">
+              <input
+                type="email"
+                placeholder="EMAIL ADDRESS"
+                className="w-full px-5 py-4 bg-white border border-gray-100 text-[10px] font-bold tracking-widest focus:outline-none focus:border-brand-teal transition-colors shadow-sm"
+              />
+              <button
+                type="button"
+                className="w-full bg-brand-teal text-white px-5 py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-teal-700 transition-colors shadow-sm"
+              >
+                JOIN US
+              </button>
+            </form>
           </div>
         </div>
 
-        {/* Bottom bar */}
-        <div className="py-6 border-t border-teal-800">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-sm text-teal-400">
-              &copy; {new Date().getFullYear()} ASHIKA. All rights reserved.
-            </p>
-            <div className="flex items-center gap-4">
-              <span className="text-sm text-teal-400">
-                Australian-owned & operated
-              </span>
-              <span className="text-lg">🇦🇺</span>
-            </div>
+        {/* Bottom Bar */}
+        <div className="pt-12 border-t border-brand-teal/5 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex flex-wrap justify-center md:justify-start gap-8">
+            <Link href="/terms" className="text-[10px] font-bold text-gray-400 hover:text-brand-teal uppercase tracking-widest transition-colors">
+              Terms
+            </Link>
+            <Link href="/privacy" className="text-[10px] font-bold text-gray-400 hover:text-brand-teal uppercase tracking-widest transition-colors">
+              Privacy
+            </Link>
           </div>
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            &copy; {new Date().getFullYear()} ASHIKA. WEAR THE CULTURE. RETURN THE STRESS.
+          </p>
         </div>
       </Container>
     </footer>

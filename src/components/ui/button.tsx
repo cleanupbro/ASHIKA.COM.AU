@@ -9,20 +9,20 @@ export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
   ({ className, variant = 'primary', size = 'md', loading, disabled, children, ...props }, ref) => {
-    const baseStyles = 'inline-flex items-center justify-center rounded-lg font-medium transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed';
+    const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide';
 
     const variants = {
-      primary: 'bg-teal-600 text-white hover:bg-teal-700 focus:ring-teal-500',
-      secondary: 'bg-gold-600 text-white hover:bg-gold-700 focus:ring-gold-500',
-      ghost: 'bg-transparent text-teal-700 hover:bg-teal-50 focus:ring-teal-500',
-      outline: 'border-2 border-teal-600 text-teal-600 hover:bg-teal-50 focus:ring-teal-500',
-      danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500',
+      primary: 'bg-brand-teal text-white hover:bg-teal-700 focus:ring-brand-teal border border-brand-teal',
+      secondary: 'bg-brand-gold text-white hover:bg-amber-700 focus:ring-brand-gold border border-brand-gold',
+      ghost: 'bg-transparent text-brand-teal hover:bg-teal-50 focus:ring-brand-teal',
+      outline: 'bg-transparent border border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white focus:ring-brand-teal',
+      danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 border border-red-600',
     };
 
     const sizes = {
-      sm: 'px-3 py-1.5 text-sm',
-      md: 'px-4 py-2 text-base',
-      lg: 'px-6 py-3 text-lg',
+      sm: 'px-4 py-2 text-xs',
+      md: 'px-6 py-3 text-sm',
+      lg: 'px-8 py-4 text-base',
     };
 
     return (

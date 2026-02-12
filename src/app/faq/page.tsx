@@ -2,6 +2,7 @@ import { Metadata } from 'next';
 import { Container } from '@/components/layout';
 import { Accordion, AccordionItem, AccordionTrigger, AccordionContent } from '@/components/ui';
 import Link from 'next/link';
+import { Button } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'FAQ',
@@ -99,34 +100,36 @@ export default function FAQPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-teal-900 to-teal-800 text-white py-12 md:py-16">
+      <section className="bg-white border-b border-gray-100 py-16 md:py-24">
         <Container>
-          <h1 className="font-display text-3xl md:text-4xl font-bold mb-4">
-            Frequently Asked Questions
-          </h1>
-          <p className="text-teal-200 max-w-2xl">
-            Everything you need to know about renting Indian ethnic wear from ASHIKA.
-          </p>
+          <div className="text-center">
+            <h1 className="text-3xl md:text-5xl font-black uppercase tracking-widest text-black mb-4">
+              FAQ
+            </h1>
+            <p className="text-sm text-gray-500 uppercase tracking-widest max-w-2xl mx-auto">
+              Everything you need to know about renting with ASHIKA.
+            </p>
+          </div>
         </Container>
       </section>
 
       {/* FAQ Content */}
-      <section className="py-12 md:py-16">
+      <section className="py-16 md:py-24">
         <Container>
-          <div className="max-w-3xl mx-auto space-y-12">
+          <div className="max-w-3xl mx-auto space-y-16">
             {faqCategories.map((category) => (
               <div key={category.title}>
-                <h2 className="font-display text-2xl font-bold text-teal-900 mb-6">
+                <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-8 border-b border-black pb-2 inline-block">
                   {category.title}
                 </h2>
-                <div className="bg-white rounded-xl border border-gray-100 overflow-hidden">
-                  <Accordion type="single" className="px-6">
+                <div className="bg-white border-b border-gray-100 last:border-0 overflow-hidden">
+                  <Accordion type="single" className="divide-y divide-gray-100">
                     {category.faqs.map((faq, index) => (
-                      <AccordionItem key={index} value={`${category.title}-${index}`}>
-                        <AccordionTrigger value={`${category.title}-${index}`}>
+                      <AccordionItem key={index} value={`${category.title}-${index}`} className="border-0">
+                        <AccordionTrigger className="text-sm font-bold uppercase tracking-widest text-black py-6 text-left hover:text-gray-600 transition-colors">
                           {faq.question}
                         </AccordionTrigger>
-                        <AccordionContent value={`${category.title}-${index}`}>
+                        <AccordionContent className="text-sm text-gray-500 leading-relaxed pb-8">
                           {faq.answer}
                         </AccordionContent>
                       </AccordionItem>
@@ -138,18 +141,17 @@ export default function FAQPage() {
           </div>
 
           {/* Contact CTA */}
-          <div className="max-w-3xl mx-auto mt-12 text-center p-8 bg-cream rounded-xl">
-            <h3 className="font-display text-xl font-bold text-teal-900 mb-2">
+          <div className="max-w-3xl mx-auto mt-24 text-center p-12 bg-gray-50 border border-gray-100">
+            <h3 className="text-sm font-bold uppercase tracking-widest text-black mb-4">
               Still have questions?
             </h3>
-            <p className="text-gray-600 mb-4">
+            <p className="text-xs text-gray-500 uppercase tracking-wide mb-8">
               Our team is here to help. Reach out and we&apos;ll get back to you within 24 hours.
             </p>
-            <Link
-              href="/contact"
-              className="inline-flex items-center px-6 py-2.5 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors"
-            >
-              Contact Us
+            <Link href="/contact">
+              <Button variant="primary" className="min-w-[200px] uppercase tracking-widest text-xs py-4">
+                CONTACT US
+              </Button>
             </Link>
           </div>
         </Container>

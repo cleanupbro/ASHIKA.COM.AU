@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
-import { ChevronLeft, ChevronRight, ZoomIn } from 'lucide-react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface ProductImagesProps {
@@ -12,7 +12,6 @@ interface ProductImagesProps {
 
 export function ProductImages({ images, name }: ProductImagesProps) {
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isZoomed, setIsZoomed] = useState(false);
 
   const goToNext = () => {
     setCurrentIndex((prev) => (prev + 1) % images.length);
@@ -23,73 +22,60 @@ export function ProductImages({ images, name }: ProductImagesProps) {
   };
 
   return (
-    <div className="space-y-4">
+    <div className="flex flex-col-reverse lg:flex-row gap-6">
+      {/* Thumbnails (Left on desktop, Bottom on mobile) */}
+      <div className="flex lg:flex-col gap-4 overflow-x-auto lg:overflow-y-auto lg:h-[700px] no-scrollbar flex-shrink-0">
+        {images.map((image, index) => (
+          <button
+            key={index}
+            onClick={() => setCurrentIndex(index)}
+            className={cn(
+              'relative w-20 h-24 lg:w-24 lg:h-32 flex-shrink-0 transition-all border',
+              index === currentIndex
+                ? 'border-brand-teal opacity-100'
+                : 'border-transparent opacity-60 hover:opacity-100'
+            )}
+          >
+            <Image
+              src={image}
+              alt={`${name} - View ${index + 1}`}
+              fill
+              className="object-cover"
+              sizes="96px"
+            />
+          </button>
+        ))}
+      </div>
+
       {/* Main image */}
-      <div className="relative aspect-[3/4] bg-gray-100 rounded-2xl overflow-hidden group">
+      <div className="relative aspect-[3/4] lg:h-[700px] lg:w-full bg-gray-50 flex-1 group shadow-sm">
         <Image
           src={images[currentIndex]}
-          alt={`${name} - Image ${currentIndex + 1}`}
+          alt={`${name} - View ${currentIndex + 1}`}
           fill
-          className={cn(
-            'object-cover transition-transform duration-300',
-            isZoomed && 'scale-150 cursor-zoom-out'
-          )}
-          onClick={() => setIsZoomed(!isZoomed)}
-          sizes="(max-width: 768px) 100vw, 50vw"
+          className="object-cover"
+          sizes="(max-width: 768px) 100vw, 75vw"
           priority
         />
-
-        {/* Zoom indicator */}
-        {!isZoomed && (
-          <div className="absolute top-4 right-4 p-2 bg-white/90 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">
-            <ZoomIn className="w-5 h-5 text-gray-600" />
-          </div>
-        )}
 
         {/* Navigation arrows */}
         {images.length > 1 && (
           <>
             <button
               onClick={goToPrev}
-              className="absolute left-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+              className="absolute left-0 top-1/2 -translate-y-1/2 p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/20 text-white"
             >
-              <ChevronLeft className="w-5 h-5 text-gray-600" />
+              <ChevronLeft className="w-8 h-8 drop-shadow-lg" />
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-4 top-1/2 -translate-y-1/2 p-2 bg-white/90 rounded-full shadow-md opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+              className="absolute right-0 top-1/2 -translate-y-1/2 p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/20 text-white"
             >
-              <ChevronRight className="w-5 h-5 text-gray-600" />
+              <ChevronRight className="w-8 h-8 drop-shadow-lg" />
             </button>
           </>
         )}
       </div>
-
-      {/* Thumbnail strip */}
-      {images.length > 1 && (
-        <div className="flex gap-3 overflow-x-auto pb-2">
-          {images.map((image, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentIndex(index)}
-              className={cn(
-                'relative w-20 h-24 flex-shrink-0 rounded-lg overflow-hidden transition-all',
-                index === currentIndex
-                  ? 'ring-2 ring-teal-600 ring-offset-2'
-                  : 'opacity-70 hover:opacity-100'
-              )}
-            >
-              <Image
-                src={image}
-                alt={`${name} - Thumbnail ${index + 1}`}
-                fill
-                className="object-cover"
-                sizes="80px"
-              />
-            </button>
-          ))}
-        </div>
-      )}
     </div>
   );
 }

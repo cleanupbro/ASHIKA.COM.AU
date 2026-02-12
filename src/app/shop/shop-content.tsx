@@ -87,53 +87,57 @@ export function ShopContent() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="bg-[#F8FBFA] border-b border-brand-teal/5">
         <Container>
-          <div className="py-8 md:py-12">
-            <h1 className="font-display text-3xl md:text-4xl font-bold text-teal-900">
+          <div className="py-12 md:py-16 flex flex-col items-center justify-center text-center">
+            <h1 className="text-3xl md:text-4xl font-black uppercase tracking-[0.2em] text-brand-teal mb-4">
               {getCategoryTitle()}
             </h1>
-            <p className="text-gray-600 mt-2">
-              {filteredProducts.length} {filteredProducts.length === 1 ? 'item' : 'items'}
+            <div className="w-12 h-0.5 bg-brand-gold mb-4"></div>
+            <p className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-[0.2em]">
+              {filteredProducts.length} Premium Pieces Available
             </p>
           </div>
         </Container>
       </div>
 
       <Container>
-        <div className="py-8">
+        <div className="py-12">
           {/* Mobile filter button & sort */}
-          <div className="flex items-center justify-between gap-4 mb-6 lg:hidden">
+          <div className="flex items-center justify-between gap-4 mb-8 lg:hidden">
             <button
               onClick={() => setIsMobileFilterOpen(true)}
-              className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg"
+              className="flex items-center gap-2 px-6 py-3 bg-white border border-brand-teal/20 shadow-sm"
             >
-              <Filter className="w-4 h-4" />
-              <span className="text-sm font-medium">Filters</span>
+              <Filter className="w-4 h-4 text-brand-teal" />
+              <span className="text-[10px] font-black uppercase tracking-widest text-brand-teal">Filters</span>
             </button>
             <SortDropdown value={sortBy} onChange={setSortBy} />
           </div>
 
-          {/* Active filters */}
-          <div className="mb-6">
-            <ActiveFilters filters={filters} onFilterChange={setFilters} />
-          </div>
-
-          <div className="flex gap-8">
+          <div className="flex gap-16">
             {/* Desktop sidebar filters */}
-            <aside className="hidden lg:block w-64 flex-shrink-0">
-              <div className="sticky top-24 bg-white rounded-xl border border-gray-100 overflow-hidden">
+            <aside className="hidden lg:block w-72 flex-shrink-0">
+              <div className="sticky top-40 bg-white p-2">
                 <ProductFilters filters={filters} onFilterChange={setFilters} />
               </div>
             </aside>
 
             {/* Product grid */}
             <div className="flex-1">
-              {/* Desktop sort */}
-              <div className="hidden lg:flex justify-end mb-6">
+              {/* Desktop sort and active filters */}
+              <div className="hidden lg:flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
+                <div className="flex-1">
+                  <ActiveFilters filters={filters} onFilterChange={setFilters} />
+                </div>
                 <SortDropdown value={sortBy} onChange={setSortBy} />
+              </div>
+
+              {/* Mobile active filters */}
+              <div className="lg:hidden mb-6">
+                <ActiveFilters filters={filters} onFilterChange={setFilters} />
               </div>
 
               <ProductGrid products={filteredProducts} />

@@ -12,7 +12,8 @@ import {
   type PaymentData,
 } from '@/components/checkout';
 import { useCart } from '@/contexts/cart-context';
-import { ArrowLeft, ShoppingBag, MapPin, CreditCard, Check } from 'lucide-react';
+import { ArrowLeft, ShoppingBag, Check } from 'lucide-react';
+import { Button } from '@/components/ui';
 
 type CheckoutStep = 'shipping' | 'payment';
 
@@ -26,21 +27,19 @@ export default function CheckoutPage() {
   // If cart is empty, redirect to shop
   if (state.items.length === 0) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-white py-24">
         <Container>
           <div className="max-w-md mx-auto text-center">
-            <ShoppingBag className="w-16 h-16 text-gray-300 mx-auto mb-4" />
-            <h1 className="font-display text-2xl font-bold text-gray-900 mb-2">
-              Your cart is empty
+            <h1 className="text-2xl font-black uppercase tracking-widest text-black mb-4">
+              Your bag is empty
             </h1>
-            <p className="text-gray-600 mb-6">
-              Add some items to your cart before checking out
+            <p className="text-sm text-gray-500 mb-8 uppercase tracking-wide">
+              Add some items to your bag before checking out
             </p>
-            <Link
-              href="/shop"
-              className="inline-flex items-center px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors"
-            >
-              Browse Collection
+            <Link href="/shop">
+              <Button variant="primary" className="min-w-[200px]">
+                BROWSE COLLECTION
+              </Button>
             </Link>
           </div>
         </Container>
@@ -90,19 +89,19 @@ export default function CheckoutPage() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-white border-b">
+      <div className="bg-white border-b border-gray-100">
         <Container>
-          <div className="py-4 flex items-center justify-between">
+          <div className="py-6 flex items-center justify-between">
             <Link
               href="/shop"
-              className="flex items-center gap-2 text-gray-600 hover:text-teal-600 transition-colors"
+              className="flex items-center gap-2 text-gray-500 hover:text-brand-teal transition-colors uppercase tracking-widest text-[10px] font-bold"
             >
-              <ArrowLeft className="w-4 h-4" />
-              <span className="text-sm">Continue Shopping</span>
+              <ArrowLeft className="w-3 h-3" />
+              <span>Back to Shop</span>
             </Link>
-            <span className="font-display text-xl font-bold text-teal-900">
+            <span className="font-sans text-xl tracking-[0.3em] font-black text-brand-teal uppercase">
               ASHIKA
             </span>
             <div className="w-24" /> {/* Spacer for centering */}
@@ -111,44 +110,38 @@ export default function CheckoutPage() {
       </div>
 
       {/* Progress steps */}
-      <div className="bg-white border-b">
+      <div className="bg-white border-b border-gray-100">
         <Container>
-          <div className="py-6">
+          <div className="py-8">
             <div className="flex items-center justify-center gap-4 md:gap-8">
-              {/* Cart step (completed) */}
+              {/* Cart step */}
               <div className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full bg-teal-600 text-white flex items-center justify-center">
-                  <Check className="w-4 h-4" />
+                <div className="w-6 h-6 bg-brand-teal text-white flex items-center justify-center text-[10px] rounded-full">
+                  <Check className="w-3 h-3" />
                 </div>
-                <span className="hidden md:block text-sm font-medium text-teal-600">
-                  Cart
+                <span className="hidden md:block text-[10px] font-bold uppercase tracking-widest text-brand-teal">
+                  Bag
                 </span>
               </div>
 
-              <div className="w-8 md:w-16 h-0.5 bg-teal-600" />
+              <div className="w-12 h-px bg-brand-teal" />
 
               {/* Shipping step */}
               <div className="flex items-center gap-2">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                    step === 'shipping'
-                      ? 'bg-teal-600 text-white'
-                      : step === 'payment'
-                      ? 'bg-teal-600 text-white'
-                      : 'bg-gray-200 text-gray-500'
+                  className={`w-6 h-6 flex items-center justify-center text-[10px] font-bold border rounded-full ${
+                    step === 'shipping' || step === 'payment'
+                      ? 'bg-brand-teal text-white border-brand-teal'
+                      : 'bg-white text-gray-300 border-gray-200'
                   }`}
                 >
-                  {step === 'payment' ? (
-                    <Check className="w-4 h-4" />
-                  ) : (
-                    <MapPin className="w-4 h-4" />
-                  )}
+                  {step === 'payment' ? <Check className="w-3 h-3" /> : '2'}
                 </div>
                 <span
-                  className={`hidden md:block text-sm font-medium ${
+                  className={`hidden md:block text-[10px] font-bold uppercase tracking-widest ${
                     step === 'shipping' || step === 'payment'
-                      ? 'text-teal-600'
-                      : 'text-gray-500'
+                      ? 'text-brand-teal'
+                      : 'text-gray-300'
                   }`}
                 >
                   Shipping
@@ -156,25 +149,25 @@ export default function CheckoutPage() {
               </div>
 
               <div
-                className={`w-8 md:w-16 h-0.5 ${
-                  step === 'payment' ? 'bg-teal-600' : 'bg-gray-200'
+                className={`w-12 h-px ${
+                  step === 'payment' ? 'bg-brand-teal' : 'bg-gray-200'
                 }`}
               />
 
               {/* Payment step */}
               <div className="flex items-center gap-2">
                 <div
-                  className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                  className={`w-6 h-6 flex items-center justify-center text-[10px] font-bold border rounded-full ${
                     step === 'payment'
-                      ? 'bg-teal-600 text-white'
-                      : 'bg-gray-200 text-gray-500'
+                      ? 'bg-brand-teal text-white border-brand-teal'
+                      : 'bg-white text-gray-300 border-gray-200'
                   }`}
                 >
-                  <CreditCard className="w-4 h-4" />
+                  3
                 </div>
                 <span
-                  className={`hidden md:block text-sm font-medium ${
-                    step === 'payment' ? 'text-teal-600' : 'text-gray-500'
+                  className={`hidden md:block text-[10px] font-bold uppercase tracking-widest ${
+                    step === 'payment' ? 'text-brand-teal' : 'text-gray-300'
                   }`}
                 >
                   Payment
@@ -187,11 +180,11 @@ export default function CheckoutPage() {
 
       {/* Main content */}
       <Container>
-        <div className="py-8 md:py-12">
-          <div className="grid lg:grid-cols-3 gap-8">
+        <div className="py-12">
+          <div className="grid lg:grid-cols-3 gap-16">
             {/* Form section */}
             <div className="lg:col-span-2">
-              <div className="bg-white rounded-xl border border-gray-100 p-6">
+              <div className="bg-white">
                 {step === 'shipping' && (
                   <ShippingForm onSubmit={handleShippingSubmit} />
                 )}
@@ -209,7 +202,7 @@ export default function CheckoutPage() {
 
             {/* Order summary sidebar */}
             <div className="lg:col-span-1">
-              <div className="sticky top-24">
+              <div className="sticky top-32">
                 <OrderReview
                   items={state.items}
                   subtotal={subtotal}

@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Input, Button } from '@/components/ui';
-import { CreditCard, Lock, AlertCircle } from 'lucide-react';
+import { Lock, AlertCircle } from 'lucide-react';
 
 export interface PaymentData {
   cardNumber: string;
@@ -97,37 +97,30 @@ export function PaymentForm({
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-10">
       {/* Payment header */}
-      <div className="flex items-center gap-3 pb-4 border-b">
-        <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
-          <CreditCard className="w-5 h-5 text-teal-600" />
-        </div>
-        <div>
-          <h2 className="font-display text-xl font-semibold text-gray-900">
-            Payment Details
-          </h2>
-          <p className="text-sm text-gray-500">Complete your rental booking</p>
-        </div>
+      <div>
+        <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-1">
+          Payment Details
+        </h2>
+        <p className="text-xs text-gray-500 uppercase tracking-wide">Secure your rental booking</p>
       </div>
 
       {/* Bond notice */}
-      <div className="flex gap-3 p-4 bg-amber-50 rounded-lg border border-amber-100">
-        <AlertCircle className="w-5 h-5 text-amber-600 flex-shrink-0 mt-0.5" />
+      <div className="flex gap-4 p-5 bg-gray-50 border border-gray-100">
+        <AlertCircle className="w-5 h-5 text-black flex-shrink-0" />
         <div>
-          <p className="text-sm font-medium text-amber-800">
+          <p className="text-[10px] font-bold text-black uppercase tracking-widest">
             Security Bond: ${bondTotal}
           </p>
-          <p className="text-xs text-amber-700 mt-1">
-            This amount will be <strong>pre-authorized but not charged</strong>.
-            It will be automatically released within 3-5 business days after we
-            receive and inspect your return.
+          <p className="text-[10px] text-gray-500 uppercase tracking-wide mt-1 leading-relaxed">
+            Pre-authorized but not charged. Automatically released 3-5 days after return inspection.
           </p>
         </div>
       </div>
 
       {/* Card fields */}
-      <div className="space-y-4">
+      <div className="space-y-6">
         <Input
           label="Card Number"
           name="cardNumber"
@@ -136,9 +129,10 @@ export function PaymentForm({
           onChange={handleChange}
           error={errors.cardNumber}
           required
+          className="rounded-none"
         />
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-2 gap-6">
           <Input
             label="Expiry Date"
             name="expiryDate"
@@ -147,6 +141,7 @@ export function PaymentForm({
             onChange={handleChange}
             error={errors.expiryDate}
             required
+            className="rounded-none"
           />
           <Input
             label="CVC"
@@ -156,46 +151,48 @@ export function PaymentForm({
             onChange={handleChange}
             error={errors.cvc}
             required
+            className="rounded-none"
           />
         </div>
 
         <Input
           label="Cardholder Name"
           name="cardholderName"
-          placeholder="Name on card"
+          placeholder="NAME ON CARD"
           value={formData.cardholderName}
           onChange={handleChange}
           error={errors.cardholderName}
           required
+          className="rounded-none"
         />
       </div>
 
       {/* Order summary */}
-      <div className="bg-gray-50 rounded-lg p-4 space-y-2">
-        <div className="flex justify-between text-sm">
-          <span className="text-gray-600">Rental subtotal</span>
-          <span className="font-medium">${subtotal}</span>
+      <div className="bg-gray-50 p-6 space-y-3">
+        <div className="flex justify-between text-xs uppercase tracking-wide">
+          <span className="text-gray-500">Subtotal</span>
+          <span className="font-bold text-black">${subtotal}</span>
         </div>
-        <div className="flex justify-between text-sm">
-          <span className="text-gray-600">Shipping</span>
-          <span className="font-medium text-green-600">FREE</span>
+        <div className="flex justify-between text-xs uppercase tracking-wide">
+          <span className="text-gray-500">Shipping</span>
+          <span className="font-bold text-black">FREE</span>
         </div>
-        <div className="flex justify-between text-sm text-gray-500">
-          <span>Security bond (pre-auth)</span>
+        <div className="flex justify-between text-xs uppercase tracking-wide text-gray-400">
+          <span>Security Bond (Hold)</span>
           <span>${bondTotal}</span>
         </div>
-        <div className="pt-2 border-t">
-          <div className="flex justify-between">
-            <span className="font-semibold text-gray-900">Total to charge</span>
-            <span className="font-bold text-teal-600 text-lg">${subtotal}</span>
+        <div className="pt-4 border-t border-gray-200">
+          <div className="flex justify-between items-baseline">
+            <span className="text-xs font-bold uppercase tracking-widest text-black">Total to charge</span>
+            <span className="font-black text-black text-xl">${subtotal}</span>
           </div>
         </div>
       </div>
 
       {/* Security notice */}
-      <div className="flex items-center gap-2 text-xs text-gray-500">
-        <Lock className="w-4 h-4" />
-        <span>Your payment is secured with 256-bit SSL encryption</span>
+      <div className="flex items-center gap-2 text-[10px] text-gray-400 uppercase tracking-widest">
+        <Lock className="w-3.5 h-3.5" />
+        <span>Secured with 256-bit SSL encryption</span>
       </div>
 
       {/* Action buttons */}
@@ -205,18 +202,18 @@ export function PaymentForm({
           variant="outline"
           size="lg"
           onClick={onBack}
-          className="flex-1"
+          className="flex-1 uppercase tracking-widest font-bold text-xs py-4"
         >
           Back
         </Button>
-        <Button type="submit" size="lg" className="flex-1" loading={isLoading}>
+        <Button type="submit" size="lg" className="flex-1 uppercase tracking-widest font-bold text-xs py-4" loading={isLoading}>
           Pay ${subtotal}
         </Button>
       </div>
 
       {/* Test mode notice */}
-      <p className="text-center text-xs text-gray-400">
-        Demo mode: Use card number 4242 4242 4242 4242 for testing
+      <p className="text-center text-[10px] text-gray-400 uppercase tracking-widest">
+        Demo mode: Use card 4242 4242 4242 4242
       </p>
     </form>
   );

@@ -20,29 +20,31 @@ export function RelatedProducts({ currentProductId, category }: RelatedProductsP
   }
 
   return (
-    <section className="py-12 md:py-16 bg-gray-50">
+    <section className="py-24 bg-white border-t border-gray-100">
       <Container>
-        <div className="flex items-end justify-between mb-8">
-          <div>
-            <h2 className="font-display text-2xl md:text-3xl font-bold text-teal-900">
-              You May Also Like
-            </h2>
-            <p className="text-gray-600 mt-1">
-              More {category.replace('_', ' ')}s from our collection
-            </p>
-          </div>
-          <Link
-            href={`/shop?category=${category}`}
-            className="hidden md:block text-sm font-medium text-teal-600 hover:text-teal-700"
-          >
-            View All
-          </Link>
+        <div className="text-center mb-16">
+          <h2 className="text-2xl font-black uppercase tracking-widest text-black mb-2">
+            You May Also Like
+          </h2>
+          <div className="w-12 h-0.5 bg-black mx-auto mb-4"></div>
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
+            Handpicked {category.replace('_', ' ')}s
+          </p>
         </div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-4 gap-y-12">
           {relatedProducts.map((product) => (
             <ProductCard key={product.id} product={product} />
           ))}
+        </div>
+
+        <div className="mt-16 text-center">
+          <Link
+            href={`/shop?category=${category}`}
+            className="text-[10px] font-bold text-black uppercase tracking-widest border-b border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-colors"
+          >
+            View All {category.replace('_', ' ')}s
+          </Link>
         </div>
       </Container>
     </section>

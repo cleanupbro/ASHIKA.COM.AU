@@ -1,5 +1,5 @@
 import { Container } from '@/components/layout';
-import { Star, Quote } from 'lucide-react';
+import { Star } from 'lucide-react';
 
 const testimonials = [
   {
@@ -37,8 +37,8 @@ function StarRating({ rating }: { rating: number }) {
       {[...Array(5)].map((_, i) => (
         <Star
           key={i}
-          className={`w-4 h-4 ${
-            i < rating ? 'text-gold-500 fill-gold-500' : 'text-gray-300'
+          className={`w-3 h-3 ${
+            i < rating ? 'text-black fill-black' : 'text-gray-200'
           }`}
         />
       ))}
@@ -48,73 +48,59 @@ function StarRating({ rating }: { rating: number }) {
 
 export function Testimonials() {
   return (
-    <section className="py-16 md:py-24 bg-white">
+    <section className="py-24 bg-white">
       <Container>
         {/* Section header */}
-        <div className="text-center mb-12">
-          <h2 className="font-display text-3xl md:text-4xl font-bold text-teal-900 mb-4">
-            What Our Customers Say
+        <div className="text-center mb-16">
+          <h2 className="text-2xl font-black uppercase tracking-widest text-black mb-2">
+            Reviews
           </h2>
-          <p className="text-gray-600 max-w-2xl mx-auto">
-            Join hundreds of happy renters across Australia who chose ASHIKA for their special occasions.
-          </p>
+          <div className="w-12 h-0.5 bg-black mx-auto"></div>
         </div>
 
         {/* Testimonials grid */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
+        <div className="grid md:grid-cols-3 gap-8">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="bg-cream rounded-2xl p-6 md:p-8 relative"
+              className="border border-gray-100 p-8 flex flex-col"
             >
-              {/* Quote icon */}
-              <Quote className="absolute top-6 right-6 w-8 h-8 text-teal-100" />
-
-              {/* Rating */}
-              <StarRating rating={testimonial.rating} />
+              <div className="mb-6">
+                <StarRating rating={testimonial.rating} />
+              </div>
 
               {/* Review text */}
-              <p className="text-gray-700 mt-4 mb-6 leading-relaxed">
+              <p className="text-xs text-gray-600 uppercase tracking-widest leading-relaxed mb-8 flex-1 italic">
                 &ldquo;{testimonial.text}&rdquo;
               </p>
 
               {/* Customer info */}
-              <div className="flex items-center gap-3">
-                {/* Avatar placeholder */}
-                <div className="w-10 h-10 rounded-full bg-teal-600 flex items-center justify-center">
-                  <span className="text-white text-sm font-medium">
-                    {testimonial.avatar}
-                  </span>
+              <div className="flex items-center gap-4 pt-6 border-t border-gray-50">
+                <div className="w-10 h-10 border border-black flex items-center justify-center text-[10px] font-bold uppercase tracking-widest text-black">
+                  {testimonial.avatar}
                 </div>
                 <div>
-                  <p className="font-medium text-teal-900">{testimonial.name}</p>
-                  <p className="text-sm text-gray-500">{testimonial.location}</p>
+                  <p className="text-[10px] font-bold uppercase tracking-widest text-black">{testimonial.name}</p>
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-gray-400">{testimonial.location}</p>
                 </div>
-              </div>
-
-              {/* Product rented */}
-              <div className="mt-4 pt-4 border-t border-teal-100">
-                <p className="text-xs text-gray-500">
-                  Rented: <span className="text-teal-700">{testimonial.product}</span>
-                </p>
               </div>
             </div>
           ))}
         </div>
 
         {/* Social proof stats */}
-        <div className="mt-12 flex flex-wrap justify-center gap-8 md:gap-12 text-center">
+        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
           <div>
-            <p className="text-3xl font-display font-bold text-teal-600">500+</p>
-            <p className="text-sm text-gray-600">Happy Renters</p>
+            <p className="text-3xl font-black text-black mb-2 uppercase tracking-tighter">500+</p>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Happy Renters</p>
           </div>
           <div>
-            <p className="text-3xl font-display font-bold text-teal-600">4.9</p>
-            <p className="text-sm text-gray-600">Average Rating</p>
+            <p className="text-3xl font-black text-black mb-2 uppercase tracking-tighter">4.9/5</p>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Average Rating</p>
           </div>
           <div>
-            <p className="text-3xl font-display font-bold text-teal-600">100%</p>
-            <p className="text-sm text-gray-600">Satisfaction Guarantee</p>
+            <p className="text-3xl font-black text-black mb-2 uppercase tracking-tighter">100%</p>
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Satisfaction Guarantee</p>
           </div>
         </div>
       </Container>

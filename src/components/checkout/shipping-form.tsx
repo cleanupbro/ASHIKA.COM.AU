@@ -2,7 +2,7 @@
 
 import { useState } from 'react';
 import { Input, Select, Button } from '@/components/ui';
-import { MapPin, Truck } from 'lucide-react';
+import { Truck } from 'lucide-react';
 
 // Australian states
 const AUSTRALIAN_STATES = [
@@ -92,22 +92,17 @@ export function ShippingForm({ onSubmit, isLoading }: ShippingFormProps) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-10">
       {/* Shipping info header */}
-      <div className="flex items-center gap-3 pb-4 border-b">
-        <div className="w-10 h-10 bg-teal-100 rounded-full flex items-center justify-center">
-          <MapPin className="w-5 h-5 text-teal-600" />
-        </div>
-        <div>
-          <h2 className="font-display text-xl font-semibold text-gray-900">
-            Shipping Details
-          </h2>
-          <p className="text-sm text-gray-500">Where should we send your rental?</p>
-        </div>
+      <div>
+        <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-1">
+          Shipping Details
+        </h2>
+        <p className="text-xs text-gray-500 uppercase tracking-wide">Where should we send your rental?</p>
       </div>
 
       {/* Name fields */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-6">
         <Input
           label="First Name"
           name="firstName"
@@ -115,6 +110,7 @@ export function ShippingForm({ onSubmit, isLoading }: ShippingFormProps) {
           onChange={handleChange}
           error={errors.firstName}
           required
+          className="rounded-none"
         />
         <Input
           label="Last Name"
@@ -123,11 +119,12 @@ export function ShippingForm({ onSubmit, isLoading }: ShippingFormProps) {
           onChange={handleChange}
           error={errors.lastName}
           required
+          className="rounded-none"
         />
       </div>
 
       {/* Contact fields */}
-      <div className="grid md:grid-cols-2 gap-4">
+      <div className="grid md:grid-cols-2 gap-6">
         <Input
           label="Email"
           name="email"
@@ -136,6 +133,7 @@ export function ShippingForm({ onSubmit, isLoading }: ShippingFormProps) {
           onChange={handleChange}
           error={errors.email}
           required
+          className="rounded-none"
         />
         <Input
           label="Phone"
@@ -146,6 +144,7 @@ export function ShippingForm({ onSubmit, isLoading }: ShippingFormProps) {
           onChange={handleChange}
           error={errors.phone}
           required
+          className="rounded-none"
         />
       </div>
 
@@ -158,10 +157,11 @@ export function ShippingForm({ onSubmit, isLoading }: ShippingFormProps) {
         onChange={handleChange}
         error={errors.address}
         required
+        className="rounded-none"
       />
 
       {/* City, State, Postcode */}
-      <div className="grid md:grid-cols-3 gap-4">
+      <div className="grid md:grid-cols-3 gap-6">
         <Input
           label="Suburb"
           name="suburb"
@@ -169,6 +169,7 @@ export function ShippingForm({ onSubmit, isLoading }: ShippingFormProps) {
           onChange={handleChange}
           error={errors.suburb}
           required
+          className="rounded-none"
         />
         <Select
           label="State"
@@ -178,6 +179,7 @@ export function ShippingForm({ onSubmit, isLoading }: ShippingFormProps) {
           error={errors.state}
           required
           options={AUSTRALIAN_STATES}
+          className="rounded-none"
         />
         <Input
           label="Postcode"
@@ -188,37 +190,38 @@ export function ShippingForm({ onSubmit, isLoading }: ShippingFormProps) {
           onChange={handleChange}
           error={errors.postcode}
           required
+          className="rounded-none"
         />
       </div>
 
       {/* Delivery notes */}
       <div>
-        <label className="block text-sm font-medium text-gray-700 mb-1.5">
+        <label className="block text-[10px] font-bold uppercase tracking-wide text-black mb-2">
           Delivery Notes (Optional)
         </label>
         <textarea
           name="deliveryNotes"
-          rows={2}
+          rows={3}
           placeholder="Any special delivery instructions?"
           value={formData.deliveryNotes}
           onChange={handleChange}
-          className="w-full px-4 py-2.5 rounded-lg border border-gray-200 focus:border-teal-500 focus:ring-2 focus:ring-teal-500/20 transition-colors resize-none"
+          className="w-full px-4 py-3 border border-gray-200 focus:border-black focus:outline-none transition-colors resize-none text-sm bg-white"
         />
       </div>
 
       {/* Free shipping notice */}
-      <div className="flex items-center gap-3 p-4 bg-green-50 rounded-lg border border-green-100">
-        <Truck className="w-5 h-5 text-green-600" />
+      <div className="flex items-center gap-4 p-5 bg-gray-50 border border-gray-100">
+        <Truck className="w-5 h-5 text-black" />
         <div>
-          <p className="text-sm font-medium text-green-800">Free Express Shipping</p>
-          <p className="text-xs text-green-600">
-            Australia-wide delivery included. Return shipping is also free!
+          <p className="text-[10px] font-bold text-black uppercase tracking-widest">Free Express Shipping</p>
+          <p className="text-[10px] text-gray-500 uppercase tracking-wide mt-1">
+            Australia-wide delivery & returns included.
           </p>
         </div>
       </div>
 
       {/* Submit button */}
-      <Button type="submit" size="lg" className="w-full" loading={isLoading}>
+      <Button type="submit" size="lg" className="w-full uppercase tracking-widest font-bold text-xs py-4" loading={isLoading}>
         Continue to Payment
       </Button>
     </form>

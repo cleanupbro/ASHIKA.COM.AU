@@ -2,83 +2,41 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui';
 import { Container } from '@/components/layout';
-import { Truck, Sparkles, Shield } from 'lucide-react';
-
-const trustBadges = [
-  { icon: Sparkles, text: 'Free Dry Cleaning' },
-  { icon: Truck, text: 'Free Shipping' },
-  { icon: Shield, text: '$100 Refundable Bond' },
-];
 
 export function Hero() {
   return (
-    <section className="relative min-h-[90vh] flex items-center">
-      {/* Full-width hero image */}
+    <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
+      {/* Background Image */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop"
-          alt="Woman wearing elegant Indian saree with traditional jewelry"
+          src="https://images.pexels.com/photos/12737669/pexels-photo-12737669.jpeg?auto=compress&cs=tinysrgb&w=1920"
+          alt="Elegant Indian Fashion"
           fill
-          className="object-cover object-center"
+          className="object-cover object-top"
           priority
           sizes="100vw"
         />
-        {/* Gradient overlay for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-transparent" />
+        <div className="absolute inset-0 bg-black/10" />
       </div>
 
-      <Container className="relative z-10">
-        <div className="max-w-2xl py-20 md:py-24">
-          {/* Tagline */}
-          <p className="text-teal-400 font-medium tracking-wide mb-4 uppercase text-sm">
-            ASHIKA • Indian Wear Hire Australia
-          </p>
-
-          {/* Main headline */}
-          <h1 className="font-display text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-tight mb-6">
-            Wear the culture.
-            <br />
-            <span className="text-gold-400">Return the stress.</span>
+      <Container className="relative z-10 flex flex-col items-center text-center">
+        <div className="max-w-4xl mx-auto">
+          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight drop-shadow-md">
+            Welcome to <br /> the borrowhood
           </h1>
-
-          {/* Subheadline */}
-          <p className="text-lg md:text-xl text-gray-200 mb-8 max-w-xl">
-            Rent stunning sarees, lehengas & sherwanis for your special occasions.
-            Free shipping Australia-wide. No dry cleaning required.
+          <p className="text-base md:text-xl text-white mb-10 max-w-2xl mx-auto font-medium tracking-wide drop-shadow-sm">
+            Indian Ethnic Wear for Rent. <br className="hidden md:block" />
+            Look your best for every occasion without the high price tag.
           </p>
-
-          {/* CTA buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+          <div className="flex flex-col sm:flex-row gap-5 justify-center">
             <Link href="/shop">
-              <Button size="lg" variant="secondary" className="w-full sm:w-auto px-8">
-                Browse Collection
+              <Button size="lg" variant="primary" className="min-w-[240px] text-base font-bold tracking-[0.2em] h-14">
+                BROWSE THE COLLECTION
               </Button>
             </Link>
-            <Link href="/#how-it-works">
-              <Button
-                size="lg"
-                variant="outline"
-                className="w-full sm:w-auto border-white/50 text-white hover:bg-white/10 px-8"
-              >
-                How It Works
-              </Button>
-            </Link>
-          </div>
-
-          {/* Trust badges */}
-          <div className="flex flex-wrap gap-6">
-            {trustBadges.map((badge) => (
-              <div key={badge.text} className="flex items-center gap-2 text-white/90">
-                <badge.icon className="w-5 h-5 text-teal-400" />
-                <span className="text-sm font-medium">{badge.text}</span>
-              </div>
-            ))}
           </div>
         </div>
       </Container>
-
-      {/* Subtle gradient at bottom for smooth transition */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent" />
     </section>
   );
 }

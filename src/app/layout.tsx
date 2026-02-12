@@ -37,10 +37,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="antialiased font-body">
+      <body className="antialiased font-sans">
         <CartProvider>
           <Header />
-          <main className="min-h-screen pt-16 md:pt-20">{children}</main>
+          <main className="min-h-screen pt-[120px]">{children}</main>
           <Footer />
           <CartDrawer />
         </CartProvider>

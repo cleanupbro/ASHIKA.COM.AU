@@ -54,7 +54,7 @@ interface AccordionItemProps {
 
 export function AccordionItem({ value, children, className }: AccordionItemProps) {
   return (
-    <div className={cn('py-4', className)} data-value={value}>
+    <div className={cn('py-0', className)} data-value={value}>
       {children}
     </div>
   );
@@ -77,14 +77,14 @@ export function AccordionTrigger({ children, value, className }: AccordionTrigge
     <button
       onClick={() => toggleItem(value)}
       className={cn(
-        'flex items-center justify-between w-full text-left font-medium text-gray-900 hover:text-teal-600 transition-colors',
+        'flex items-center justify-between w-full text-left py-6 font-bold text-black uppercase tracking-widest hover:text-gray-600 transition-colors',
         className
       )}
     >
-      {children}
+      <span className="text-sm">{children}</span>
       <ChevronDown
         className={cn(
-          'w-5 h-5 text-gray-500 transition-transform duration-200',
+          'w-4 h-4 text-black transition-transform duration-300',
           isOpen && 'rotate-180'
         )}
       />
@@ -108,11 +108,11 @@ export function AccordionContent({ children, value, className }: AccordionConten
   return (
     <div
       className={cn(
-        'overflow-hidden transition-all duration-200',
-        isOpen ? 'max-h-96 opacity-100 mt-3' : 'max-h-0 opacity-0'
+        'overflow-hidden transition-all duration-300',
+        isOpen ? 'max-h-[500px] opacity-100 pb-8' : 'max-h-0 opacity-0'
       )}
     >
-      <div className={cn('text-gray-600', className)}>{children}</div>
+      <div className={cn('text-sm text-gray-500 uppercase tracking-wide leading-relaxed', className)}>{children}</div>
     </div>
   );
 }

@@ -39,20 +39,19 @@ export function SortDropdown({ value, onChange }: SortDropdownProps) {
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-4 py-2 bg-white border border-gray-200 rounded-lg hover:border-gray-300 transition-colors"
+        className="flex items-center gap-2 px-0 py-2 bg-white transition-colors group"
       >
-        <span className="text-sm text-gray-600">Sort by:</span>
-        <span className="text-sm font-medium text-gray-900">{currentOption?.label}</span>
+        <span className="text-[10px] font-bold uppercase tracking-widest text-brand-teal group-hover:text-brand-gold transition-colors">{currentOption?.label}</span>
         <ChevronDown
           className={cn(
-            'w-4 h-4 text-gray-500 transition-transform',
+            'w-3 h-3 text-brand-teal transition-transform duration-300 group-hover:text-brand-gold',
             isOpen && 'rotate-180'
           )}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 bg-white rounded-lg shadow-lg border border-gray-100 py-1 z-20">
+        <div className="absolute right-0 mt-2 w-56 bg-white shadow-xl border border-brand-teal/10 py-2 z-20">
           {sortOptions.map((option) => (
             <button
               key={option.value}
@@ -61,14 +60,14 @@ export function SortDropdown({ value, onChange }: SortDropdownProps) {
                 setIsOpen(false);
               }}
               className={cn(
-                'flex items-center justify-between w-full px-4 py-2 text-sm text-left transition-colors',
+                'flex items-center justify-between w-full px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-left transition-colors',
                 option.value === value
-                  ? 'text-teal-600 bg-teal-50'
-                  : 'text-gray-700 hover:bg-gray-50'
+                  ? 'text-brand-teal bg-teal-50'
+                  : 'text-gray-400 hover:text-brand-teal hover:bg-teal-50/50'
               )}
             >
               {option.label}
-              {option.value === value && <Check className="w-4 h-4" />}
+              {option.value === value && <Check className="w-3 h-3 text-brand-teal" />}
             </button>
           ))}
         </div>

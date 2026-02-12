@@ -1,6 +1,8 @@
 import { Metadata } from 'next';
 import { Container } from '@/components/layout';
 import { Sparkles, Heart, Recycle, Users } from 'lucide-react';
+import Link from 'next/link';
+import { Button } from '@/components/ui';
 
 export const metadata: Metadata = {
   title: 'About Us',
@@ -34,30 +36,30 @@ export default function AboutPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-gradient-to-br from-teal-900 to-teal-800 text-white py-16 md:py-24">
+      <section className="bg-white border-b border-gray-100 py-24">
         <Container>
-          <div className="max-w-3xl">
-            <h1 className="font-display text-4xl md:text-5xl font-bold mb-6">
-              Wear the Culture.{' '}
-              <span className="text-gold-400">Return the Stress.</span>
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-black mb-8 leading-tight">
+              Wear the Culture. <br />
+              <span className="text-gray-300">Return the Stress.</span>
             </h1>
-            <p className="text-lg md:text-xl text-teal-100 leading-relaxed">
+            <p className="text-sm md:text-base text-gray-500 uppercase tracking-widest max-w-2xl mx-auto leading-relaxed">
               ASHIKA makes premium Indian ethnic wear accessible to everyone in Australia.
-              We believe you shouldn&apos;t have to buy an expensive outfit you&apos;ll only wear once.
+              We believe in celebration without compromise.
             </p>
           </div>
         </Container>
       </section>
 
       {/* Our Story */}
-      <section className="py-16 md:py-24">
+      <section className="py-24">
         <Container>
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+          <div className="grid lg:grid-cols-2 gap-24 items-center">
             <div>
-              <h2 className="font-display text-3xl md:text-4xl font-bold text-teal-900 mb-6">
+              <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-12 border-b border-black pb-2 inline-block">
                 Our Story
               </h2>
-              <div className="space-y-4 text-gray-600">
+              <div className="space-y-6 text-sm text-gray-600 leading-relaxed uppercase tracking-wide">
                 <p>
                   ASHIKA was born from a simple observation: Indian ethnic wear is stunningly beautiful,
                   but prohibitively expensive to buy for one-time occasions. We saw friends and family
@@ -76,42 +78,41 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="bg-cream rounded-2xl p-8 md:p-12">
-              <blockquote className="font-display text-2xl md:text-3xl text-teal-900 italic">
+            <div className="bg-gray-50 p-12 lg:p-20">
+              <blockquote className="text-2xl md:text-4xl font-black text-black uppercase tracking-tight leading-tight italic">
                 &quot;Every person deserves to feel magnificent on their special day,
                 regardless of budget.&quot;
               </blockquote>
-              <p className="mt-4 text-gray-600">— ASHIKA Founders</p>
+              <div className="w-12 h-1 bg-black mt-8"></div>
+              <p className="mt-4 text-xs font-bold uppercase tracking-widest text-black">ASHIKA Founders</p>
             </div>
           </div>
         </Container>
       </section>
 
       {/* Values */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-24 bg-gray-50 border-y border-gray-100">
         <Container>
-          <div className="text-center mb-12">
-            <h2 className="font-display text-3xl md:text-4xl font-bold text-teal-900 mb-4">
+          <div className="text-center mb-16">
+            <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-4">
               Our Values
             </h2>
-            <p className="text-gray-600 max-w-2xl mx-auto">
-              These principles guide everything we do at ASHIKA
-            </p>
+            <div className="w-12 h-0.5 bg-black mx-auto"></div>
           </div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
             {values.map((value) => (
               <div
                 key={value.title}
-                className="bg-white rounded-xl p-6 text-center shadow-sm"
+                className="text-center group"
               >
-                <div className="w-14 h-14 bg-teal-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <value.icon className="w-7 h-7 text-teal-600" />
+                <div className="w-16 h-16 border border-black flex items-center justify-center mx-auto mb-6 group-hover:bg-black group-hover:text-white transition-all duration-300">
+                  <value.icon className="w-6 h-6 stroke-1" />
                 </div>
-                <h3 className="font-display text-xl font-bold text-teal-900 mb-2">
+                <h3 className="text-xs font-bold uppercase tracking-widest text-black mb-4">
                   {value.title}
                 </h3>
-                <p className="text-sm text-gray-600">{value.description}</p>
+                <p className="text-xs text-gray-500 uppercase tracking-wide leading-relaxed">{value.description}</p>
               </div>
             ))}
           </div>
@@ -119,21 +120,17 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-16 md:py-24 bg-teal-900 text-white">
+      <section className="py-24 bg-white">
         <Container>
           <div className="text-center">
-            <h2 className="font-display text-3xl md:text-4xl font-bold mb-4">
-              Ready to Experience ASHIKA?
+            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-widest text-black mb-8">
+              Experience ASHIKA
             </h2>
-            <p className="text-teal-200 mb-8 max-w-lg mx-auto">
-              Browse our collection and find the perfect outfit for your next celebration.
-            </p>
-            <a
-              href="/shop"
-              className="inline-flex items-center px-8 py-3 bg-gold-500 hover:bg-gold-600 text-white font-medium rounded-lg transition-colors"
-            >
-              Start Browsing
-            </a>
+            <Link href="/shop">
+              <Button variant="primary" className="min-w-[240px] uppercase tracking-widest text-xs py-4">
+                START BROWSING
+              </Button>
+            </Link>
           </div>
         </Container>
       </section>

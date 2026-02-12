@@ -31,21 +31,21 @@ const badges = [
 
 export function TrustBadges() {
   return (
-    <section className="py-12 bg-teal-900">
+    <section className="py-12 bg-gray-50 border-t border-gray-100">
       <Container>
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 md:gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8">
           {badges.map((badge) => (
             <div
               key={badge.title}
-              className="flex flex-col items-center text-center"
+              className="flex flex-col items-center text-center group"
             >
-              <div className="w-12 h-12 rounded-full bg-teal-800 flex items-center justify-center mb-3">
-                <badge.icon className="w-6 h-6 text-gold-400" />
+              <div className="mb-4 text-black group-hover:scale-110 transition-transform duration-300">
+                <badge.icon className="w-8 h-8 stroke-1" />
               </div>
-              <h3 className="text-white font-medium text-sm md:text-base mb-1">
+              <h3 className="text-black font-bold text-xs uppercase tracking-widest mb-2">
                 {badge.title}
               </h3>
-              <p className="text-teal-200 text-xs md:text-sm">
+              <p className="text-gray-500 text-xs font-medium">
                 {badge.description}
               </p>
             </div>

@@ -7,10 +7,10 @@ import {
   CheckCircle,
   Calendar,
   ArrowRight,
-  Mail,
   Home,
 } from 'lucide-react';
 import { format } from 'date-fns';
+import { Button } from '@/components/ui';
 
 interface OrderData {
   orderNumber: string;
@@ -52,24 +52,20 @@ export default function CheckoutSuccessPage() {
   // If no order data, show generic success
   if (!order) {
     return (
-      <div className="min-h-screen bg-gray-50 py-12">
+      <div className="min-h-screen bg-white py-24">
         <Container>
           <div className="max-w-lg mx-auto text-center">
-            <div className="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-10 h-10 text-green-600" />
-            </div>
-            <h1 className="font-display text-3xl font-bold text-gray-900 mb-4">
-              Order Confirmed!
+            <CheckCircle className="w-16 h-16 text-black mx-auto mb-6 stroke-1" />
+            <h1 className="text-3xl font-black uppercase tracking-widest text-black mb-4">
+              Order Confirmed
             </h1>
-            <p className="text-gray-600 mb-8">
-              Thank you for your order. You will receive a confirmation email shortly.
+            <p className="text-sm text-gray-500 uppercase tracking-wide mb-12">
+              Thank you for your order. A confirmation email has been sent.
             </p>
-            <Link
-              href="/"
-              className="inline-flex items-center gap-2 px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors"
-            >
-              <Home className="w-4 h-4" />
-              Return Home
+            <Link href="/">
+              <Button variant="primary" className="min-w-[200px]">
+                RETURN HOME
+              </Button>
             </Link>
           </div>
         </Container>
@@ -82,18 +78,16 @@ export default function CheckoutSuccessPage() {
   const shipDate = new Date(firstItem.rentalTimeline.shipBy);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-white">
       {/* Success header */}
-      <div className="bg-gradient-to-br from-teal-900 to-teal-800 text-white py-12">
+      <div className="bg-white border-b border-gray-100 py-16">
         <Container>
           <div className="text-center">
-            <div className="w-20 h-20 bg-white/10 backdrop-blur rounded-full flex items-center justify-center mx-auto mb-6">
-              <CheckCircle className="w-10 h-10 text-green-400" />
-            </div>
-            <h1 className="font-display text-3xl md:text-4xl font-bold mb-2">
-              Order Confirmed!
+            <CheckCircle className="w-16 h-16 text-black mx-auto mb-6 stroke-1" />
+            <h1 className="text-3xl md:text-4xl font-black uppercase tracking-widest text-black mb-4">
+              Thank You
             </h1>
-            <p className="text-teal-200">
+            <p className="text-sm font-bold uppercase tracking-widest text-gray-400">
               Order #{order.orderNumber}
             </p>
           </div>
@@ -101,155 +95,117 @@ export default function CheckoutSuccessPage() {
       </div>
 
       <Container>
-        <div className="py-8 md:py-12">
-          <div className="max-w-2xl mx-auto space-y-6">
-            {/* Email confirmation */}
-            <div className="bg-white rounded-xl border border-gray-100 p-6">
-              <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
-                  <Mail className="w-6 h-6 text-teal-600" />
-                </div>
-                <div>
-                  <h2 className="font-medium text-gray-900 mb-1">
-                    Confirmation sent to
-                  </h2>
-                  <p className="text-teal-600 font-medium">{order.shipping.email}</p>
-                  <p className="text-sm text-gray-500 mt-2">
-                    Check your email for order details and tracking information.
-                  </p>
-                </div>
-              </div>
-            </div>
-
+        <div className="py-16">
+          <div className="max-w-3xl mx-auto space-y-12">
             {/* What's next */}
-            <div className="bg-white rounded-xl border border-gray-100 p-6">
-              <h2 className="font-display text-xl font-semibold text-gray-900 mb-4">
-                What happens next?
-              </h2>
+            <div className="grid md:grid-cols-2 gap-12">
+              <div>
+                <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-8 border-b border-black pb-2 inline-block">
+                  What Happens Next
+                </h2>
 
-              <div className="space-y-4">
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm font-bold text-teal-600">1</span>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">We prepare your order</h3>
-                    <p className="text-sm text-gray-500">
-                      Your items are professionally cleaned and prepared for shipping.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm font-bold text-teal-600">2</span>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Express shipping</h3>
-                    <p className="text-sm text-gray-500">
-                      Your order ships on{' '}
-                      <strong>{format(shipDate, 'EEEE, MMMM d')}</strong> via Australia Post Express.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm font-bold text-teal-600">3</span>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Enjoy your event!</h3>
-                    <p className="text-sm text-gray-500">
-                      Look stunning on your special day.
-                    </p>
-                  </div>
-                </div>
-
-                <div className="flex items-start gap-4">
-                  <div className="w-8 h-8 bg-teal-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-sm font-bold text-teal-600">4</span>
-                  </div>
-                  <div>
-                    <h3 className="font-medium text-gray-900">Easy returns</h3>
-                    <p className="text-sm text-gray-500">
-                      Use the prepaid return label to send items back. No cleaning needed!
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Order summary */}
-            <div className="bg-white rounded-xl border border-gray-100 p-6">
-              <h2 className="font-display text-xl font-semibold text-gray-900 mb-4">
-                Order Summary
-              </h2>
-
-              <div className="space-y-4">
-                {order.items.map((item, index) => (
-                  <div key={index} className="flex justify-between py-3 border-b last:border-0">
+                <div className="space-y-8">
+                  <div className="flex gap-4">
+                    <span className="text-xs font-bold text-black border border-black w-6 h-6 flex items-center justify-center flex-shrink-0">1</span>
                     <div>
-                      <p className="font-medium text-gray-900">{item.product.name}</p>
-                      <p className="text-sm text-gray-500">Size: {item.size}</p>
-                      <div className="flex items-center gap-2 mt-1 text-xs text-gray-500">
-                        <Calendar className="w-3 h-3" />
-                        <span>Event: {format(new Date(item.eventDate), 'MMM d, yyyy')}</span>
-                      </div>
+                      <h3 className="text-xs font-bold uppercase tracking-wide text-black mb-1">Preparation</h3>
+                      <p className="text-xs text-gray-500 leading-relaxed uppercase tracking-wide">
+                        Your items are being professionally cleaned and prepared.
+                      </p>
                     </div>
-                    <span className="font-medium">${item.product.rental_price}</span>
                   </div>
-                ))}
+
+                  <div className="flex gap-4">
+                    <span className="text-xs font-bold text-black border border-black w-6 h-6 flex items-center justify-center flex-shrink-0">2</span>
+                    <div>
+                      <h3 className="text-xs font-bold uppercase tracking-wide text-black mb-1">Shipping</h3>
+                      <p className="text-xs text-gray-500 leading-relaxed uppercase tracking-wide">
+                        Order ships on <strong>{format(shipDate, 'MMM d')}</strong> via Express Post.
+                      </p>
+                    </div>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <span className="text-xs font-bold text-black border border-black w-6 h-6 flex items-center justify-center flex-shrink-0">3</span>
+                    <div>
+                      <h3 className="text-xs font-bold uppercase tracking-wide text-black mb-1">Returns</h3>
+                      <p className="text-xs text-gray-500 leading-relaxed uppercase tracking-wide">
+                        Use the prepaid label to return. No cleaning required.
+                      </p>
+                    </div>
+                  </div>
+                </div>
               </div>
 
-              <div className="mt-4 pt-4 border-t space-y-2">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Subtotal</span>
-                  <span>${order.subtotal}</span>
+              {/* Order summary */}
+              <div className="bg-gray-50 p-8">
+                <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-6">
+                  Summary
+                </h2>
+
+                <div className="space-y-4">
+                  {order.items.map((item, index) => (
+                    <div key={index} className="flex justify-between items-start py-4 border-b border-gray-200 last:border-0">
+                      <div>
+                        <p className="text-xs font-bold uppercase tracking-wide text-black">{item.product.name}</p>
+                        <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Size {item.size} · {format(new Date(item.eventDate), 'MMM d')}</p>
+                      </div>
+                      <span className="text-xs font-bold text-black">${item.product.rental_price}</span>
+                    </div>
+                  ))}
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Shipping</span>
-                  <span className="text-green-600">FREE</span>
-                </div>
-                <div className="flex justify-between font-semibold pt-2 border-t">
-                  <span>Total charged</span>
-                  <span className="text-teal-600">${order.subtotal}</span>
+
+                <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
+                  <div className="flex justify-between text-xs uppercase tracking-wide">
+                    <span className="text-gray-500">Subtotal</span>
+                    <span className="font-bold text-black">${order.subtotal}</span>
+                  </div>
+                  <div className="flex justify-between text-xs uppercase tracking-wide">
+                    <span className="text-gray-500">Shipping</span>
+                    <span className="font-bold text-black">FREE</span>
+                  </div>
+                  <div className="flex justify-between items-baseline pt-4 border-t border-gray-200">
+                    <span className="text-xs font-bold uppercase tracking-widest text-black">Total</span>
+                    <span className="text-xl font-black text-black">${order.subtotal}</span>
+                  </div>
                 </div>
               </div>
             </div>
 
-            {/* Shipping address */}
-            <div className="bg-white rounded-xl border border-gray-100 p-6">
-              <h2 className="font-display text-xl font-semibold text-gray-900 mb-4">
-                Shipping To
-              </h2>
-              <address className="not-italic text-gray-600">
-                <p className="font-medium text-gray-900">
-                  {order.shipping.firstName} {order.shipping.lastName}
+            {/* Shipping & Delivery */}
+            <div className="grid md:grid-cols-2 gap-12 pt-8 border-t border-gray-100">
+               <div>
+                <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-4">
+                  Delivery Address
+                </h2>
+                <address className="not-italic text-xs uppercase tracking-widest text-gray-500 leading-loose">
+                  <p className="font-bold text-black">
+                    {order.shipping.firstName} {order.shipping.lastName}
+                  </p>
+                  <p>{order.shipping.address}</p>
+                  <p>
+                    {order.shipping.suburb}, {order.shipping.state}{' '}
+                    {order.shipping.postcode}
+                  </p>
+                </address>
+              </div>
+              <div className="flex flex-col justify-end">
+                 <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-6 leading-relaxed">
+                  A confirmation email has been sent to {order.shipping.email}. Please check your inbox for full details.
                 </p>
-                <p>{order.shipping.address}</p>
-                <p>
-                  {order.shipping.suburb}, {order.shipping.state}{' '}
-                  {order.shipping.postcode}
-                </p>
-              </address>
-            </div>
-
-            {/* Actions */}
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Link
-                href="/"
-                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
-              >
-                <Home className="w-4 h-4" />
-                Return Home
-              </Link>
-              <Link
-                href="/shop"
-                className="flex-1 flex items-center justify-center gap-2 px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors"
-              >
-                Continue Shopping
-                <ArrowRight className="w-4 h-4" />
-              </Link>
+                 <div className="flex flex-col sm:flex-row gap-4">
+                  <Link href="/" className="flex-1">
+                    <Button variant="outline" className="w-full uppercase tracking-widest font-bold text-[10px]">
+                      HOME
+                    </Button>
+                  </Link>
+                  <Link href="/shop" className="flex-1">
+                    <Button variant="primary" className="w-full uppercase tracking-widest font-bold text-[10px]">
+                      CONTINUE SHOPPING
+                    </Button>
+                  </Link>
+                </div>
+              </div>
             </div>
           </div>
         </div>

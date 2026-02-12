@@ -72,12 +72,12 @@ export function ActiveFilters({ filters, onFilterChange }: ActiveFiltersProps) {
   }
 
   return (
-    <div className="flex flex-wrap items-center gap-2">
+    <div className="flex flex-wrap items-center gap-3">
       {activeFilters.map((filter, index) => (
         <button
           key={`${filter.label}-${index}`}
           onClick={filter.onRemove}
-          className="inline-flex items-center gap-1 px-3 py-1 bg-teal-50 text-teal-700 rounded-full text-sm hover:bg-teal-100 transition-colors capitalize"
+          className="inline-flex items-center gap-2 px-3 py-1.5 border border-black text-[10px] font-bold uppercase tracking-widest hover:bg-black hover:text-white transition-all"
         >
           {filter.label}
           <X className="w-3 h-3" />
@@ -86,7 +86,7 @@ export function ActiveFilters({ filters, onFilterChange }: ActiveFiltersProps) {
       {activeFilters.length > 1 && (
         <button
           onClick={() => onFilterChange({})}
-          className="text-sm text-gray-500 hover:text-gray-700 underline"
+          className="text-[10px] font-bold uppercase tracking-widest text-black underline underline-offset-4 hover:text-gray-500 transition-colors ml-2"
         >
           Clear all
         </button>

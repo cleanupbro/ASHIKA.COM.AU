@@ -53,31 +53,31 @@ export function DateSelector({
   };
 
   return (
-    <div className="space-y-4">
+    <div className="space-y-6 border-t border-gray-100 pt-6">
       {/* Date selector trigger */}
-      <button
-        onClick={() => setIsOpen(!isOpen)}
-        className={cn(
-          'w-full flex items-center justify-between p-4 rounded-xl border-2 transition-colors',
-          isOpen ? 'border-teal-600 bg-teal-50' : 'border-gray-200 hover:border-gray-300',
-          selectedDate && !isOpen && 'border-teal-600'
-        )}
-      >
-        <div className="flex items-center gap-3">
-          <Calendar className={cn('w-5 h-5', selectedDate ? 'text-teal-600' : 'text-gray-400')} />
-          <div className="text-left">
-            <p className="text-sm text-gray-500">Event Date</p>
-            <p className={cn('font-medium', selectedDate ? 'text-teal-900' : 'text-gray-900')}>
+      <div>
+        <h3 className="text-xs font-bold uppercase tracking-widest text-black mb-3">Event Date</h3>
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className={cn(
+            'w-full flex items-center justify-between px-4 py-3 border transition-colors',
+            isOpen ? 'border-black' : 'border-gray-200 hover:border-gray-400',
+            selectedDate && !isOpen && 'border-black'
+          )}
+        >
+          <div className="flex items-center gap-3">
+            <Calendar className={cn('w-4 h-4', selectedDate ? 'text-black' : 'text-gray-400')} />
+            <span className={cn('text-sm font-medium', selectedDate ? 'text-black' : 'text-gray-500')}>
               {selectedDate ? format(selectedDate, 'EEEE, MMMM d, yyyy') : 'Select your event date'}
-            </p>
+            </span>
           </div>
-        </div>
-        {isOpen ? (
-          <ChevronUp className="w-5 h-5 text-gray-400" />
-        ) : (
-          <ChevronDown className="w-5 h-5 text-gray-400" />
-        )}
-      </button>
+          {isOpen ? (
+            <ChevronUp className="w-4 h-4 text-gray-500" />
+          ) : (
+            <ChevronDown className="w-4 h-4 text-gray-500" />
+          )}
+        </button>
+      </div>
 
       {/* Calendar dropdown */}
       {isOpen && (
@@ -97,7 +97,7 @@ export function DateSelector({
 
       {/* Error message */}
       {error && (
-        <div className="p-3 bg-red-50 border border-red-200 rounded-lg text-sm text-red-600">
+        <div className="p-3 bg-red-50 border border-red-100 text-xs text-red-600 font-medium">
           {error}
         </div>
       )}
@@ -105,7 +105,7 @@ export function DateSelector({
       {/* Add to Cart button */}
       <Button
         size="lg"
-        className="w-full"
+        className="w-full uppercase tracking-widest font-bold text-xs py-4"
         onClick={handleAddToCart}
         disabled={!selectedDate || !selectedSize}
       >
@@ -113,21 +113,21 @@ export function DateSelector({
           ? 'Select Size to Continue'
           : !selectedDate
           ? 'Select Event Date to Continue'
-          : 'Add to Cart'}
+          : 'ADD TO BAG'}
       </Button>
 
       {/* Trust badges */}
-      <div className="grid grid-cols-3 gap-2 text-center text-xs text-gray-500">
-        <div className="p-2 bg-gray-50 rounded-lg">
-          <p className="font-medium text-gray-700">Free Shipping</p>
+      <div className="flex justify-between text-center pt-2">
+        <div className="text-xs text-gray-500">
+          <p className="font-bold text-black uppercase tracking-wide">Free Shipping</p>
           <p>Both ways</p>
         </div>
-        <div className="p-2 bg-gray-50 rounded-lg">
-          <p className="font-medium text-gray-700">7-Day Rental</p>
+        <div className="text-xs text-gray-500">
+          <p className="font-bold text-black uppercase tracking-wide">7-Day Rental</p>
           <p>Includes buffer</p>
         </div>
-        <div className="p-2 bg-gray-50 rounded-lg">
-          <p className="font-medium text-gray-700">$100 Bond</p>
+        <div className="text-xs text-gray-500">
+          <p className="font-bold text-black uppercase tracking-wide">$100 Bond</p>
           <p>Fully refundable</p>
         </div>
       </div>

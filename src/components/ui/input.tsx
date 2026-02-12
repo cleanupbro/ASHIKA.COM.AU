@@ -16,7 +16,7 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-sm font-medium text-gray-700 mb-1.5"
+            className="block text-xs font-bold uppercase tracking-wide text-black mb-2"
           >
             {label}
           </label>
@@ -25,18 +25,18 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            'w-full px-4 py-2.5 border rounded-lg transition-all duration-200',
+            'w-full px-4 py-3 border transition-all duration-200 text-sm bg-white',
             'placeholder:text-gray-400',
-            'focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent',
+            'focus:outline-none focus:border-black focus:ring-0',
             error
-              ? 'border-red-500 focus:ring-red-500'
+              ? 'border-red-500'
               : 'border-gray-300 hover:border-gray-400',
             className
           )}
           {...props}
         />
         {(error || helperText) && (
-          <p className={cn('mt-1.5 text-sm', error ? 'text-red-500' : 'text-gray-500')}>
+          <p className={cn('mt-1.5 text-xs', error ? 'text-red-500' : 'text-gray-500')}>
             {error || helperText}
           </p>
         )}
@@ -62,7 +62,7 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
         {label && (
           <label
             htmlFor={textareaId}
-            className="block text-sm font-medium text-gray-700 mb-1.5"
+            className="block text-xs font-bold uppercase tracking-wide text-black mb-2"
           >
             {label}
           </label>
@@ -71,18 +71,18 @@ export const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
           ref={ref}
           id={textareaId}
           className={cn(
-            'w-full px-4 py-2.5 border rounded-lg transition-all duration-200 resize-none',
+            'w-full px-4 py-3 border transition-all duration-200 resize-none text-sm bg-white',
             'placeholder:text-gray-400',
-            'focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent',
+            'focus:outline-none focus:border-black focus:ring-0',
             error
-              ? 'border-red-500 focus:ring-red-500'
+              ? 'border-red-500'
               : 'border-gray-300 hover:border-gray-400',
             className
           )}
           {...props}
         />
         {(error || helperText) && (
-          <p className={cn('mt-1.5 text-sm', error ? 'text-red-500' : 'text-gray-500')}>
+          <p className={cn('mt-1.5 text-xs', error ? 'text-red-500' : 'text-gray-500')}>
             {error || helperText}
           </p>
         )}
@@ -110,7 +110,7 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
         {label && (
           <label
             htmlFor={selectId}
-            className="block text-sm font-medium text-gray-700 mb-1.5"
+            className="block text-xs font-bold uppercase tracking-wide text-black mb-2"
           >
             {label}
           </label>
@@ -120,11 +120,11 @@ export const Select = forwardRef<HTMLSelectElement, SelectProps>(
           id={selectId}
           value={value}
           className={cn(
-            'w-full px-4 py-2.5 border rounded-lg transition-all duration-200',
+            'w-full px-4 py-3 border transition-all duration-200 text-sm',
             'bg-white appearance-none cursor-pointer',
-            'focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent',
+            'focus:outline-none focus:border-black focus:ring-0',
             error
-              ? 'border-red-500 focus:ring-red-500'
+              ? 'border-red-500'
               : 'border-gray-300 hover:border-gray-400',
             showPlaceholder && 'text-gray-400',
             className
