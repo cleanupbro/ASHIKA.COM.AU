@@ -100,13 +100,13 @@ export default function FAQPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-white border-b border-gray-100 py-16 md:py-24">
+      <section className="bg-brand-teal py-20 md:py-24">
         <Container>
           <div className="text-center">
-            <h1 className="text-3xl md:text-5xl font-black uppercase tracking-widest text-black mb-4">
+            <h1 className="text-3xl md:text-5xl font-black uppercase tracking-[0.2em] text-white mb-6">
               FAQ
             </h1>
-            <p className="text-sm text-gray-500 uppercase tracking-widest max-w-2xl mx-auto">
+            <p className="text-[10px] md:text-xs text-brand-cream font-bold uppercase tracking-[0.3em] max-w-2xl mx-auto leading-relaxed">
               Everything you need to know about renting with ASHIKA.
             </p>
           </div>
@@ -114,22 +114,22 @@ export default function FAQPage() {
       </section>
 
       {/* FAQ Content */}
-      <section className="py-16 md:py-24">
+      <section className="py-24 md:py-32">
         <Container>
-          <div className="max-w-3xl mx-auto space-y-16">
+          <div className="max-w-3xl mx-auto space-y-20">
             {faqCategories.map((category) => (
               <div key={category.title}>
-                <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-8 border-b border-black pb-2 inline-block">
+                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-10 border-b-2 border-brand-gold pb-3 inline-block">
                   {category.title}
                 </h2>
-                <div className="bg-white border-b border-gray-100 last:border-0 overflow-hidden">
-                  <Accordion type="single" className="divide-y divide-gray-100">
+                <div className="bg-white border-b border-brand-teal/5 last:border-0 overflow-hidden">
+                  <Accordion type="single" className="divide-y divide-brand-teal/5">
                     {category.faqs.map((faq, index) => (
                       <AccordionItem key={index} value={`${category.title}-${index}`} className="border-0">
-                        <AccordionTrigger className="text-sm font-bold uppercase tracking-widest text-black py-6 text-left hover:text-gray-600 transition-colors">
+                        <AccordionTrigger className="text-[13px] font-bold uppercase tracking-widest text-gray-900 py-6 text-left hover:text-brand-teal transition-colors">
                           {faq.question}
                         </AccordionTrigger>
-                        <AccordionContent className="text-sm text-gray-500 leading-relaxed pb-8">
+                        <AccordionContent className="text-[13px] text-gray-500 font-medium leading-relaxed pb-8">
                           {faq.answer}
                         </AccordionContent>
                       </AccordionItem>
@@ -141,15 +141,15 @@ export default function FAQPage() {
           </div>
 
           {/* Contact CTA */}
-          <div className="max-w-3xl mx-auto mt-24 text-center p-12 bg-gray-50 border border-gray-100">
-            <h3 className="text-sm font-bold uppercase tracking-widest text-black mb-4">
+          <div className="max-w-3xl mx-auto mt-24 text-center p-16 bg-[#F8FBFA] border border-brand-teal/5 shadow-sm">
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-brand-teal mb-6">
               Still have questions?
             </h3>
-            <p className="text-xs text-gray-500 uppercase tracking-wide mb-8">
+            <p className="text-[11px] text-gray-500 font-bold uppercase tracking-[0.2em] mb-10">
               Our team is here to help. Reach out and we&apos;ll get back to you within 24 hours.
             </p>
             <Link href="/contact">
-              <Button variant="primary" className="min-w-[200px] uppercase tracking-widest text-xs py-4">
+              <Button className="min-w-[240px] h-14 text-sm font-bold tracking-[0.2em]">
                 CONTACT US
               </Button>
             </Link>

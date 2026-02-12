@@ -51,13 +51,13 @@ export function CartDrawer() {
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-gray-100">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-black">
+          <div className="flex items-center justify-between p-6 border-b border-brand-teal/10">
+            <h2 className="text-xs font-black uppercase tracking-[0.2em] text-brand-teal">
               Your Bag ({itemCount})
             </h2>
             <button
               onClick={closeCart}
-              className="p-2 text-black hover:text-gray-600 transition-colors"
+              className="p-2 text-brand-teal hover:text-brand-gold transition-colors"
               aria-label="Close cart"
             >
               <X className="w-5 h-5" />
@@ -68,15 +68,17 @@ export function CartDrawer() {
           <div className="flex-1 overflow-y-auto p-6">
             {state.items.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center">
-                <h3 className="font-bold text-black uppercase tracking-wide mb-2">
+                <h3 className="font-black text-brand-teal uppercase tracking-[0.2em] mb-4">
                   Your bag is empty
                 </h3>
-                <p className="text-sm text-gray-500 mb-8">
-                  Looks like you haven't added anything yet.
+                <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-10">
+                  Looks like you haven&apos;t added anything yet.
                 </p>
-                <Button onClick={closeCart} variant="primary" className="uppercase tracking-widest">
-                  <Link href="/shop">Start Shopping</Link>
-                </Button>
+                <Link href="/shop" onClick={closeCart}>
+                  <Button className="min-w-[200px] h-12 text-xs font-bold tracking-[0.2em]">
+                    START SHOPPING
+                  </Button>
+                </Link>
               </div>
             ) : (
               <div className="space-y-6">
@@ -93,33 +95,33 @@ export function CartDrawer() {
 
           {/* Footer with pricing */}
           {state.items.length > 0 && (
-            <div className="border-t border-gray-100 p-6 bg-white">
+            <div className="border-t border-brand-teal/10 p-6 bg-[#F8FBFA]">
               {/* Pricing breakdown */}
-              <div className="space-y-3 mb-6">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Subtotal</span>
-                  <span className="font-medium text-black">${subtotal}</span>
+              <div className="space-y-4 mb-8">
+                <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest">
+                  <span className="text-gray-500">Rental Subtotal</span>
+                  <span className="text-gray-900">${subtotal}</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">Shipping</span>
-                  <span className="font-medium text-black">FREE</span>
+                <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest">
+                  <span className="text-gray-500">Shipping</span>
+                  <span className="text-brand-teal">FREE</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-600">
-                    Bond ({itemCount} × ${RENTAL_CONFIG.BOND_AMOUNT_AUD})
+                <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest">
+                  <span className="text-gray-500">
+                    Security Bond (Hold)
                   </span>
-                  <span className="font-medium text-gray-400">${bondTotal}*</span>
+                  <span className="text-gray-400">${bondTotal}*</span>
                 </div>
-                <div className="pt-4 border-t border-gray-100">
+                <div className="pt-6 border-t border-brand-teal/5">
                   <div className="flex justify-between items-baseline">
-                    <span className="text-sm font-bold uppercase tracking-wide text-black">
+                    <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-900">
                       Total
                     </span>
-                    <span className="font-bold text-black text-xl">
+                    <span className="font-black text-brand-teal text-2xl">
                       ${subtotal}
                     </span>
                   </div>
-                  <p className="text-[10px] text-gray-400 mt-2 uppercase tracking-wide">
+                  <p className="text-[9px] text-gray-400 mt-3 uppercase tracking-widest font-bold">
                     *Bond is pre-authorized, not charged
                   </p>
                 </div>
@@ -127,8 +129,8 @@ export function CartDrawer() {
 
               {/* Checkout button */}
               <Link href="/checkout" onClick={closeCart}>
-                <Button size="lg" className="w-full uppercase tracking-widest font-bold text-xs py-4">
-                  Checkout
+                <Button size="lg" className="w-full h-14 text-sm font-bold tracking-[0.2em]">
+                  CHECKOUT
                 </Button>
               </Link>
             </div>

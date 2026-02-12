@@ -36,15 +36,15 @@ export default function AboutPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-white border-b border-gray-100 py-24">
+      <section className="bg-brand-teal py-24 md:py-32">
         <Container>
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="text-4xl md:text-6xl font-black uppercase tracking-tight text-black mb-8 leading-tight">
+            <h1 className="text-4xl md:text-7xl font-black uppercase tracking-[0.2em] text-white mb-8 leading-tight drop-shadow-sm">
               Wear the Culture. <br />
-              <span className="text-gray-300">Return the Stress.</span>
+              <span className="text-brand-gold">Return the Stress.</span>
             </h1>
-            <p className="text-sm md:text-base text-gray-500 uppercase tracking-widest max-w-2xl mx-auto leading-relaxed">
-              ASHIKA makes premium Indian ethnic wear accessible to everyone in Australia.
+            <p className="text-[10px] md:text-xs text-brand-cream uppercase tracking-[0.3em] font-bold max-w-2xl mx-auto leading-relaxed">
+              ASHIKA makes premium Indian ethnic wear accessible to everyone in Australia. <br />
               We believe in celebration without compromise.
             </p>
           </div>
@@ -52,14 +52,14 @@ export default function AboutPage() {
       </section>
 
       {/* Our Story */}
-      <section className="py-24">
+      <section className="py-32">
         <Container>
           <div className="grid lg:grid-cols-2 gap-24 items-center">
             <div>
-              <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-12 border-b border-black pb-2 inline-block">
+              <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-12 border-b-2 border-brand-gold pb-3 inline-block">
                 Our Story
               </h2>
-              <div className="space-y-6 text-sm text-gray-600 leading-relaxed uppercase tracking-wide">
+              <div className="space-y-8 text-sm text-gray-600 leading-relaxed font-medium tracking-wide">
                 <p>
                   ASHIKA was born from a simple observation: Indian ethnic wear is stunningly beautiful,
                   but prohibitively expensive to buy for one-time occasions. We saw friends and family
@@ -78,26 +78,26 @@ export default function AboutPage() {
                 </p>
               </div>
             </div>
-            <div className="bg-gray-50 p-12 lg:p-20">
-              <blockquote className="text-2xl md:text-4xl font-black text-black uppercase tracking-tight leading-tight italic">
+            <div className="bg-[#F8FBFA] p-12 lg:p-24 border border-brand-teal/5 shadow-sm">
+              <blockquote className="text-2xl md:text-4xl font-black text-brand-teal uppercase tracking-tight leading-tight italic">
                 &quot;Every person deserves to feel magnificent on their special day,
                 regardless of budget.&quot;
               </blockquote>
-              <div className="w-12 h-1 bg-black mt-8"></div>
-              <p className="mt-4 text-xs font-bold uppercase tracking-widest text-black">ASHIKA Founders</p>
+              <div className="w-16 h-1 bg-brand-gold mt-10"></div>
+              <p className="mt-6 text-[10px] font-black uppercase tracking-[0.2em] text-gray-900">ASHIKA Founders</p>
             </div>
           </div>
         </Container>
       </section>
 
       {/* Values */}
-      <section className="py-24 bg-gray-50 border-y border-gray-100">
+      <section className="py-32 bg-[#F8FBFA] border-y border-brand-teal/5">
         <Container>
-          <div className="text-center mb-16">
-            <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-4">
+          <div className="text-center mb-20">
+            <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-4">
               Our Values
             </h2>
-            <div className="w-12 h-0.5 bg-black mx-auto"></div>
+            <div className="w-16 h-1 bg-brand-gold mx-auto"></div>
           </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
@@ -106,13 +106,13 @@ export default function AboutPage() {
                 key={value.title}
                 className="text-center group"
               >
-                <div className="w-16 h-16 border border-black flex items-center justify-center mx-auto mb-6 group-hover:bg-black group-hover:text-white transition-all duration-300">
-                  <value.icon className="w-6 h-6 stroke-1" />
+                <div className="w-20 h-20 bg-white shadow-sm rounded-full flex items-center justify-center mx-auto mb-8 group-hover:scale-110 transition-transform duration-300 border border-brand-teal/5">
+                  <value.icon className="w-8 h-8 text-brand-teal stroke-[1.5]" />
                 </div>
-                <h3 className="text-xs font-bold uppercase tracking-widest text-black mb-4">
+                <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-900 mb-4">
                   {value.title}
                 </h3>
-                <p className="text-xs text-gray-500 uppercase tracking-wide leading-relaxed">{value.description}</p>
+                <p className="text-xs text-gray-500 font-medium tracking-wide leading-relaxed px-4">{value.description}</p>
               </div>
             ))}
           </div>
@@ -120,14 +120,14 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="py-24 bg-white">
+      <section className="py-32 bg-white">
         <Container>
           <div className="text-center">
-            <h2 className="text-2xl md:text-3xl font-black uppercase tracking-widest text-black mb-8">
-              Experience ASHIKA
+            <h2 className="text-3xl md:text-4xl font-black uppercase tracking-[0.2em] text-brand-teal mb-10">
+              Join the Borrowhood
             </h2>
             <Link href="/shop">
-              <Button variant="primary" className="min-w-[240px] uppercase tracking-widest text-xs py-4">
+              <Button size="lg" className="min-w-[280px] h-14 text-sm font-bold tracking-[0.2em]">
                 START BROWSING
               </Button>
             </Link>

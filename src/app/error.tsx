@@ -17,45 +17,39 @@ export default function Error({ error, reset }: ErrorProps) {
   }, [error]);
 
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-gray-50">
+    <div className="min-h-[70vh] flex items-center justify-center bg-white">
       <Container>
-        <div className="text-center max-w-md mx-auto">
+        <div className="text-center max-w-xl mx-auto">
           {/* Error icon */}
-          <div className="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-6">
-            <AlertTriangle className="w-8 h-8 text-red-600" />
+          <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-10 shadow-sm">
+            <AlertTriangle className="w-10 h-10 text-red-600 stroke-[1.5]" />
           </div>
 
           {/* Message */}
-          <h1 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          <h1 className="text-2xl md:text-4xl font-black text-brand-teal uppercase tracking-[0.2em] mb-6">
             Something went wrong
           </h1>
-          <p className="text-gray-600 mb-8">
-            We apologize for the inconvenience. An unexpected error has occurred.
+          <p className="text-sm text-gray-500 uppercase tracking-widest font-bold mb-12 leading-relaxed">
+            We apologize for the inconvenience. An unexpected error has occurred. <br />
             Please try again or return to the homepage.
           </p>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <button
-              onClick={reset}
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors"
-            >
-              <RefreshCw className="w-4 h-4" />
-              Try Again
-            </button>
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Home className="w-4 h-4" />
-              Go Home
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Button onClick={reset} size="lg" className="min-w-[200px] h-14 text-sm font-bold tracking-[0.2em]">
+              TRY AGAIN
+            </Button>
+            <Link href="/">
+              <Button size="lg" variant="outline" className="min-w-[200px] h-14 text-sm font-bold tracking-[0.2em]">
+                GO HOME
+              </Button>
             </Link>
           </div>
 
           {/* Help text */}
-          <p className="mt-8 text-sm text-gray-500">
+          <p className="mt-12 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
             If the problem persists, please{' '}
-            <Link href="/contact" className="text-teal-600 hover:text-teal-700">
+            <Link href="/contact" className="text-brand-gold hover:text-brand-teal transition-colors">
               contact support
             </Link>
           </p>

@@ -54,16 +54,16 @@ export default function CheckoutSuccessPage() {
     return (
       <div className="min-h-screen bg-white py-24">
         <Container>
-          <div className="max-w-lg mx-auto text-center">
-            <CheckCircle className="w-16 h-16 text-black mx-auto mb-6 stroke-1" />
-            <h1 className="text-3xl font-black uppercase tracking-widest text-black mb-4">
+          <div className="max-w-xl mx-auto text-center">
+            <CheckCircle className="w-16 h-16 text-brand-teal mx-auto mb-8 stroke-[1.5]" />
+            <h1 className="text-3xl font-black uppercase tracking-[0.2em] text-brand-teal mb-6">
               Order Confirmed
             </h1>
-            <p className="text-sm text-gray-500 uppercase tracking-wide mb-12">
+            <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-12">
               Thank you for your order. A confirmation email has been sent.
             </p>
             <Link href="/">
-              <Button variant="primary" className="min-w-[200px]">
+              <Button className="min-w-[240px] h-14 text-sm font-bold tracking-[0.2em]">
                 RETURN HOME
               </Button>
             </Link>
@@ -80,56 +80,56 @@ export default function CheckoutSuccessPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Success header */}
-      <div className="bg-white border-b border-gray-100 py-16">
+      <div className="bg-brand-teal py-20 md:py-24">
         <Container>
           <div className="text-center">
-            <CheckCircle className="w-16 h-16 text-black mx-auto mb-6 stroke-1" />
-            <h1 className="text-3xl md:text-4xl font-black uppercase tracking-widest text-black mb-4">
+            <CheckCircle className="w-16 h-16 text-white mx-auto mb-8 stroke-[1.5]" />
+            <h1 className="text-3xl md:text-5xl font-black uppercase tracking-[0.2em] text-white mb-6">
               Thank You
             </h1>
-            <p className="text-sm font-bold uppercase tracking-widest text-gray-400">
-              Order #{order.orderNumber}
+            <p className="text-[10px] font-black uppercase tracking-[0.3em] text-brand-gold">
+              ORDER #{order.orderNumber}
             </p>
           </div>
         </Container>
       </div>
 
       <Container>
-        <div className="py-16">
-          <div className="max-w-3xl mx-auto space-y-12">
+        <div className="py-24 md:py-32">
+          <div className="max-w-5xl mx-auto space-y-20">
             {/* What's next */}
-            <div className="grid md:grid-cols-2 gap-12">
+            <div className="grid md:grid-cols-2 gap-24">
               <div>
-                <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-8 border-b border-black pb-2 inline-block">
+                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-12 border-b-2 border-brand-gold pb-3 inline-block">
                   What Happens Next
                 </h2>
 
-                <div className="space-y-8">
-                  <div className="flex gap-4">
-                    <span className="text-xs font-bold text-black border border-black w-6 h-6 flex items-center justify-center flex-shrink-0">1</span>
+                <div className="space-y-10">
+                  <div className="flex gap-6">
+                    <span className="text-xs font-black text-brand-gold border border-brand-gold/30 w-8 h-8 flex items-center justify-center flex-shrink-0 rounded-full">1</span>
                     <div>
-                      <h3 className="text-xs font-bold uppercase tracking-wide text-black mb-1">Preparation</h3>
-                      <p className="text-xs text-gray-500 leading-relaxed uppercase tracking-wide">
+                      <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-900 mb-2">Preparation</h3>
+                      <p className="text-xs text-gray-500 leading-relaxed font-bold uppercase tracking-widest">
                         Your items are being professionally cleaned and prepared.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
-                    <span className="text-xs font-bold text-black border border-black w-6 h-6 flex items-center justify-center flex-shrink-0">2</span>
+                  <div className="flex gap-6">
+                    <span className="text-xs font-black text-brand-gold border border-brand-gold/30 w-8 h-8 flex items-center justify-center flex-shrink-0 rounded-full">2</span>
                     <div>
-                      <h3 className="text-xs font-bold uppercase tracking-wide text-black mb-1">Shipping</h3>
-                      <p className="text-xs text-gray-500 leading-relaxed uppercase tracking-wide">
-                        Order ships on <strong>{format(shipDate, 'MMM d')}</strong> via Express Post.
+                      <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-900 mb-2">Shipping</h3>
+                      <p className="text-xs text-gray-500 leading-relaxed font-bold uppercase tracking-widest">
+                        Order ships on <strong>{format(shipDate, 'MMM d, yyyy')}</strong> via Express Post.
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
-                    <span className="text-xs font-bold text-black border border-black w-6 h-6 flex items-center justify-center flex-shrink-0">3</span>
+                  <div className="flex gap-6">
+                    <span className="text-xs font-black text-brand-gold border border-brand-gold/30 w-8 h-8 flex items-center justify-center flex-shrink-0 rounded-full">3</span>
                     <div>
-                      <h3 className="text-xs font-bold uppercase tracking-wide text-black mb-1">Returns</h3>
-                      <p className="text-xs text-gray-500 leading-relaxed uppercase tracking-wide">
+                      <h3 className="text-xs font-black uppercase tracking-[0.2em] text-gray-900 mb-2">Returns</h3>
+                      <p className="text-xs text-gray-500 leading-relaxed font-bold uppercase tracking-widest">
                         Use the prepaid label to return. No cleaning required.
                       </p>
                     </div>
@@ -138,48 +138,48 @@ export default function CheckoutSuccessPage() {
               </div>
 
               {/* Order summary */}
-              <div className="bg-gray-50 p-8">
-                <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-6">
-                  Summary
+              <div className="bg-[#F8FBFA] p-10 border border-brand-teal/5 shadow-sm">
+                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-8">
+                  Order Summary
                 </h2>
 
-                <div className="space-y-4">
+                <div className="space-y-6">
                   {order.items.map((item, index) => (
-                    <div key={index} className="flex justify-between items-start py-4 border-b border-gray-200 last:border-0">
+                    <div key={index} className="flex justify-between items-start py-4 border-b border-brand-teal/5 last:border-0">
                       <div>
-                        <p className="text-xs font-bold uppercase tracking-wide text-black">{item.product.name}</p>
-                        <p className="text-[10px] text-gray-500 uppercase tracking-widest mt-1">Size {item.size} · {format(new Date(item.eventDate), 'MMM d')}</p>
+                        <p className="text-[11px] font-black uppercase tracking-[0.15em] text-gray-900">{item.product.name}</p>
+                        <p className="text-[9px] text-brand-gold font-bold uppercase tracking-widest mt-1.5">SIZE {item.size} · {format(new Date(item.eventDate), 'MMM d')}</p>
                       </div>
-                      <span className="text-xs font-bold text-black">${item.product.rental_price}</span>
+                      <span className="text-[11px] font-black text-brand-teal">${item.product.rental_price}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-6 pt-6 border-t border-gray-200 space-y-3">
-                  <div className="flex justify-between text-xs uppercase tracking-wide">
-                    <span className="text-gray-500">Subtotal</span>
-                    <span className="font-bold text-black">${order.subtotal}</span>
+                <div className="mt-8 pt-8 border-t border-brand-teal/5 space-y-4">
+                  <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest">
+                    <span className="text-gray-400">Rental Subtotal</span>
+                    <span className="text-gray-900">${order.subtotal}</span>
                   </div>
-                  <div className="flex justify-between text-xs uppercase tracking-wide">
-                    <span className="text-gray-500">Shipping</span>
-                    <span className="font-bold text-black">FREE</span>
+                  <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest">
+                    <span className="text-gray-400">Shipping</span>
+                    <span className="text-brand-teal">FREE</span>
                   </div>
-                  <div className="flex justify-between items-baseline pt-4 border-t border-gray-200">
-                    <span className="text-xs font-bold uppercase tracking-widest text-black">Total</span>
-                    <span className="text-xl font-black text-black">${order.subtotal}</span>
+                  <div className="flex justify-between items-baseline pt-6 border-t border-brand-teal/5">
+                    <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-900">Total</span>
+                    <span className="text-2xl font-black text-brand-teal">${order.subtotal}</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Shipping & Delivery */}
-            <div className="grid md:grid-cols-2 gap-12 pt-8 border-t border-gray-100">
+            <div className="grid md:grid-cols-2 gap-24 pt-12 border-t border-brand-teal/5">
                <div>
-                <h2 className="text-sm font-bold uppercase tracking-widest text-black mb-4">
+                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-6">
                   Delivery Address
                 </h2>
-                <address className="not-italic text-xs uppercase tracking-widest text-gray-500 leading-loose">
-                  <p className="font-bold text-black">
+                <address className="not-italic text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 leading-loose">
+                  <p className="font-black text-gray-900 mb-2">
                     {order.shipping.firstName} {order.shipping.lastName}
                   </p>
                   <p>{order.shipping.address}</p>
@@ -190,17 +190,18 @@ export default function CheckoutSuccessPage() {
                 </address>
               </div>
               <div className="flex flex-col justify-end">
-                 <p className="text-[10px] text-gray-400 uppercase tracking-widest mb-6 leading-relaxed">
-                  A confirmation email has been sent to {order.shipping.email}. Please check your inbox for full details.
+                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-10 leading-relaxed">
+                  A confirmation email has been sent to {order.shipping.email}. <br />
+                  Please check your inbox for full details.
                 </p>
-                 <div className="flex flex-col sm:flex-row gap-4">
+                 <div className="flex flex-col sm:flex-row gap-6">
                   <Link href="/" className="flex-1">
-                    <Button variant="outline" className="w-full uppercase tracking-widest font-bold text-[10px]">
+                    <Button variant="outline" className="w-full h-14 text-xs font-bold tracking-[0.2em]">
                       HOME
                     </Button>
                   </Link>
                   <Link href="/shop" className="flex-1">
-                    <Button variant="primary" className="w-full uppercase tracking-widest font-bold text-[10px]">
+                    <Button className="w-full h-14 text-xs font-bold tracking-[0.2em]">
                       CONTINUE SHOPPING
                     </Button>
                   </Link>

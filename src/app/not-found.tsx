@@ -4,48 +4,43 @@ import { Home, ArrowRight, Search } from 'lucide-react';
 
 export default function NotFound() {
   return (
-    <div className="min-h-[70vh] flex items-center justify-center bg-gray-50">
+    <div className="min-h-[70vh] flex items-center justify-center bg-white">
       <Container>
-        <div className="text-center max-w-md mx-auto">
+        <div className="text-center max-w-xl mx-auto">
           {/* 404 visual */}
-          <div className="mb-8">
-            <span className="font-display text-8xl md:text-9xl font-bold text-teal-200">
+          <div className="mb-10">
+            <span className="text-8xl md:text-9xl font-black text-brand-teal/10 uppercase tracking-[0.2em]">
               404
             </span>
           </div>
 
           {/* Message */}
-          <h1 className="font-display text-2xl md:text-3xl font-bold text-gray-900 mb-4">
+          <h1 className="text-2xl md:text-4xl font-black text-brand-teal uppercase tracking-[0.2em] mb-6">
             Page Not Found
           </h1>
-          <p className="text-gray-600 mb-8">
-            Sorry, we couldn&apos;t find the page you&apos;re looking for.
+          <p className="text-sm text-gray-500 uppercase tracking-widest font-bold mb-12 leading-relaxed">
+            Sorry, we couldn&apos;t find the page you&apos;re looking for. <br />
             It might have been moved or doesn&apos;t exist.
           </p>
 
           {/* Actions */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Link
-              href="/"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-teal-600 hover:bg-teal-700 text-white font-medium rounded-lg transition-colors"
-            >
-              <Home className="w-4 h-4" />
-              Go Home
+          <div className="flex flex-col sm:flex-row gap-6 justify-center">
+            <Link href="/">
+              <Button size="lg" className="min-w-[200px] h-14 text-sm font-bold tracking-[0.2em]">
+                GO HOME
+              </Button>
             </Link>
-            <Link
-              href="/shop"
-              className="inline-flex items-center justify-center gap-2 px-6 py-3 bg-white border border-gray-200 text-gray-700 font-medium rounded-lg hover:bg-gray-50 transition-colors"
-            >
-              <Search className="w-4 h-4" />
-              Browse Shop
-              <ArrowRight className="w-4 h-4" />
+            <Link href="/shop">
+              <Button size="lg" variant="outline" className="min-w-[200px] h-14 text-sm font-bold tracking-[0.2em]">
+                BROWSE SHOP
+              </Button>
             </Link>
           </div>
 
           {/* Help text */}
-          <p className="mt-8 text-sm text-gray-500">
+          <p className="mt-12 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
             Need help?{' '}
-            <Link href="/contact" className="text-teal-600 hover:text-teal-700">
+            <Link href="/contact" className="text-brand-gold hover:text-brand-teal transition-colors">
               Contact us
             </Link>
           </p>
