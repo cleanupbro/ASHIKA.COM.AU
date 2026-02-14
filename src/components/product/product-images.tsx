@@ -30,9 +30,9 @@ export function ProductImages({ images, name }: ProductImagesProps) {
             key={index}
             onClick={() => setCurrentIndex(index)}
             className={cn(
-              'relative w-20 h-24 lg:w-24 lg:h-32 flex-shrink-0 transition-all border',
+              'relative w-20 h-24 lg:w-20 lg:h-28 flex-shrink-0 transition-all border',
               index === currentIndex
-                ? 'border-brand-teal opacity-100'
+                ? 'border-brand-black opacity-100'
                 : 'border-transparent opacity-60 hover:opacity-100'
             )}
           >
@@ -48,7 +48,7 @@ export function ProductImages({ images, name }: ProductImagesProps) {
       </div>
 
       {/* Main image */}
-      <div className="relative aspect-[3/4] lg:h-[700px] lg:w-full bg-gray-50 flex-1 group shadow-sm">
+      <div className="relative aspect-[3/4] lg:h-[700px] lg:w-full bg-brand-offwhite flex-1 group">
         <Image
           src={images[currentIndex]}
           alt={`${name} - View ${currentIndex + 1}`}
@@ -63,15 +63,15 @@ export function ProductImages({ images, name }: ProductImagesProps) {
           <>
             <button
               onClick={goToPrev}
-              className="absolute left-0 top-1/2 -translate-y-1/2 p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/20 text-white"
+              className="absolute left-4 top-1/2 -translate-y-1/2 p-3 bg-white/80 hover:bg-brand-black hover:text-white text-brand-black transition-all opacity-0 group-hover:opacity-100"
             >
-              <ChevronLeft className="w-8 h-8 drop-shadow-lg" />
+              <ChevronLeft className="w-5 h-5" />
             </button>
             <button
               onClick={goToNext}
-              className="absolute right-0 top-1/2 -translate-y-1/2 p-2 opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white/20 text-white"
+              className="absolute right-4 top-1/2 -translate-y-1/2 p-3 bg-white/80 hover:bg-brand-black hover:text-white text-brand-black transition-all opacity-0 group-hover:opacity-100"
             >
-              <ChevronRight className="w-8 h-8 drop-shadow-lg" />
+              <ChevronRight className="w-5 h-5" />
             </button>
           </>
         )}

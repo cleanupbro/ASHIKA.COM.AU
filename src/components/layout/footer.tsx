@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { Facebook, Instagram, Twitter } from 'lucide-react';
+import { Facebook, Instagram } from 'lucide-react';
 import { Container } from './container';
 
 const footerLinks = {
@@ -26,20 +26,20 @@ const footerLinks = {
 
 export function Footer() {
   return (
-    <footer className="bg-[#F8FBFA] pt-24 pb-12 border-t border-brand-teal/10">
+    <footer className="bg-brand-offwhite pt-24 pb-12 border-t border-gray-100">
       <Container>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-20">
           {/* ASHIKA Column */}
           <div>
-            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-brand-teal mb-8">
+            <span className="font-sans text-lg tracking-[0.4em] font-black text-brand-black uppercase block mb-8">
               ASHIKA
-            </h3>
-            <ul className="space-y-4">
+            </span>
+            <ul className="space-y-3">
               {footerLinks.ashika.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-brand-teal transition-colors"
+                    className="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-brand-black transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -50,15 +50,15 @@ export function Footer() {
 
           {/* HELP Column */}
           <div>
-            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-brand-teal mb-8">
+            <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-black mb-8">
               CUSTOMER CARE
             </h3>
-            <ul className="space-y-4">
+            <ul className="space-y-3">
               {footerLinks.help.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}
-                    className="text-xs font-bold uppercase tracking-widest text-gray-500 hover:text-brand-teal transition-colors"
+                    className="text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-brand-black transition-colors"
                   >
                     {link.name}
                   </Link>
@@ -67,68 +67,60 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* FOLLOW US Column */}
+          {/* CONTACT Column */}
           <div>
-            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-brand-teal mb-8">
-              STAY CONNECTED
+            <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-black mb-8">
+              CONTACT US
             </h3>
-            <div className="flex gap-6 mb-8">
-              <a href="#" className="text-gray-400 hover:text-brand-teal transition-colors">
-                <Instagram className="w-6 h-6 stroke-[1.5]" />
+            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose mb-6">
+              HELL0@ASHIKA.COM.AU <br />
+              SYDNEY, AUSTRALIA
+            </p>
+            <div className="flex gap-4">
+              <a href="#" className="p-2 border border-gray-200 rounded-full text-brand-black hover:bg-brand-black hover:text-white transition-all">
+                <Instagram className="w-4 h-4" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-brand-teal transition-colors">
-                <Facebook className="w-6 h-6 stroke-[1.5]" />
+              <a href="#" className="p-2 border border-gray-200 rounded-full text-brand-black hover:bg-brand-black hover:text-white transition-all">
+                <Facebook className="w-4 h-4" />
               </a>
-              <a href="#" className="text-gray-400 hover:text-brand-teal transition-colors">
-                <Twitter className="w-6 h-6 stroke-[1.5]" />
-              </a>
-            </div>
-            <div className="bg-white p-6 shadow-sm border border-brand-teal/5">
-               <h4 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-2">
-                 Need styling help?
-               </h4>
-               <p className="text-[11px] font-bold text-gray-500 uppercase tracking-widest leading-relaxed">
-                 Chat with our experts <br /> Monday - Friday
-               </p>
             </div>
           </div>
 
           {/* NEWSLETTER Column */}
           <div>
-            <h3 className="text-sm font-black uppercase tracking-[0.2em] text-brand-teal mb-8">
-              THE BORROWHOOD
+            <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-black mb-8">
+              SIGN UP FOR ALL THINGS ASHIKA
             </h3>
-            <p className="text-xs font-medium text-gray-500 mb-6 uppercase tracking-widest leading-relaxed">
-              Sign up for style updates & <br /> exclusive early access.
-            </p>
-            <form className="flex flex-col gap-3">
+            <form className="relative">
               <input
                 type="email"
-                placeholder="EMAIL ADDRESS"
-                className="w-full px-5 py-4 bg-white border border-gray-100 text-[10px] font-bold tracking-widest focus:outline-none focus:border-brand-teal transition-colors shadow-sm"
+                placeholder="enter your email address"
+                className="w-full bg-transparent border-b border-gray-300 py-3 text-[10px] font-bold tracking-widest uppercase focus:outline-none focus:border-brand-black transition-colors"
               />
               <button
                 type="button"
-                className="w-full bg-brand-teal text-white px-5 py-4 text-[10px] font-black uppercase tracking-[0.3em] hover:bg-teal-700 transition-colors shadow-sm"
+                className="absolute right-0 top-1/2 -translate-y-1/2 text-brand-black hover:translate-x-1 transition-transform"
               >
-                JOIN US
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
               </button>
             </form>
           </div>
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-12 border-t border-brand-teal/5 flex flex-col md:flex-row justify-between items-center gap-6">
-          <div className="flex flex-wrap justify-center md:justify-start gap-8">
-            <Link href="/terms" className="text-[10px] font-bold text-gray-400 hover:text-brand-teal uppercase tracking-widest transition-colors">
-              Terms
+        <div className="pt-12 border-t border-gray-100 flex flex-col md:flex-row justify-between items-center gap-6">
+          <div className="flex gap-8">
+            <Link href="/terms" className="text-[9px] font-bold text-gray-400 hover:text-brand-black uppercase tracking-widest">
+              Terms of Service
             </Link>
-            <Link href="/privacy" className="text-[10px] font-bold text-gray-400 hover:text-brand-teal uppercase tracking-widest transition-colors">
-              Privacy
+            <Link href="/privacy" className="text-[9px] font-bold text-gray-400 hover:text-brand-black uppercase tracking-widest">
+              Privacy Policy
             </Link>
           </div>
-          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">
-            &copy; {new Date().getFullYear()} ASHIKA. WEAR THE CULTURE. RETURN THE STRESS.
+          <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
+            &copy; 2024 ASHIKA.inc. All Rights Reserved.
           </p>
         </div>
       </Container>

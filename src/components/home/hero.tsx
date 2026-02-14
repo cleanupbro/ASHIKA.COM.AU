@@ -5,33 +5,51 @@ import { Container } from '@/components/layout';
 
 export function Hero() {
   return (
-    <section className="relative h-[85vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
+    <section className="relative h-[92vh] flex items-center justify-center overflow-hidden">
+      {/* Background Image/Video */}
       <div className="absolute inset-0">
         <Image
-          src="https://images.pexels.com/photos/12737669/pexels-photo-12737669.jpeg?auto=compress&cs=tinysrgb&w=1920"
-          alt="Elegant Indian Fashion"
+          src="/hero_allborrow_clone_lehenga.png" // This will be the generated image path
+          alt="SO WHY BUY WHEN YOU CAN BORROW?"
           fill
-          className="object-cover object-top"
+          className="object-cover object-center"
           priority
           sizes="100vw"
         />
-        <div className="absolute inset-0 bg-black/10" />
+        <div className="absolute inset-0 bg-black/5" />
       </div>
 
-      <Container className="relative z-10 flex flex-col items-center text-center">
-        <div className="max-w-4xl mx-auto">
-          <h1 className="text-5xl md:text-7xl font-black text-white mb-6 tracking-tight drop-shadow-md">
-            Welcome to <br /> the borrowhood
+      {/* Hero Content Overlay */}
+      <Container className="relative z-10 w-full h-full flex flex-col items-center justify-between pb-24 pt-48">
+        {/* Top Search Bar (Simulated Date Picker from Screenshot) */}
+        <div className="w-full max-w-lg mb-auto">
+          <div className="bg-white/90 backdrop-blur-md rounded-lg p-2.5 flex items-center gap-1 shadow-xl border border-white/20">
+            <div className="flex-1 flex items-center gap-3 px-4 py-2 border-r border-gray-100">
+              <span className="text-[10px] font-black tracking-widest text-gray-400">FROM</span>
+              <span className="text-[11px] font-black text-brand-black">FEB 14</span>
+            </div>
+            <div className="flex-1 flex items-center gap-3 px-4 py-2 border-r border-gray-100">
+              <span className="text-[10px] font-black tracking-widest text-gray-400">TO</span>
+              <span className="text-[11px] font-black text-brand-black">FEB 21</span>
+            </div>
+            <button className="bg-brand-tan px-8 py-2 md:py-3 rounded-md text-[11px] font-black tracking-widest text-brand-black hover:bg-opacity-90 transition-all">
+              SEARCH
+            </button>
+          </div>
+        </div>
+
+        {/* Hero Title */}
+        <div className="text-center animate-fade-in-up">
+          <h1 className="text-5xl md:text-8xl font-black text-white mb-10 tracking-[0.2em] leading-tight drop-shadow-2xl hero-title">
+            SO WHY BUY <br /> WHEN YOU CAN <br /> BORROW?
           </h1>
-          <p className="text-base md:text-xl text-white mb-10 max-w-2xl mx-auto font-medium tracking-wide drop-shadow-sm">
-            Indian Ethnic Wear for Rent. <br className="hidden md:block" />
-            Look your best for every occasion without the high price tag.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-5 justify-center">
+          <div className="flex justify-center">
             <Link href="/shop">
-              <Button size="lg" variant="primary" className="min-w-[240px] text-base font-bold tracking-[0.2em] h-14">
-                BROWSE THE COLLECTION
+              <Button 
+                variant="primary" 
+                className="bg-white/80 backdrop-blur-sm text-brand-black border-none hover:bg-white px-10 py-4 text-[10px] font-black tracking-[0.2em] shadow-lg"
+              >
+                Get 10% Off!
               </Button>
             </Link>
           </div>

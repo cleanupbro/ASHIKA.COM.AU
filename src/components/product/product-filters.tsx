@@ -107,7 +107,7 @@ export function ProductFilters({
 
     switch (sectionId) {
       case 'category':
-        newFilters.category = value as ProductCategory;
+        newFilters.category = value === newFilters.category ? undefined : value as ProductCategory;
         break;
       case 'price':
         if (value === '200+') {
@@ -153,71 +153,72 @@ export function ProductFilters({
     <div className={cn('bg-white', isMobile && 'h-full flex flex-col')}>
       {/* Header (mobile only) */}
       {isMobile && (
-        <div className="flex items-center justify-between p-6 border-b border-gray-100">
-          <h2 className="text-sm font-bold uppercase tracking-widest text-black">Filters</h2>
-          <button onClick={onClose} className="p-2 text-black hover:text-gray-600">
+        <div className="flex items-center justify-between p-8 border-b border-gray-100">
+          <h2 className="text-[11px] font-black uppercase tracking-[0.2em] text-brand-black">Filters</h2>
+          <button onClick={onClose} className="p-2 text-brand-black hover:text-gray-400 transition-colors">
             <X className="w-5 h-5" />
           </button>
         </div>
       )}
 
       {/* Clear all */}
-      {activeFiltersCount > 0 && (
-        <div className="p-4 border-b border-gray-100">
+      <div className="px-1 py-8 border-b border-gray-100 flex items-center justify-between">
+        <span className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-black">Refine By</span>
+        {activeFiltersCount > 0 && (
           <button
             onClick={clearAllFilters}
-            className="text-xs text-gray-500 hover:text-black uppercase tracking-wide font-bold underline"
+            className="text-[9px] text-gray-400 hover:text-brand-black uppercase tracking-widest font-black transition-colors"
           >
             Clear all ({activeFiltersCount})
           </button>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Filter sections */}
-      <div className={cn('flex-1 overflow-y-auto', isMobile && 'pb-24')}>
+      <div className={cn('flex-1 overflow-y-auto px-1', isMobile && 'pb-24 px-8')}>
         {filterSections.map((section) => (
           <div key={section.id} className="border-b border-gray-100 last:border-0">
             <button
               onClick={() => toggleSection(section.id)}
-              className="flex items-center justify-between w-full py-5 text-left group"
+              className="flex items-center justify-between w-full py-6 text-left group"
             >
-              <span className="text-xs font-black uppercase tracking-[0.2em] text-brand-teal group-hover:text-brand-gold transition-colors">
+              <span className="text-[11px] font-black uppercase tracking-[0.2em] text-brand-black group-hover:text-brand-tan transition-colors">
                 {section.title}
               </span>
               <ChevronDown
                 className={cn(
-                  'w-3 h-3 text-brand-teal transition-transform duration-300',
+                  'w-3.5 h-3.5 text-brand-black transition-transform duration-500',
                   expandedSections.includes(section.id) && 'rotate-180'
                 )}
               />
             </button>
 
             {expandedSections.includes(section.id) && (
-              <div className="pb-6 space-y-3">
+              <div className="pb-8 space-y-4">
                 {section.options.map((option) => {
                   const isSelected = getIsSelected(section.id, option.value, filters);
 
                   return (
                     <label
                       key={option.value}
-                      className="flex items-center gap-3 cursor-pointer group"
+                      className="flex items-center gap-4 cursor-pointer group"
                     >
                       <div className={cn(
-                        "w-4 h-4 border flex items-center justify-center transition-colors",
-                        isSelected ? "bg-brand-teal border-brand-teal" : "bg-white border-gray-300 group-hover:border-brand-teal"
+                        "w-4 h-4 rounded-sm border flex items-center justify-center transition-all duration-300",
+                        isSelected ? "bg-brand-black border-brand-black" : "bg-white border-gray-300 group-hover:border-brand-black"
                       )}>
-                         {isSelected && <div className="w-2 h-2 bg-white" />}
+                         {isSelected && <div className="w-1.5 h-1.5 bg-white" />}
                       </div>
                       <input
                         type={section.id === 'color' || section.id === 'occasion' ? 'checkbox' : 'radio'}
                         name={section.id}
                         checked={isSelected}
                         onChange={() => handleFilterSelect(section.id, option.value)}
-                        className="hidden" // Hide default checkbox
+                        className="hidden"
                       />
                       <span className={cn(
-                        'text-xs font-bold uppercase tracking-widest transition-colors',
-                        isSelected ? 'text-brand-teal' : 'text-gray-500 group-hover:text-brand-teal'
+                        'text-[10px] font-black uppercase tracking-widest transition-colors',
+                        isSelected ? 'text-brand-black' : 'text-gray-400 group-hover:text-brand-black'
                       )}>
                         {option.label}
                       </span>
@@ -232,8 +233,8 @@ export function ProductFilters({
 
       {/* Apply button (mobile only) */}
       {isMobile && (
-        <div className="absolute bottom-0 left-0 right-0 p-6 bg-white border-t border-gray-100 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)]">
-          <Button onClick={onClose} className="w-full">
+        <div className="p-8 bg-white border-t border-gray-100">
+          <Button onClick={onClose} variant="secondary" className="w-full h-12 text-[10px] font-black tracking-[0.3em]">
             VIEW RESULTS
           </Button>
         </div>

@@ -57,14 +57,14 @@ const mockReviews: Review[] = [
 ];
 
 function StarRating({ rating, size = 'sm' }: { rating: number; size?: 'sm' | 'lg' }) {
-  const sizeClass = size === 'lg' ? 'w-5 h-5' : 'w-4 h-4';
+  const sizeClass = size === 'lg' ? 'w-4 h-4' : 'w-3 h-3';
   return (
     <div className="flex gap-0.5">
       {[...Array(5)].map((_, i) => (
         <Star
           key={i}
           className={`${sizeClass} ${
-            i < rating ? 'text-gold-500 fill-gold-500' : 'text-gray-300'
+            i < rating ? 'text-brand-black fill-brand-black' : 'text-gray-200'
           }`}
         />
       ))}
@@ -85,35 +85,36 @@ export function ProductReviews(props: ProductReviewsProps) {
   const totalReviews = reviews.length;
 
   return (
-    <section className="py-8">
+    <section className="py-16 md:py-24">
       {/* Header with overall rating */}
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 mb-8">
+      <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-12 mb-16">
         <div>
-          <h2 className="font-display text-2xl font-bold text-teal-900 mb-2">
+          <h2 className="text-xl font-black uppercase tracking-[0.2em] text-brand-black mb-4">
             Customer Reviews
           </h2>
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <StarRating rating={Math.round(averageRating)} size="lg" />
-            <span className="text-lg font-semibold text-teal-900">{averageRating}</span>
-            <span className="text-gray-500">({totalReviews} reviews)</span>
+            <span className="text-xs font-black text-brand-black tracking-widest">{averageRating} OUT OF 5</span>
+            <span className="text-[10px] uppercase tracking-wider text-gray-400">Based on {totalReviews} reviews</span>
           </div>
         </div>
 
         {/* Rating breakdown */}
-        <div className="flex gap-1">
+        <div className="flex flex-col gap-2 w-full max-w-xs">
           {[5, 4, 3, 2, 1].map((stars) => {
             const count = reviews.filter((r) => r.rating === stars).length;
             const percentage = (count / totalReviews) * 100;
             return (
-              <div key={stars} className="flex items-center gap-1">
-                <span className="text-xs text-gray-500 w-3">{stars}</span>
-                <Star className="w-3 h-3 text-gold-500 fill-gold-500" />
-                <div className="w-16 h-1.5 bg-gray-200 rounded-full overflow-hidden">
+              <div key={stars} className="flex items-center gap-3">
+                <span className="text-[10px] font-bold text-brand-black w-3">{stars}</span>
+                <Star className="w-3 h-3 text-brand-black fill-brand-black" />
+                <div className="flex-1 h-1 bg-gray-100 rounded-full overflow-hidden">
                   <div
-                    className="h-full bg-gold-500 rounded-full"
+                    className="h-full bg-brand-black"
                     style={{ width: `${percentage}%` }}
                   />
                 </div>
+                <span className="text-[10px] text-gray-400 w-6 text-right">{count}</span>
               </div>
             );
           })}
@@ -121,58 +122,57 @@ export function ProductReviews(props: ProductReviewsProps) {
       </div>
 
       {/* Reviews list */}
-      <div className="space-y-6">
+      <div className="grid md:grid-cols-2 gap-x-12 gap-y-12">
         {reviews.map((review) => (
           <div
             key={review.id}
-            className="border-b border-gray-100 pb-6 last:border-0"
+            className="border-b border-gray-100 pb-12 last:border-0 md:last:border-b"
           >
             {/* Review header */}
-            <div className="flex items-start justify-between mb-3">
+            <div className="flex items-start justify-between mb-4">
               <div>
-                <div className="flex items-center gap-2 mb-1">
-                  <span className="font-medium text-teal-900">{review.author}</span>
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-xs font-black uppercase tracking-wider text-brand-black">{review.author}</span>
                   {review.verified && (
-                    <span className="inline-flex items-center gap-1 text-xs text-teal-600 bg-teal-50 px-2 py-0.5 rounded-full">
-                      <CheckCircle className="w-3 h-3" />
-                      Verified Renter
+                    <span className="inline-flex items-center gap-1 text-[9px] font-bold uppercase tracking-widest text-brand-black bg-gray-50 px-2 py-1">
+                      <CheckCircle className="w-2.5 h-2.5" />
+                      Verified
                     </span>
                   )}
                 </div>
-                <div className="flex items-center gap-2 text-sm text-gray-500">
+                <div className="flex items-center gap-3 text-[10px] uppercase tracking-widest text-gray-400">
                   <span>{review.location}</span>
-                  <span>•</span>
+                  <span className="text-gray-300">•</span>
                   <span>{review.date}</span>
-                  {review.occasion && (
-                    <>
-                      <span>•</span>
-                      <span className="text-teal-600">{review.occasion}</span>
-                    </>
-                  )}
                 </div>
               </div>
               <StarRating rating={review.rating} />
             </div>
 
             {/* Review content */}
-            <h4 className="font-medium text-gray-900 mb-2">{review.title}</h4>
-            <p className="text-gray-600 text-sm leading-relaxed mb-3">
+            <h4 className="text-sm font-bold text-brand-black mb-3">{review.title}</h4>
+            <p className="text-xs text-gray-600 leading-relaxed mb-4 font-medium">
               {review.content}
             </p>
 
             {/* Helpful button */}
-            <button className="inline-flex items-center gap-1.5 text-sm text-gray-500 hover:text-teal-600 transition-colors">
-              <ThumbsUp className="w-4 h-4" />
-              Helpful ({review.helpful})
-            </button>
+            <div className="flex items-center justify-between">
+              {review.occasion && (
+                 <span className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Worn for: <span className="text-brand-black">{review.occasion}</span></span>
+              )}
+              <button className="inline-flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-brand-black transition-colors">
+                <ThumbsUp className="w-3 h-3" />
+                Helpful ({review.helpful})
+              </button>
+            </div>
           </div>
         ))}
       </div>
 
       {/* View all reviews link */}
       {totalReviews > 3 && (
-        <div className="mt-6 text-center">
-          <button className="text-teal-600 hover:text-teal-700 font-medium text-sm">
+        <div className="mt-12 text-center">
+          <button className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-black border-b border-brand-black pb-1 hover:text-gray-600 hover:border-gray-600 transition-colors">
             View all {totalReviews} reviews
           </button>
         </div>

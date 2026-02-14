@@ -89,30 +89,30 @@ export function ShopContent() {
   return (
     <div className="min-h-screen bg-white">
       {/* Header */}
-      <div className="bg-[#F8FBFA] border-b border-brand-teal/5">
+      <div className="bg-brand-offwhite border-b border-gray-100">
         <Container>
-          <div className="py-12 md:py-16 flex flex-col items-center justify-center text-center">
-            <h1 className="text-3xl md:text-4xl font-black uppercase tracking-[0.2em] text-brand-teal mb-4">
+          <div className="py-16 md:py-24 flex flex-col items-center justify-center text-center">
+            <h1 className="text-3xl md:text-5xl font-black uppercase tracking-[0.25em] text-brand-black mb-6 hero-title">
               {getCategoryTitle()}
             </h1>
-            <div className="w-12 h-0.5 bg-brand-gold mb-4"></div>
-            <p className="text-[10px] md:text-xs text-gray-500 font-bold uppercase tracking-[0.2em]">
-              {filteredProducts.length} Premium Pieces Available
+            <p className="text-[10px] font-black text-gray-400 uppercase tracking-[0.2em] max-w-lg leading-relaxed">
+              Explore our curated selection of {filteredProducts.length} premium Indian pieces. <br className="hidden md:block" />
+              Wear the culture. Return the stress.
             </p>
           </div>
         </Container>
       </div>
 
       <Container>
-        <div className="py-12">
+        <div className="py-16">
           {/* Mobile filter button & sort */}
-          <div className="flex items-center justify-between gap-4 mb-8 lg:hidden">
+          <div className="flex items-center justify-between gap-4 mb-12 lg:hidden">
             <button
               onClick={() => setIsMobileFilterOpen(true)}
-              className="flex items-center gap-2 px-6 py-3 bg-white border border-brand-teal/20 shadow-sm"
+              className="flex items-center gap-2 px-8 py-3 bg-brand-black text-white shadow-xl"
             >
-              <Filter className="w-4 h-4 text-brand-teal" />
-              <span className="text-[10px] font-black uppercase tracking-widest text-brand-teal">Filters</span>
+              <Filter className="w-3.5 h-3.5" />
+              <span className="text-[10px] font-black uppercase tracking-widest">Filters</span>
             </button>
             <SortDropdown value={sortBy} onChange={setSortBy} />
           </div>
@@ -120,7 +120,7 @@ export function ShopContent() {
           <div className="flex gap-16">
             {/* Desktop sidebar filters */}
             <aside className="hidden lg:block w-72 flex-shrink-0">
-              <div className="sticky top-40 bg-white p-2">
+              <div className="sticky top-40">
                 <ProductFilters filters={filters} onFilterChange={setFilters} />
               </div>
             </aside>
@@ -128,7 +128,7 @@ export function ShopContent() {
             {/* Product grid */}
             <div className="flex-1">
               {/* Desktop sort and active filters */}
-              <div className="hidden lg:flex items-center justify-between mb-8 border-b border-gray-100 pb-4">
+              <div className="hidden lg:flex items-center justify-between mb-12 border-b border-gray-100 pb-6">
                 <div className="flex-1">
                   <ActiveFilters filters={filters} onFilterChange={setFilters} />
                 </div>
@@ -136,7 +136,7 @@ export function ShopContent() {
               </div>
 
               {/* Mobile active filters */}
-              <div className="lg:hidden mb-6">
+              <div className="lg:hidden mb-10">
                 <ActiveFilters filters={filters} onFilterChange={setFilters} />
               </div>
 
@@ -148,12 +148,12 @@ export function ShopContent() {
 
       {/* Mobile filter drawer */}
       {isMobileFilterOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-[100] lg:hidden">
           <div
-            className="absolute inset-0 bg-black/50"
+            className="absolute inset-0 bg-brand-black/40 backdrop-blur-sm"
             onClick={() => setIsMobileFilterOpen(false)}
           />
-          <div className="absolute right-0 top-0 bottom-0 w-full max-w-sm bg-white">
+          <div className="absolute right-0 top-0 bottom-0 w-[85%] max-w-sm bg-white shadow-2xl animate-slide-in-right">
             <ProductFilters
               filters={filters}
               onFilterChange={setFilters}

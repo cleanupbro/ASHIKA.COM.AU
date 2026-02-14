@@ -3,40 +3,30 @@ import { Product, ProductCategory } from '@/types';
 // Stock images from Pexels - ALL VERIFIED WORKING IDs
 export const STOCK_IMAGES = {
   sarees: [
-    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    '/images/products/saree-blue.png',
+    '/images/products/saree-red.png',
+    '/images/products/saree-gold.png',
   ],
   lehengas: [
-    'https://images.pexels.com/photos/8881954/pexels-photo-8881954.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/8750043/pexels-photo-8750043.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/8881954/pexels-photo-8881954.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/8750043/pexels-photo-8750043.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    '/images/products/lehenga-maroon.png',
+    '/images/products/lehenga-teal.png',
+    '/images/products/lehenga-gold.png',
   ],
   sherwanis: [
-    'https://images.pexels.com/photos/28758797/pexels-photo-28758797.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/28758797/pexels-photo-28758797.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/28758797/pexels-photo-28758797.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/28758797/pexels-photo-28758797.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    '/images/products/sherwani-ivory.png',
+    '/images/products/sherwani-gold.png',
   ],
   salwar_kameez: [
-    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
-    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1200&h=1600&fit=crop',
+    '/images/products/salwar-beige.png',
   ],
   hero: [
-    'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
-    'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=1920&h=1280&fit=crop',
+    '/images/categories/lehenga.png', // Fallback if AI hero image isn't set
   ],
   categories: {
-    saree: 'https://images.pexels.com/photos/7442282/pexels-photo-7442282.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
-    lehenga: 'https://images.pexels.com/photos/8881954/pexels-photo-8881954.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
-    sherwani: 'https://images.pexels.com/photos/28758797/pexels-photo-28758797.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
-    salwar_kameez: 'https://images.pexels.com/photos/1162983/pexels-photo-1162983.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop',
+    saree: '/images/categories/saree.png',
+    lehenga: '/images/categories/lehenga.png',
+    sherwani: '/images/categories/sherwani.png',
+    salwar_kameez: '/images/categories/salwar_kameez.png',
   },
 };
 

@@ -11,11 +11,10 @@ export function FeaturedProducts() {
     <section className="py-24 bg-white">
       <Container>
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-black uppercase tracking-[0.2em] text-brand-teal mb-4">
+          <h2 className="text-2xl md:text-3xl font-black uppercase tracking-[0.2em] text-brand-black mb-4">
             Trending Now
           </h2>
-          <div className="w-16 h-1 bg-brand-gold mx-auto mb-6"></div>
-          <p className="text-xs text-gray-500 uppercase tracking-[0.2em] font-bold">
+          <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">
             Most Loved Styles This Week
           </p>
         </div>
@@ -28,7 +27,7 @@ export function FeaturedProducts() {
 
         <div className="mt-20 text-center">
           <Link href="/shop">
-            <Button variant="outline" size="lg" className="min-w-[280px] h-14 text-sm font-bold tracking-[0.2em]">
+            <Button variant="outline" className="min-w-[280px] h-12 text-[10px] font-black tracking-[0.3em]">
               VIEW ALL COLLECTIONS
             </Button>
           </Link>

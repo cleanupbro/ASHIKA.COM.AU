@@ -1,8 +1,7 @@
 import {
   Hero,
-  TrustBadges,
+  Borrowhood,
   CategoriesGrid,
-  HowItWorks,
   FeaturedProducts,
   Testimonials,
   Newsletter,
@@ -12,10 +11,9 @@ export default function Home() {
   return (
     <>
       <Hero />
-      <TrustBadges />
+      <Borrowhood />
       <CategoriesGrid />
       <FeaturedProducts />
-      <HowItWorks />
       <Testimonials />
       <Newsletter />
     </>

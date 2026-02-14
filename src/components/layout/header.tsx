@@ -33,68 +33,77 @@ export function Header() {
   return (
     <div className="fixed top-0 left-0 right-0 z-50">
       {/* Top Promotional Bar */}
-      <div className="bg-brand-teal text-center py-2.5 px-4 text-[10px] md:text-xs font-bold tracking-[0.2em]">
-        <span className="text-white uppercase">FREE 2 DAY SHIPPING AUSTRALIA WIDE</span>
+      <div className="bg-brand-tan text-center py-2 px-4 text-[9px] font-black tracking-[0.2em] transition-colors">
+        <span className="text-brand-black uppercase">READY TO SHIP. FREE STYLING HELP.</span>
       </div>
 
       {/* Main Header */}
       <header
         className={cn(
-          'bg-white border-b border-gray-100 transition-all duration-300',
-          isScrolled ? 'shadow-sm' : ''
+          'bg-white/95 backdrop-blur-md border-b border-gray-100 transition-all duration-300',
+          isScrolled ? 'py-2 shadow-sm' : 'py-4'
         )}
       >
         <Container>
-          <div className="flex items-center justify-between h-[70px] md:h-[90px]">
+          <div className="flex items-center justify-between h-[50px] md:h-[60px]">
             {/* Logo */}
             <Link href="/" className="flex-shrink-0 z-10">
-              <span className="font-sans text-xl md:text-2xl tracking-[0.3em] font-black text-brand-teal uppercase">
+              <span className="font-sans text-lg md:text-xl tracking-[0.4em] font-black text-brand-black uppercase">
                 ASHIKA
               </span>
             </Link>
 
             {/* Desktop Navigation */}
-            <nav className="hidden xl:flex items-center gap-4 xxl:gap-6 absolute left-1/2 transform -translate-x-1/2">
-              {navigation.map((item) => (
+            <nav className="hidden xl:flex items-center gap-6 xxl:gap-8 absolute left-1/2 transform -translate-x-1/2">
+              {navigation.slice(0, 4).map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  className="text-[10px] font-bold tracking-widest text-gray-800 hover:text-brand-teal transition-colors uppercase"
+                  className="text-[9px] font-black tracking-[0.15em] text-brand-black hover:text-brand-tan transition-colors uppercase"
                 >
                   {item.name}
                 </Link>
               ))}
+              <Link
+                href="/shop"
+                className="text-brand-black hover:text-brand-tan transition-colors"
+                aria-label="Search"
+              >
+                <Search className="w-4 h-4 stroke-[2]" />
+              </Link>
             </nav>
 
             {/* Right side icons */}
-            <div className="flex items-center gap-4 z-10">
-              <button
-                className="p-2 text-black hover:text-gray-600 transition-colors"
-                aria-label="Search"
-              >
-                <Search className="w-5 h-5 stroke-[1.5]" />
-              </button>
-
+            <div className="flex items-center gap-3 z-10">
               <Link
                 href="/account"
-                className="hidden md:block p-2 text-black hover:text-gray-600 transition-colors"
+                className="hidden md:block p-2 text-brand-black hover:text-brand-tan transition-colors"
                 aria-label="Account"
               >
-                <User className="w-5 h-5 stroke-[1.5]" />
+                <User className="w-4 h-4 stroke-[2]" />
               </Link>
+              
+              <button
+                className="hidden md:block p-2 text-brand-black hover:text-brand-tan transition-colors"
+                aria-label="Wishlist"
+              >
+                <svg className="w-4 h-4 fill-none stroke-current stroke-[2]" viewBox="0 0 24 24">
+                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l8.84-8.84 1.06-1.06a5.5 5.5 0 000-7.78v0z"></path>
+                </svg>
+              </button>
 
               <CartButton />
 
               {/* Mobile menu button */}
               <button
-                className="lg:hidden p-2 text-black hover:text-gray-600 transition-colors"
+                className="xl:hidden p-2 text-brand-black hover:text-brand-tan transition-colors"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? (
-                  <X className="w-6 h-6 stroke-[1.5]" />
+                  <X className="w-5 h-5 stroke-[2]" />
                 ) : (
-                  <Menu className="w-6 h-6 stroke-[1.5]" />
+                  <Menu className="w-5 h-5 stroke-[2]" />
                 )}
               </button>
             </div>
@@ -104,28 +113,36 @@ export function Header() {
         {/* Mobile Navigation */}
         <div
           className={cn(
-            'lg:hidden overflow-hidden transition-all duration-300 bg-white absolute w-full border-b border-gray-100',
-            isMobileMenuOpen ? 'max-h-[80vh] overflow-y-auto' : 'max-h-0'
+            'xl:hidden overflow-hidden transition-all duration-500 ease-in-out bg-white absolute w-full border-b border-gray-100',
+            isMobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
           )}
         >
-          <nav className="px-6 py-4 flex flex-col">
+          <nav className="px-8 py-10 flex flex-col gap-6">
             {navigation.map((item) => (
               <Link
                 key={item.name}
                 href={item.href}
-                className="py-4 text-[10px] font-black tracking-[0.2em] border-b border-brand-teal/5 last:border-0 uppercase text-gray-900 hover:text-brand-teal transition-colors"
+                className="text-[10px] font-black tracking-[0.2em] uppercase text-brand-black hover:text-brand-tan transition-colors"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
                 {item.name}
               </Link>
             ))}
-            <Link
-              href="/account"
-              className="py-4 text-sm font-semibold tracking-wide text-black border-t border-gray-100 uppercase"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              My Account
-            </Link>
+            <div className="pt-6 border-t border-gray-100 flex gap-4">
+              <Link
+                href="/account"
+                className="text-[10px] font-black tracking-[0.2em] uppercase text-brand-black"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Account
+              </Link>
+              <button
+                className="text-[10px] font-black tracking-[0.2em] uppercase text-brand-black"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Wishlist
+              </button>
+            </div>
           </nav>
         </div>
       </header>

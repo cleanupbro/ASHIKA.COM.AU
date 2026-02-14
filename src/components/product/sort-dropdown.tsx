@@ -39,19 +39,22 @@ export function SortDropdown({ value, onChange }: SortDropdownProps) {
     <div ref={dropdownRef} className="relative">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="flex items-center gap-2 px-0 py-2 bg-white transition-colors group"
+        className="flex items-center gap-6 px-0 py-2 bg-transparent transition-colors group border-b border-transparent hover:border-brand-black"
       >
-        <span className="text-[10px] font-bold uppercase tracking-widest text-brand-teal group-hover:text-brand-gold transition-colors">{currentOption?.label}</span>
+        <div className="flex flex-col items-start">
+          <span className="text-[8px] font-black uppercase tracking-[0.2em] text-gray-400 mb-0.5">SortBy</span>
+          <span className="text-[10px] font-black uppercase tracking-[0.1em] text-brand-black">{currentOption?.label}</span>
+        </div>
         <ChevronDown
           className={cn(
-            'w-3 h-3 text-brand-teal transition-transform duration-300 group-hover:text-brand-gold',
+            'w-3.5 h-3.5 text-brand-black transition-transform duration-500',
             isOpen && 'rotate-180'
           )}
         />
       </button>
 
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-56 bg-white shadow-xl border border-brand-teal/10 py-2 z-20">
+        <div className="absolute right-0 mt-4 w-64 bg-white shadow-2xl border border-gray-100 py-3 z-50 animate-fade-in">
           {sortOptions.map((option) => (
             <button
               key={option.value}
@@ -60,14 +63,14 @@ export function SortDropdown({ value, onChange }: SortDropdownProps) {
                 setIsOpen(false);
               }}
               className={cn(
-                'flex items-center justify-between w-full px-6 py-3 text-[10px] font-bold uppercase tracking-widest text-left transition-colors',
+                'flex items-center justify-between w-full px-8 py-4 text-[10px] font-black uppercase tracking-[0.15em] text-left transition-colors',
                 option.value === value
-                  ? 'text-brand-teal bg-teal-50'
-                  : 'text-gray-400 hover:text-brand-teal hover:bg-teal-50/50'
+                  ? 'text-brand-black bg-brand-offwhite'
+                  : 'text-gray-400 hover:text-brand-black hover:bg-brand-offwhite'
               )}
             >
               {option.label}
-              {option.value === value && <Check className="w-3 h-3 text-brand-teal" />}
+              {option.value === value && <Check className="w-3.5 h-3.5 text-brand-black" />}
             </button>
           ))}
         </div>

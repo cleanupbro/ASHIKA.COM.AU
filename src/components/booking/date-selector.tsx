@@ -36,6 +36,7 @@ export function DateSelector({
     }
 
     setSelectedDate(date);
+    setIsOpen(false); 
   };
 
   const handleAddToCart = () => {
@@ -53,35 +54,35 @@ export function DateSelector({
   };
 
   return (
-    <div className="space-y-6 border-t border-gray-100 pt-6">
+    <div className="space-y-6 border-t border-gray-100 pt-8">
       {/* Date selector trigger */}
       <div>
-        <h3 className="text-xs font-bold uppercase tracking-widest text-black mb-3">Event Date</h3>
+        <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-black mb-3">Event Date</h3>
         <button
           onClick={() => setIsOpen(!isOpen)}
           className={cn(
-            'w-full flex items-center justify-between px-4 py-3 border transition-colors',
-            isOpen ? 'border-black' : 'border-gray-200 hover:border-gray-400',
-            selectedDate && !isOpen && 'border-black'
+            'w-full flex items-center justify-between px-4 py-4 border transition-all',
+            isOpen ? 'border-brand-black ring-1 ring-brand-black' : 'border-gray-200 hover:border-brand-black',
+            selectedDate && !isOpen && 'border-brand-black'
           )}
         >
           <div className="flex items-center gap-3">
-            <Calendar className={cn('w-4 h-4', selectedDate ? 'text-black' : 'text-gray-400')} />
-            <span className={cn('text-sm font-medium', selectedDate ? 'text-black' : 'text-gray-500')}>
+            <Calendar className={cn('w-4 h-4', selectedDate ? 'text-brand-black' : 'text-gray-400')} />
+            <span className={cn('text-xs font-bold uppercase tracking-widest', selectedDate ? 'text-brand-black' : 'text-gray-400')}>
               {selectedDate ? format(selectedDate, 'EEEE, MMMM d, yyyy') : 'Select your event date'}
             </span>
           </div>
           {isOpen ? (
-            <ChevronUp className="w-4 h-4 text-gray-500" />
+            <ChevronUp className="w-4 h-4 text-brand-black" />
           ) : (
-            <ChevronDown className="w-4 h-4 text-gray-500" />
+            <ChevronDown className="w-4 h-4 text-gray-400" />
           )}
         </button>
       </div>
 
       {/* Calendar dropdown */}
       {isOpen && (
-        <div className="space-y-4">
+        <div className="animate-fade-in">
           <AvailabilityCalendar
             productId={productId}
             selectedDate={selectedDate}
@@ -97,7 +98,7 @@ export function DateSelector({
 
       {/* Error message */}
       {error && (
-        <div className="p-3 bg-red-50 border border-red-100 text-xs text-red-600 font-medium">
+        <div className="p-4 bg-red-50 text-[10px] uppercase tracking-wider text-red-600 font-bold border border-red-100">
           {error}
         </div>
       )}
@@ -105,7 +106,7 @@ export function DateSelector({
       {/* Add to Cart button */}
       <Button
         size="lg"
-        className="w-full uppercase tracking-widest font-bold text-xs py-4"
+        className="w-full h-14 uppercase tracking-[0.2em] font-black text-[10px]"
         onClick={handleAddToCart}
         disabled={!selectedDate || !selectedSize}
       >
@@ -117,18 +118,18 @@ export function DateSelector({
       </Button>
 
       {/* Trust badges */}
-      <div className="flex justify-between text-center pt-2">
-        <div className="text-xs text-gray-500">
-          <p className="font-bold text-black uppercase tracking-wide">Free Shipping</p>
-          <p>Both ways</p>
+      <div className="grid grid-cols-3 gap-2 pt-4 border-t border-gray-50">
+        <div className="text-center">
+          <p className="font-black text-brand-black uppercase tracking-[0.1em] text-[9px] mb-1">Free Shipping</p>
+          <p className="text-[9px] text-gray-400 uppercase tracking-widest">Both ways</p>
         </div>
-        <div className="text-xs text-gray-500">
-          <p className="font-bold text-black uppercase tracking-wide">7-Day Rental</p>
-          <p>Includes buffer</p>
+        <div className="text-center border-l border-gray-100">
+          <p className="font-black text-brand-black uppercase tracking-[0.1em] text-[9px] mb-1">7-Day Rental</p>
+          <p className="text-[9px] text-gray-400 uppercase tracking-widest">Includes buffer</p>
         </div>
-        <div className="text-xs text-gray-500">
-          <p className="font-bold text-black uppercase tracking-wide">$100 Bond</p>
-          <p>Fully refundable</p>
+        <div className="text-center border-l border-gray-100">
+          <p className="font-black text-brand-black uppercase tracking-[0.1em] text-[9px] mb-1">$100 Bond</p>
+          <p className="text-[9px] text-gray-400 uppercase tracking-widest">Refundable</p>
         </div>
       </div>
     </div>

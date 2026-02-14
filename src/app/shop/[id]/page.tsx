@@ -10,7 +10,7 @@ import {
 import { getProductById, products } from '@/lib/mock-data/products';
 import { Metadata } from 'next';
 import Link from 'next/link';
-import { ChevronRight, Home } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;
@@ -54,32 +54,32 @@ export default async function ProductPage({ params }: ProductPageProps) {
   return (
     <div className="bg-white">
       {/* Breadcrumb */}
-      <div className="bg-gray-50 border-b">
+      <div className="border-b border-gray-100">
         <Container>
-          <nav className="py-4">
-            <ol className="flex items-center gap-2 text-sm">
+          <nav className="py-6">
+            <ol className="flex items-center gap-3 text-[10px] font-black uppercase tracking-widest">
               <li>
-                <Link href="/" className="text-gray-500 hover:text-teal-600">
-                  <Home className="w-4 h-4" />
+                <Link href="/" className="text-gray-400 hover:text-brand-black transition-colors">
+                  Home
                 </Link>
               </li>
-              <ChevronRight className="w-4 h-4 text-gray-300" />
+              <ChevronRight className="w-3 h-3 text-gray-300" />
               <li>
-                <Link href="/shop" className="text-gray-500 hover:text-teal-600">
+                <Link href="/shop" className="text-gray-400 hover:text-brand-black transition-colors">
                   Shop
                 </Link>
               </li>
-              <ChevronRight className="w-4 h-4 text-gray-300" />
+              <ChevronRight className="w-3 h-3 text-gray-300" />
               <li>
                 <Link
                   href={`/shop?category=${product.category}`}
-                  className="text-gray-500 hover:text-teal-600 capitalize"
+                  className="text-gray-400 hover:text-brand-black transition-colors"
                 >
                   {product.category.replace('_', ' ')}
                 </Link>
               </li>
-              <ChevronRight className="w-4 h-4 text-gray-300" />
-              <li className="text-gray-900 font-medium truncate max-w-[200px]">
+              <ChevronRight className="w-3 h-3 text-gray-300" />
+              <li className="text-brand-black truncate max-w-[200px]">
                 {product.name}
               </li>
             </ol>
@@ -89,13 +89,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       {/* Product details */}
       <Container>
-        <div className="py-8 md:py-12">
-          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+        <div className="py-12 md:py-16">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-20">
             {/* Left: Images */}
             <ProductImages images={product.images} name={product.name} />
 
             {/* Right: Info */}
-            <div className="space-y-8">
+            <div className="space-y-10">
               <ProductInfo product={product} />
               <RentalInfo />
             </div>

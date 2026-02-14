@@ -12,10 +12,10 @@ export const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center font-medium transition-all duration-200 focus:outline-none focus:ring-1 focus:ring-offset-1 disabled:opacity-50 disabled:cursor-not-allowed uppercase tracking-wide';
 
     const variants = {
-      primary: 'bg-brand-teal text-white hover:bg-teal-700 focus:ring-brand-teal border border-brand-teal',
-      secondary: 'bg-brand-gold text-white hover:bg-amber-700 focus:ring-brand-gold border border-brand-gold',
-      ghost: 'bg-transparent text-brand-teal hover:bg-teal-50 focus:ring-brand-teal',
-      outline: 'bg-transparent border border-brand-teal text-brand-teal hover:bg-brand-teal hover:text-white focus:ring-brand-teal',
+      primary: 'bg-brand-tan text-brand-black hover:bg-opacity-90 focus:ring-brand-tan border border-brand-tan',
+      secondary: 'bg-brand-black text-white hover:bg-opacity-90 focus:ring-brand-black border border-brand-black',
+      ghost: 'bg-transparent text-brand-black hover:bg-gray-50 focus:ring-brand-black',
+      outline: 'bg-transparent border border-brand-black text-brand-black hover:bg-brand-black hover:text-white focus:ring-brand-black',
       danger: 'bg-red-600 text-white hover:bg-red-700 focus:ring-red-500 border border-red-600',
     };
 
