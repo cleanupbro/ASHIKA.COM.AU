@@ -12,7 +12,7 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
-          DEFAULT: "#0D9488", // Teal
+          DEFAULT: "#881337", // Deep Maroon (Luxury Wedding)
           foreground: "#FFFFFF",
         },
         secondary: {
@@ -25,7 +25,7 @@ const config: Config = {
         'brand-offwhite': '#F8FBFA',
         'brand-black': '#1A1A1A',
         'brand-gold': '#D97706', // Retaining for compatibility during transition
-        'brand-teal': '#0D9488', // Retaining for compatibility during transition
+        'brand-teal': '#881337', // Updated to Maroon
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],

@@ -20,7 +20,7 @@
 
 ## DEPLOYMENT & SAFETY
 
-- **Main Repository:** `https://github.com/cleanupbro/ASHIKA.COM.AU.git`
+- **Main Repository:** `https://github.com/cleanupbro/ASHIKA.COM.AU`
 - **Vercel Hook:** Automatic on `push` to `main`
 - **CRITICAL RULE:** DO NOT edit, delete, or touch any other projects on this system. All work must be confined to the `ASHIKA.COM.AU` directory.
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { Container } from '@/components/layout';
+import Image from 'next/image';
 
 const steps = [
   {
@@ -41,12 +42,14 @@ export function Borrowhood() {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
           {steps.map((step) => (
             <div key={step.number} className="relative group overflow-hidden">
-              <div className="aspect-[3/4] bg-brand-tan/20 rounded-xl flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-[1.02]">
-                {/* Image Placeholder with Tan Texture styling */}
-                <div className="absolute inset-0 bg-[#DDC4B1]/40 mix-blend-multiply opacity-20" />
-                <span className="text-sm font-black tracking-widest text-brand-black">
-                  {step.title}
-                </span>
+              <div className="aspect-[3/4] relative bg-brand-tan/20 rounded-xl flex items-center justify-center overflow-hidden transition-all duration-500 group-hover:scale-[1.02]">
+                <Image
+                  src={step.image}
+                  alt={step.title}
+                  fill
+                  className="object-cover object-center"
+                />
+                <div className="absolute inset-0 bg-black/10" />
               </div>
               
               <div className="absolute top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-white flex items-center justify-center shadow-lg">

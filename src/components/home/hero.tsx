@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import { Button } from '@/components/ui';
 import { Container } from '@/components/layout';
 
@@ -8,18 +9,15 @@ export function Hero() {
       {/* Background Image/Video */}
       {/* Background Image/Video */}
       <div className="absolute inset-0">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/hero_poster_cinematic.png"
-          className="object-cover object-center w-full h-full"
-        >
-          <source src="/videos/hero-background.mp4" type="video/mp4" />
-          Your browser does not support the video tag.
-        </video>
-        <div className="absolute inset-0 bg-black/20" />
+        <Image
+          src="/hero_poster_cinematic.png"
+          alt="Luxury Indian Wear"
+          fill
+          className="object-cover object-center"
+          priority
+          quality={100}
+        />
+        <div className="absolute inset-0 bg-black/30" />
       </div>
 
       {/* Hero Content Overlay */}
