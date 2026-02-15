@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import Link from 'next/link';
 import { Button } from '@/components/ui';
 import { Container } from '@/components/layout';
@@ -7,16 +6,20 @@ export function Hero() {
   return (
     <section className="relative h-[92vh] flex items-center justify-center overflow-hidden">
       {/* Background Image/Video */}
+      {/* Background Image/Video */}
       <div className="absolute inset-0">
-        <Image
-          src="/hero_allborrow_clone_lehenga.png" // This will be the generated image path
-          alt="SO WHY BUY WHEN YOU CAN BORROW?"
-          fill
-          className="object-cover object-center"
-          priority
-          sizes="100vw"
-        />
-        <div className="absolute inset-0 bg-black/5" />
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster="/hero_poster_cinematic.png"
+          className="object-cover object-center w-full h-full"
+        >
+          <source src="/videos/hero-background.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        <div className="absolute inset-0 bg-black/20" />
       </div>
 
       {/* Hero Content Overlay */}
