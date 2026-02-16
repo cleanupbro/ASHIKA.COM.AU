@@ -89,20 +89,7 @@ export function Testimonials() {
         </div>
 
         {/* Social proof stats */}
-        <div className="mt-24 grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
-          <div>
-            <p className="text-3xl font-black text-black mb-2 uppercase tracking-tighter">500+</p>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Happy Renters</p>
-          </div>
-          <div>
-            <p className="text-3xl font-black text-black mb-2 uppercase tracking-tighter">4.9/5</p>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Average Rating</p>
-          </div>
-          <div>
-            <p className="text-3xl font-black text-black mb-2 uppercase tracking-tighter">100%</p>
-            <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Satisfaction Guarantee</p>
-          </div>
-        </div>
+
       </Container>
     </section>
   );
