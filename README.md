@@ -9,6 +9,20 @@
 
 <!-- CLAWD_REPO_LABEL_END -->
 
+<!-- CLAWD_REPO_STANDARD_START -->
+## Standard Repository Info
+
+- **Owner:** `cleanupbro`
+- **Repository Type:** Client Project
+- **Purpose (Plain):** This repository is for my client, who is making her first ever online Indian web, kinda like It's like Shopify, but it's going to be our own website and it's going to become a SaaS while it grows
+- **Primary Branch:** `main` (update if different)
+- **Deployment URL:** Set your live URL here
+- **Contact / Responsibility:** Open an issue in this repository or contact the owner account.
+
+<!-- CLAWD_REPO_STANDARD_END -->
+
+
+
 
 ```text
     _    ____  _   _ ___ _  __    _    
