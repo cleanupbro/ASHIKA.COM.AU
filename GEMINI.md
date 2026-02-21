@@ -1,5 +1,6 @@
 # GEMINI.md — ASHIKA Workspace Directives
 ## Indian Wear Hire Australia
+### **[STATUS: VERSION 1 HANDOVER READY]**
 
 ---
 

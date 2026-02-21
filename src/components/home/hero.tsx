@@ -1,23 +1,25 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Button } from '@/components/ui';
-import { Container } from '@/components/layout';
+import Link from "next/link";
+
+import { Button } from "@/components/ui";
+import { Container } from "@/components/layout";
 
 export function Hero() {
   return (
     <section className="relative h-[92vh] flex items-center justify-center overflow-hidden">
       {/* Background Image/Video */}
       {/* Background Image/Video */}
-      <div className="absolute inset-0">
-        <Image
-          src="/hero_poster_cinematic.png"
-          alt="Luxury Indian Wear"
-          fill
-          className="object-cover object-center"
-          priority
-          quality={100}
-        />
-        <div className="absolute inset-0 bg-black/30" />
+      <div className="absolute inset-0 bg-black">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="object-cover object-center w-full h-full"
+          poster="/hero_poster_cinematic.png"
+        >
+          <source src="/videos/hero-background.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-black/40" />
       </div>
 
       {/* Hero Content Overlay */}
@@ -26,12 +28,20 @@ export function Hero() {
         <div className="w-full max-w-lg mb-auto">
           <div className="bg-white/90 backdrop-blur-md rounded-lg p-2.5 flex items-center gap-1 shadow-xl border border-white/20">
             <div className="flex-1 flex items-center gap-3 px-4 py-2 border-r border-gray-100">
-              <span className="text-[10px] font-black tracking-widest text-gray-400">FROM</span>
-              <span className="text-[11px] font-black text-brand-black">FEB 14</span>
+              <span className="text-[10px] font-black tracking-widest text-gray-400">
+                FROM
+              </span>
+              <span className="text-[11px] font-black text-brand-black">
+                FEB 14
+              </span>
             </div>
             <div className="flex-1 flex items-center gap-3 px-4 py-2 border-r border-gray-100">
-              <span className="text-[10px] font-black tracking-widest text-gray-400">TO</span>
-              <span className="text-[11px] font-black text-brand-black">FEB 21</span>
+              <span className="text-[10px] font-black tracking-widest text-gray-400">
+                TO
+              </span>
+              <span className="text-[11px] font-black text-brand-black">
+                FEB 21
+              </span>
             </div>
             <button className="bg-brand-tan px-8 py-2 md:py-3 rounded-md text-[11px] font-black tracking-widest text-brand-black hover:bg-opacity-90 transition-all">
               SEARCH
@@ -46,8 +56,8 @@ export function Hero() {
           </h1>
           <div className="flex justify-center">
             <Link href="/shop">
-              <Button 
-                variant="primary" 
+              <Button
+                variant="primary"
                 className="bg-white/80 backdrop-blur-sm text-brand-black border-none hover:bg-white px-10 py-4 text-[10px] font-black tracking-[0.2em] shadow-lg"
               >
                 Get 10% Off!
