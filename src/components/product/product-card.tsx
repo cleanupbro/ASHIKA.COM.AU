@@ -1,6 +1,6 @@
-import Link from 'next/link';
-import Image from 'next/image';
-import { Product } from '@/types';
+import Link from "next/link";
+import Image from "next/image";
+import { Product } from "@/types";
 
 interface ProductCardProps {
   product: Product;
@@ -23,7 +23,7 @@ export function ProductCard({ product }: ProductCardProps) {
         <div className="absolute inset-x-0 bottom-0 py-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center">
           <div className="bg-white/90 backdrop-blur-md px-6 py-2 rounded-full shadow-lg">
             <span className="text-[9px] font-black uppercase tracking-[0.2em] text-brand-black">
-              Quick View
+              Rent Now
             </span>
           </div>
         </div>
@@ -32,7 +32,7 @@ export function ProductCard({ product }: ProductCardProps) {
       {/* Content */}
       <div className="text-center px-2">
         <p className="text-[9px] font-black text-gray-400 uppercase tracking-[0.2em] mb-1">
-          {product.category.replace('_', ' ')}
+          {product.category.replace("_", " ")}
         </p>
         <h3 className="text-[11px] font-black text-brand-black uppercase tracking-[0.1em] line-clamp-1 mb-2 group-hover:text-brand-tan transition-colors">
           {product.name}

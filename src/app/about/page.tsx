@@ -1,5 +1,5 @@
-import { Container } from '@/components/layout';
-import Image from 'next/image';
+import { Container } from "@/components/layout";
+import Image from "next/image";
 
 export default function AboutPage() {
   return (
@@ -26,28 +26,38 @@ export default function AboutPage() {
             Wear the Culture. Return the Stress.
           </h2>
           <p className="text-sm md:text-base leading-loose text-gray-600 font-medium mb-12">
-            ASHIKA was born from a simple idea: Indian fashion is stunning, but it shouldn't be single-use. 
-            We believe in a world where you can wear the most exquisite Lehengas, Sarees, and Sherwanis 
-            without the guilt of a cluttered closet or the heavy price tag.
+            ASHIKA was born from a simple idea: Indian fashion is stunning, but
+            it shouldn&apos;t be single-use. We believe in a world where you can
+            wear the most exquisite Lehengas, Sarees, and Sherwanis without the
+            guilt of a cluttered closet or the heavy price tag.
           </p>
-          
+
           <div className="grid md:grid-cols-3 gap-12 text-left mt-24">
             <div>
-              <h3 className="text-xl font-black text-brand-black mb-4">01. CURATED LUXURY</h3>
+              <h3 className="text-xl font-black text-brand-black mb-4">
+                01. CURATED LUXURY
+              </h3>
               <p className="text-xs leading-relaxed text-gray-500 font-bold uppercase tracking-wide">
-                We partner with top designers and authenticate every piece to ensure you're wearing only the best.
+                We partner with top designers and authenticate every piece to
+                ensure you&apos;re wearing only the best.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-black text-brand-black mb-4">02. SUSTAINABLE FASHION</h3>
+              <h3 className="text-xl font-black text-brand-black mb-4">
+                02. SUSTAINABLE FASHION
+              </h3>
               <p className="text-xs leading-relaxed text-gray-500 font-bold uppercase tracking-wide">
-                By renting, you reduce textile waste and contribute to a more circular fashion economy.
+                By renting, you reduce textile waste and contribute to a more
+                circular fashion economy.
               </p>
             </div>
             <div>
-              <h3 className="text-xl font-black text-brand-black mb-4">03. HYGIENE FIRST</h3>
+              <h3 className="text-xl font-black text-brand-black mb-4">
+                03. HYGIENE FIRST
+              </h3>
               <p className="text-xs leading-relaxed text-gray-500 font-bold uppercase tracking-wide">
-                Every item is dry-cleaned and sanitized to hospital-grade standards before it reaches you.
+                Every item is dry-cleaned and sanitized to hospital-grade
+                standards before it reaches you.
               </p>
             </div>
           </div>

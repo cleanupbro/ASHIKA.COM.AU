@@ -46,3 +46,297 @@ h6 {
     text-wrap: balance;
   }
 }
+
+/* ──────────────────────────────────────────
+   APPLE GLASSMORPHIC SEARCH BAR
+   ────────────────────────────────────────── */
+
+.glassmorphic-search-bar {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 16px;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.12),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glassmorphic-search-bar:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.18),
+    inset 0 1px 0 rgba(255, 255, 255, 0.15);
+  transform: translateY(-1px);
+}
+
+.glassmorphic-search-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 12px;
+  padding: 10px 24px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+  transition: all 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.glassmorphic-search-btn:hover {
+  background: rgba(255, 255, 255, 0.25);
+  border-color: rgba(255, 255, 255, 0.35);
+  color: white;
+  transform: scale(1.02);
+}
+
+.glassmorphic-cta-btn {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.2) !important;
+  color: rgba(255, 255, 255, 0.95) !important;
+  padding: 16px 40px !important;
+  font-size: 10px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.2em !important;
+  border-radius: 14px !important;
+  box-shadow:
+    0 8px 32px rgba(0, 0, 0, 0.1),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1) !important;
+}
+
+.glassmorphic-cta-btn:hover {
+  background: rgba(255, 255, 255, 0.22) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: white !important;
+  transform: translateY(-2px) !important;
+  box-shadow:
+    0 12px 48px rgba(0, 0, 0, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2) !important;
+}
+
+/* ──────────────────────────────────────────
+   FEATURE ICON CONTAINER
+   ────────────────────────────────────────── */
+
+.feature-icon-container {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto 24px auto;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-icon-container::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    transparent 40%,
+    rgba(221, 196, 177, 0.15) 100%
+  );
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.group:hover .feature-icon-container {
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+  transform: translateY(-4px);
+}
+
+.group:hover .feature-icon-container::before {
+  opacity: 1;
+}
+
+/* ──────────────────────────────────────────
+   TESTIMONIAL CARD
+   ────────────────────────────────────────── */
+
+.testimonial-card {
+  border: 1px solid rgba(0, 0, 0, 0.04);
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+
+.testimonial-card:hover {
+  border-color: rgba(221, 196, 177, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+/* ──────────────────────────────────────────
+   SVG ICON ANIMATIONS
+   ────────────────────────────────────────── */
+
+/* Draw animation — stroke appears smoothly */
+@keyframes iconDraw {
+  from {
+    stroke-dashoffset: 200;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-icon-draw {
+  stroke-dasharray: 200;
+  stroke-dashoffset: 200;
+  animation: iconDraw 1.5s ease-out forwards;
+}
+
+.group:hover .animate-icon-draw {
+  animation: iconDraw 0.8s ease-out forwards;
+}
+
+/* Pulse animation — gentle scale throb */
+@keyframes iconPulse {
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(1.4);
+    opacity: 1;
+  }
+}
+
+.animate-icon-pulse {
+  animation: iconPulse 2.5s ease-in-out infinite;
+}
+
+/* Checkmark draw */
+@keyframes iconCheck {
+  from {
+    stroke-dashoffset: 30;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+.animate-icon-check {
+  stroke-dasharray: 30;
+  stroke-dashoffset: 30;
+  animation: iconCheck 0.8s ease-out 0.5s forwards;
+}
+
+.group:hover .animate-icon-check {
+  animation: iconCheck 0.5s ease-out forwards;
+}
+
+/* Bounce animation — subtle Y bounce */
+@keyframes iconBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.animate-icon-bounce {
+  animation: iconBounce 2s ease-in-out infinite;
+}
+
+/* Slow wheel spin */
+@keyframes iconSpinSlow {
+  from {
+    transform-origin: center;
+  }
+  to {
+    transform-origin: center;
+  }
+}
+
+.group:hover .animate-icon-spin-slow {
+  animation: iconBounce 1s ease-in-out 2;
+}
+
+/* Speed lines dash */
+@keyframes iconDash {
+  0%,
+  100% {
+    opacity: 0;
+    transform: translateX(0);
+  }
+  50% {
+    opacity: 1;
+    transform: translateX(-4px);
+  }
+}
+
+.animate-icon-dash {
+  opacity: 0;
+}
+
+.group:hover .animate-icon-dash {
+  animation: iconDash 1.2s ease-in-out infinite;
+}
+
+.animate-icon-dash-delay {
+  opacity: 0;
+}
+
+.group:hover .animate-icon-dash-delay {
+  animation: iconDash 1.2s ease-in-out 0.3s infinite;
+}
+
+/* ──────────────────────────────────────────
+   PAGE-LEVEL ANIMATIONS
+   ────────────────────────────────────────── */
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-fade-in-down {
+  animation: fadeInDown 0.8s ease-out 0.3s backwards;
+}

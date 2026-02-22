@@ -3,11 +3,46 @@ import Link from "next/link";
 import { Button } from "@/components/ui";
 import { Container } from "@/components/layout";
 
+function CalendarIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.5"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
+      <line x1="16" y1="2" x2="16" y2="6" />
+      <line x1="8" y1="2" x2="8" y2="6" />
+      <line x1="3" y1="10" x2="21" y2="10" />
+    </svg>
+  );
+}
+
+function SearchIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <circle cx="11" cy="11" r="8" />
+      <line x1="21" y1="21" x2="16.65" y2="16.65" />
+    </svg>
+  );
+}
+
 export function Hero() {
   return (
     <section className="relative h-[92vh] flex items-center justify-center overflow-hidden">
-      {/* Background Image/Video */}
-      {/* Background Image/Video */}
+      {/* Background Video */}
       <div className="absolute inset-0 bg-black">
         <video
           autoPlay
@@ -19,32 +54,45 @@ export function Hero() {
         >
           <source src="/videos/hero-background.mp4" type="video/mp4" />
         </video>
-        <div className="absolute inset-0 bg-black/40" />
+        {/* Warm cinematic overlay — complements the golden wedding tones */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
       </div>
 
       {/* Hero Content Overlay */}
       <Container className="relative z-10 w-full h-full flex flex-col items-center justify-between pb-24 pt-48">
-        {/* Top Search Bar (Simulated Date Picker from Screenshot) */}
-        <div className="w-full max-w-lg mb-auto">
-          <div className="bg-white/90 backdrop-blur-md rounded-lg p-2.5 flex items-center gap-1 shadow-xl border border-white/20">
-            <div className="flex-1 flex items-center gap-3 px-4 py-2 border-r border-gray-100">
-              <span className="text-[10px] font-black tracking-widest text-gray-400">
-                FROM
-              </span>
-              <span className="text-[11px] font-black text-brand-black">
-                FEB 14
-              </span>
+        {/* Apple Glassmorphic Search Bar */}
+        <div className="w-full max-w-xl mb-auto animate-fade-in-down">
+          <div className="glassmorphic-search-bar group">
+            {/* FROM date */}
+            <div className="flex-1 flex items-center gap-3 px-5 py-3 border-r border-white/10">
+              <CalendarIcon className="w-4 h-4 text-white/50 group-hover:text-white/80 transition-colors duration-500" />
+              <div className="flex flex-col">
+                <span className="text-[9px] font-semibold tracking-[0.2em] text-white/40 uppercase">
+                  From
+                </span>
+                <span className="text-[12px] font-semibold text-white/90 tracking-wide">
+                  Feb 14
+                </span>
+              </div>
             </div>
-            <div className="flex-1 flex items-center gap-3 px-4 py-2 border-r border-gray-100">
-              <span className="text-[10px] font-black tracking-widest text-gray-400">
-                TO
-              </span>
-              <span className="text-[11px] font-black text-brand-black">
-                FEB 21
-              </span>
+
+            {/* TO date */}
+            <div className="flex-1 flex items-center gap-3 px-5 py-3 border-r border-white/10">
+              <CalendarIcon className="w-4 h-4 text-white/50 group-hover:text-white/80 transition-colors duration-500" />
+              <div className="flex flex-col">
+                <span className="text-[9px] font-semibold tracking-[0.2em] text-white/40 uppercase">
+                  To
+                </span>
+                <span className="text-[12px] font-semibold text-white/90 tracking-wide">
+                  Feb 21
+                </span>
+              </div>
             </div>
-            <button className="bg-brand-tan px-8 py-2 md:py-3 rounded-md text-[11px] font-black tracking-widest text-brand-black hover:bg-opacity-90 transition-all">
-              SEARCH
+
+            {/* Search button */}
+            <button className="glassmorphic-search-btn group/btn">
+              <SearchIcon className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-300" />
+              <span>SEARCH</span>
             </button>
           </div>
         </div>
@@ -56,10 +104,7 @@ export function Hero() {
           </h1>
           <div className="flex justify-center">
             <Link href="/shop">
-              <Button
-                variant="primary"
-                className="bg-white/80 backdrop-blur-sm text-brand-black border-none hover:bg-white px-10 py-4 text-[10px] font-black tracking-[0.2em] shadow-lg"
-              >
+              <Button variant="primary" className="glassmorphic-cta-btn">
                 Get 10% Off!
               </Button>
             </Link>
