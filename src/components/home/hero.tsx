@@ -61,7 +61,7 @@ export function Hero() {
       {/* Hero Content Overlay */}
       <Container className="relative z-10 w-full h-full flex flex-col items-center justify-between pb-24 pt-48">
         {/* Apple Glassmorphic Search Bar */}
-        <div className="w-full max-w-xl mb-auto animate-fade-in-down">
+        <div className="w-full max-w-4xl mb-auto animate-fade-in-down">
           <div className="glassmorphic-search-bar group">
             {/* FROM date */}
             <div className="flex-1 flex items-center gap-3 px-5 py-3 border-r border-white/10">

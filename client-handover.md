@@ -1,96 +1,52 @@
-# ASHIKA.COM.AU - V1 Client Handover Document
+# ASHIKA - Initial Website Demo 
 
-Welcome to your new ASHIKA.COM.AU platform! This document outlines everything you need to know about your new site, including technical details, business logic rules, visual previews, and instructions for managing your data.
+Welcome to your new ASHIKA platform! 
 
----
+We are excited to share that the **first front-end demo of your website is now ready for you to view and interact with.** 
 
-## 📸 Visual Previews
-
-### Site Walkthrough Video
-This auto-generated navigation recording demonstrates the main shopping flow, including category filtering, responsive mobile-menu interactions, the product detail view (Royal Blue Banarasi Silk Saree), the 7-day booking calendar, and the "Our Story" layout:
-![Walkthrough Video](/Users/shamalkrishna/.gemini/antigravity/brain/19357034-bcb1-4939-ad9a-7d92fd15cf28/ashika_v1_walkthrough_1772237637375.webp)
-
-### Generated Premium Product Catalog Images
-To ensure the ASHIKA site lives up to its "Curated Luxury" promise, beautiful high-fashion editorial AI imagery has been generated and populated into your mock catalog.
-
-#### Sarees
-- ![Saree Blue](/Users/shamalkrishna/.gemini/antigravity/brain/19357034-bcb1-4939-ad9a-7d92fd15cf28/saree_blue_banarasi_1772229989810.png)
-- ![Saree Red](/Users/shamalkrishna/.gemini/antigravity/brain/19357034-bcb1-4939-ad9a-7d92fd15cf28/saree_red_kanjeevaram_1772230014993.png)
-- ![Saree Pink](/Users/shamalkrishna/.gemini/antigravity/brain/19357034-bcb1-4939-ad9a-7d92fd15cf28/saree_pink_chiffon_1772230076919.png)
-
-#### Lehengas
-- ![Lehenga Maroon](/Users/shamalkrishna/.gemini/antigravity/brain/19357034-bcb1-4939-ad9a-7d92fd15cf28/lehenga_maroon_bridal_1772230177890.png)
-- ![Lehenga Teal](/Users/shamalkrishna/.gemini/antigravity/brain/19357034-bcb1-4939-ad9a-7d92fd15cf28/lehenga_teal_blue_1772230221831.png)
-
-#### Sherwanis & Salwar Kameez
-- ![Sherwani Ivory](/Users/shamalkrishna/.gemini/antigravity/brain/19357034-bcb1-4939-ad9a-7d92fd15cf28/sherwani_ivory_wedding_1772230604221.png)
-- ![Salwar Red](/Users/shamalkrishna/.gemini/antigravity/brain/19357034-bcb1-4939-ad9a-7d92fd15cf28/salwar_red_anarkali_1772231229594.png)
-
-*(Note: See the `public/images/products/` folder for the full suite of generated images).*
-
-### Final Contact Page State
-- ![Contact Page](/Users/shamalkrishna/.gemini/antigravity/brain/19357034-bcb1-4939-ad9a-7d92fd15cf28/contact_page_walkthrough_1772237941339.png)
-
+You can preview the live demo here:  
+👉 **[View Your Live Website: ashika-two.vercel.app](https://ashika-two.vercel.app/)**
 
 ---
 
-## 🛠 Project Tech Stack
+## 📸 What's Next: The Setup Phase
 
-The architecture of ASHIKA.COM.AU uses modern, enterprise-ready tools:
+Right now, the website is populated with high-quality placeholder concepts to give you a true feel of the "Curated Luxury" shopping experience. 
 
-- **Frontend & Framework**: Next.js 14 (App Router) with TypeScript
-- **Styling**: Tailwind CSS tailored to the ASHIKA Brand Code (Teal & Gold)
-- **Database & Auth**: Supabase / PostgreSQL (Schema documented in `decisions.json`)
-- **Payments**: Stripe Checkout (with Bond Pre-authorization capabilities)
-- **Deployment**: Vercel
+**The Next Phase:**  
+Our immediate next step is to replace the current placeholder content with all the **real photographs of your actual inventory** (Sarees, Lehengas, and Sherwanis) to finalize the product catalog.
 
 ---
 
-## 💼 Business Logic & Rules Implementation
+## 🌐 Domain Setup (Connecting Your Custom URL)
 
-The following standard ASHIKA business rules have been directly integrated into the logic of the Product Detail and Checkout pages:
+To make your website live on your official custom domain (e.g., `ashika.com.au`), we need to connect the website's servers to your domain provider. 
 
-1. **Rental Configuration**:
-   - **Rental Period**: 7 Days
-   - **Delivery Buffer**: 3 Days before the event
-   - **Cleaning Buffer**: 3 Days after return
-   - **Bond Amount**: $100 AUD (authorized via Stripe but not captured upfront)
-   - **Shipping Rate**: $0 (Free standard shipping both ways)
-   - **Late Returns**: $50 AUD penalty after the 3-day grace period.
+You have two options to proceed:
 
-2. **Availability Calendar**:
-   - Items selected for a specific date block the calendar dynamically from `-3 days` to `+3 days` around the event date stringency logic built-in.
+**Option 1 (Recommended): Provide Temporary Access**  
+You can securely provide us with your domain provider's login credentials (username and password), and we will handle the complex DNS setup for you.
 
----
+**Option 2: Add the DNS Records Yourself**  
+If you prefer your own IT to handle it or want to do it yourself, please log into your domain provider's dashboard and add the following two **DNS Records**:
 
-## 📝 Ongoing Maintenance & Local Commands
+1. **A Record**
+   - **Name/Host:** `@` (or leave blank)
+   - **Value/IP Address:** `216.198.79.1`
 
-### Modifying Products
-Currently, the website is hooked up to the visual UI using mock data to ensure high-speed development of the Frontend.
-You can modify current products, prices, stock amounts, and descriptions in:
-`src/lib/mock-data/products.ts`
+2. **CNAME Record**
+   - **Name/Host:** `www`
+   - **Value/Target:** `7292da97b61dab78.vercel-dns-017.com.`
 
-When ready to wire up the actual Supabase database in Stage 6, you will replace instances of `products.find(p => ...)` with Supabase API client wrapper functions.
-
-### Running Local Development
-To run this application on your local machine if you need to make changes before pushing to Vercel:
-
-1. **Install dependencies**: Use `npm install` or `pnpm install`. *(Ensure you do not use Sudo locally unless required to avoid EPERM cache locks on `node_modules`)*. 
-2. **Start the local server**: Run `npm run dev`.
-3. **Open browser**: Visit `http://localhost:3000`
-
-### E2E Testing with Playwright
-We have written a comprehensive suite of 50 Playwright E2E scenario checks to validate routing, cart flows, missing images, and contact validation.
-To run the automated tests against your machine, use:
-`npx playwright test e2e/full-site.spec.ts`
+Once these are added, let us know, and we will finalize the connection!
 
 ---
 
-## ✅ Next Steps
+## 💼 Project Valuation for 2026
 
-1. Review the UI components to ensure the brand vision fully aligns with expectations.
-2. Initialize and configure the permanent Supabase database instances.
-3. Hook up the final Stripe API Keys to actual production endpoints.
-4. Finalize the exact SKU models in the real remote database schema.
+For your accounting and business records, building a premium custom-coded rental marketplace platform of this caliber (with specialized dynamic calendar availability, bond handling, and curated UX design) is valued at **$5,500 AUD - $8,000 AUD** at current 2026 industry standards. 
 
-**Welcome to the Borrowhood!**
+---
+
+**Welcome to the Borrowhood!**  
+*Let us know when you have reviewed the demo or if you have any questions regarding the domain handover.*
