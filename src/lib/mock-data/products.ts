@@ -3,20 +3,28 @@ import { Product, ProductCategory } from '@/types';
 // Stock images from Pexels - ALL VERIFIED WORKING IDs
 export const STOCK_IMAGES = {
   sarees: [
-    '/images/products/saree-blue.png',
-    '/images/products/saree-red.png',
-    '/images/products/saree-gold.png',
+    '/images/products/saree_blue_banarasi_1772229989810.png',
+    '/images/products/saree_red_kanjeevaram_1772230014993.png',
+    '/images/products/saree_emerald_green_1772230043190.png',
+    '/images/products/saree_pink_chiffon_1772230076919.png',
+    '/images/products/saree_gold_tissue_1772230136389.png',
   ],
   lehengas: [
-    '/images/products/lehenga-maroon.png',
-    '/images/products/lehenga-teal.png',
-    '/images/products/lehenga-gold.png',
+    '/images/products/lehenga_maroon_bridal_1772230177890.png',
+    '/images/products/lehenga_teal_blue_1772230221831.png',
+    '/images/products/lehenga_pink_floral_1772230360432.png',
+    '/images/products/lehenga_navy_blue_1772230408554.png',
+    '/images/products/lehenga_mustard_festive_1772230460940.png',
   ],
   sherwanis: [
-    '/images/products/sherwani-ivory.png',
-    '/images/products/sherwani-gold.png',
+    '/images/products/sherwani_ivory_wedding_1772230604221.png',
+    '/images/products/sherwani_maroon_royal_1772230667857.png',
+    '/images/products/sherwani_black_indo_western_1772230848939.png',
+    '/images/products/sherwani_navy_blue_1772230916363.png',
   ],
   salwar_kameez: [
+    '/images/products/salwar_red_anarkali_1772231229594.png',
+    '/images/products/salwar_yellow_sharara_1772231301593.png',
     '/images/products/salwar-beige.png',
   ],
   hero: [

@@ -1,0 +1,174 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - generic [ref=e2]:
+    - generic [ref=e3]: READY TO SHIP. FREE STYLING HELP.
+    - banner [ref=e4]:
+      - generic [ref=e6]:
+        - link "ASHIKA" [ref=e7] [cursor=pointer]:
+          - /url: /
+        - navigation [ref=e8]:
+          - link "COLLECTIONS" [ref=e9] [cursor=pointer]:
+            - /url: /shop
+          - link "WOMEN'S INDIAN WEAR" [ref=e10] [cursor=pointer]:
+            - /url: /shop
+          - link "MEN'S INDIAN WEAR" [ref=e11] [cursor=pointer]:
+            - /url: /shop
+          - link "ACCESSORIES" [ref=e12] [cursor=pointer]:
+            - /url: /shop
+          - link "Search" [ref=e13] [cursor=pointer]:
+            - /url: /shop
+            - img [ref=e14]
+        - generic [ref=e17]:
+          - link "Account" [ref=e18] [cursor=pointer]:
+            - /url: /account
+            - img [ref=e19]
+          - button "Wishlist" [ref=e22]:
+            - img
+          - button "BAG (0 ITEMS)" [ref=e24]:
+            - img [ref=e25]
+          - button "Toggle menu" [ref=e28]:
+            - img [ref=e29]
+      - navigation [ref=e31]:
+        - link "COLLECTIONS" [ref=e32] [cursor=pointer]:
+          - /url: /shop
+        - link "WOMEN'S INDIAN WEAR" [ref=e33] [cursor=pointer]:
+          - /url: /shop
+        - link "MEN'S INDIAN WEAR" [ref=e34] [cursor=pointer]:
+          - /url: /shop
+        - link "ACCESSORIES" [ref=e35] [cursor=pointer]:
+          - /url: /shop
+        - link "HOW IT WORKS" [ref=e36] [cursor=pointer]:
+          - /url: /#how-it-works
+        - link "OUR STORY" [ref=e37] [cursor=pointer]:
+          - /url: /about
+        - link "CONTACT US" [ref=e38] [cursor=pointer]:
+          - /url: /contact
+        - generic [ref=e39]:
+          - link "Account" [ref=e40] [cursor=pointer]:
+            - /url: /account
+          - button "Wishlist" [ref=e41]
+  - main [ref=e42]:
+    - generic [ref=e43]:
+      - generic [ref=e46]:
+        - heading "Contact Us" [level=1] [ref=e47]
+        - paragraph [ref=e48]:
+          - text: Our team is here to assist you with any inquiries.
+          - text: Expect a response within 24 hours.
+      - generic [ref=e51]:
+        - generic [ref=e53]:
+          - heading "Information" [level=2] [ref=e54]
+          - generic [ref=e55]:
+            - generic [ref=e56]:
+              - img [ref=e58]
+              - generic [ref=e61]:
+                - heading "Email" [level=3] [ref=e62]
+                - link "info@ashika.com.au" [ref=e63] [cursor=pointer]:
+                  - /url: mailto:info@ashika.com.au
+            - generic [ref=e64]:
+              - img [ref=e66]
+              - generic [ref=e68]:
+                - heading "Phone" [level=3] [ref=e69]
+                - link "+61 400 000 000" [ref=e70] [cursor=pointer]:
+                  - /url: tel:+61400000000
+            - generic [ref=e71]:
+              - img [ref=e73]
+              - generic [ref=e76]:
+                - heading "Location" [level=3] [ref=e77]
+                - paragraph [ref=e78]: Sydney, NSW, Australia
+                - paragraph [ref=e79]: (By appointment only)
+            - generic [ref=e80]:
+              - img [ref=e82]
+              - generic [ref=e85]:
+                - heading "Hours" [level=3] [ref=e86]
+                - paragraph [ref=e87]: Mon-Fri, 9am-6pm AEST
+        - generic [ref=e89]:
+          - heading "Send us a Message" [level=2] [ref=e90]
+          - generic [ref=e91]:
+            - generic [ref=e92]:
+              - generic [ref=e93]:
+                - text: Full Name
+                - textbox "Full Name" [ref=e94]:
+                  - /placeholder: ENTER YOUR NAME
+              - generic [ref=e95]:
+                - text: Email
+                - textbox "Email" [ref=e96]:
+                  - /placeholder: YOUR@EMAIL.COM
+            - generic [ref=e97]:
+              - text: Subject
+              - textbox "Subject" [ref=e98]:
+                - /placeholder: WHAT IS THIS ABOUT?
+            - generic [ref=e99]:
+              - text: Message
+              - textbox "Message" [ref=e100]:
+                - /placeholder: HOW CAN WE HELP YOU?
+            - button "SEND MESSAGE" [ref=e101]
+  - contentinfo [ref=e102]:
+    - generic [ref=e103]:
+      - generic [ref=e104]:
+        - generic [ref=e105]:
+          - text: ASHIKA
+          - list [ref=e106]:
+            - listitem [ref=e107]:
+              - link "About Us" [ref=e108] [cursor=pointer]:
+                - /url: /about
+            - listitem [ref=e109]:
+              - link "The Ashika Story" [ref=e110] [cursor=pointer]:
+                - /url: /story
+            - listitem [ref=e111]:
+              - link "Careers" [ref=e112] [cursor=pointer]:
+                - /url: /careers
+            - listitem [ref=e113]:
+              - link "Blog" [ref=e114] [cursor=pointer]:
+                - /url: /blog
+            - listitem [ref=e115]:
+              - link "Sustainability" [ref=e116] [cursor=pointer]:
+                - /url: /sustainability
+        - generic [ref=e117]:
+          - heading "CUSTOMER CARE" [level=3] [ref=e118]
+          - list [ref=e119]:
+            - listitem [ref=e120]:
+              - link "Help Center" [ref=e121] [cursor=pointer]:
+                - /url: /help
+            - listitem [ref=e122]:
+              - link "How It Works" [ref=e123] [cursor=pointer]:
+                - /url: /how-it-works
+            - listitem [ref=e124]:
+              - link "Delivery & Returns" [ref=e125] [cursor=pointer]:
+                - /url: /delivery
+            - listitem [ref=e126]:
+              - link "Fit Guarantee" [ref=e127] [cursor=pointer]:
+                - /url: /fit-guarantee
+            - listitem [ref=e128]:
+              - link "FAQ" [ref=e129] [cursor=pointer]:
+                - /url: /faq
+            - listitem [ref=e130]:
+              - link "Contact Us" [ref=e131] [cursor=pointer]:
+                - /url: /contact
+        - generic [ref=e132]:
+          - heading "CONTACT US" [level=3] [ref=e133]
+          - paragraph [ref=e134]:
+            - text: HELL0@ASHIKA.COM.AU
+            - text: SYDNEY, AUSTRALIA
+          - generic [ref=e135]:
+            - link [ref=e136] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e137]
+            - link [ref=e140] [cursor=pointer]:
+              - /url: "#"
+              - img [ref=e141]
+        - generic [ref=e143]:
+          - heading "SIGN UP FOR ALL THINGS ASHIKA" [level=3] [ref=e144]
+          - generic [ref=e145]:
+            - textbox "enter your email address" [ref=e146]
+            - button [ref=e147]:
+              - img
+      - generic [ref=e149]:
+        - generic [ref=e150]:
+          - link "Terms of Service" [ref=e151] [cursor=pointer]:
+            - /url: /terms
+          - link "Privacy Policy" [ref=e152] [cursor=pointer]:
+            - /url: /privacy
+        - paragraph [ref=e153]: © 2024 ASHIKA.inc. All Rights Reserved.
+```
