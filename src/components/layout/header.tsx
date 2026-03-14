@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
-import { Menu, X, Search, User } from 'lucide-react';
+import { Menu, X, Search } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Container } from './container';
 import { CartButton } from '@/components/cart';
@@ -75,23 +75,6 @@ export function Header() {
 
             {/* Right side icons */}
             <div className="flex items-center gap-3 z-10">
-              <Link
-                href="/account"
-                className="hidden md:block p-2 text-brand-black hover:text-brand-tan transition-colors"
-                aria-label="Account"
-              >
-                <User className="w-4 h-4 stroke-[2]" />
-              </Link>
-              
-              <button
-                className="hidden md:block p-2 text-brand-black hover:text-brand-tan transition-colors"
-                aria-label="Wishlist"
-              >
-                <svg className="w-4 h-4 fill-none stroke-current stroke-[2]" viewBox="0 0 24 24">
-                  <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l8.84-8.84 1.06-1.06a5.5 5.5 0 000-7.78v0z"></path>
-                </svg>
-              </button>
-
               <CartButton />
 
               {/* Mobile menu button */}
@@ -130,18 +113,19 @@ export function Header() {
             ))}
             <div className="pt-6 border-t border-gray-100 flex gap-4">
               <Link
-                href="/account"
+                href="/contact"
                 className="text-[10px] font-black tracking-[0.2em] uppercase text-brand-black"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Account
+                Need Help?
               </Link>
-              <button
+              <Link
+                href="/faq"
                 className="text-[10px] font-black tracking-[0.2em] uppercase text-brand-black"
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Wishlist
-              </button>
+                FAQ
+              </Link>
             </div>
           </nav>
         </div>

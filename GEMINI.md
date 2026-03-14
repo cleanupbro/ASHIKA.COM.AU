@@ -1,6 +1,25 @@
 # GEMINI.md — ASHIKA Workspace Directives
 ## Indian Wear Hire Australia
-### **[STATUS: VERSION 1 HANDOVER READY]**
+### **[STATUS: VERSION 1 FRONTEND HANDOVER READY]**
+
+---
+
+## CURRENT PROJECT STATE (MARCH 2026)
+
+**🟢 WHAT IS BUILT (V1 FRONTEND):**
+- Full "Teal & Gold" minimalist luxury UI/UX (Landing, Shop, Cart, FAQ, Contact).
+- Dynamic Shopping Catalog with mock product data (`products.ts`) and AI-generated image placeholders.
+- Complex Booking Calendar Front-End (date selection, "From"/"To" logic, conflict awareness UI).
+- Glassmorphic design components (Hero search bar, Navigation).
+- E2E Playwright testing suite configured and base scenarios scripted.
+- Vercel automatic deployments active.
+
+**🔴 WHAT IS LEFT TO BE BUILT (FULL BACKEND):**
+- **Stripe Integration:** Payment Intents for rental fees and pre-authorized Bond Holds ($100).
+- **Supabase Real Database:** Replacing `mock-data/products.ts` with Live PostgreSQL rows.
+- **Supabase Auth:** User login, signup, and profile management for order tracking.
+- **Booking Engine:** Server-side validation of rental buffers (3 days before/after) to prevent double booking.
+- **Shipping API:** Australia Post label generation for dispatch and return.
 
 ---
 

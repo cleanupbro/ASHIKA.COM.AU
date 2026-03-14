@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Container } from '@/components/layout';
+import { SITE_CONFIG } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Privacy Policy',
@@ -81,15 +82,11 @@ export default function PrivacyPage() {
             <ul className="space-y-4 text-gray-900 font-bold">
               <li className="flex items-center gap-4">
                  <span className="text-brand-gold">Email:</span>
-                 <a href="mailto:privacy@ashika.com.au" className="hover:text-brand-teal transition-colors">privacy@ashika.com.au</a>
-              </li>
-              <li className="flex items-center gap-4">
-                 <span className="text-brand-gold">Phone:</span>
-                 <span>+61 400 000 000</span>
+                 <a href={`mailto:${SITE_CONFIG.privacyEmail}`} className="hover:text-brand-teal transition-colors">{SITE_CONFIG.privacyEmail}</a>
               </li>
               <li className="flex items-center gap-4">
                  <span className="text-brand-gold">Address:</span>
-                 <span>Sydney, NSW, Australia</span>
+                 <span>{SITE_CONFIG.location}</span>
               </li>
             </ul>
           </div>

@@ -4,6 +4,7 @@ import { useState } from 'react';
 import { Container } from '@/components/layout';
 import { Button, Input, Textarea } from '@/components/ui';
 import { Mail, Phone, MapPin, Clock, CheckCircle } from 'lucide-react';
+import { SITE_CONFIG } from '@/lib/constants';
 
 export default function ContactPage() {
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -56,7 +57,7 @@ export default function ContactPage() {
                     <div>
                       <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-2">Email</h3>
                       <a href="mailto:info@ashika.com.au" className="text-[13px] font-bold uppercase tracking-widest text-gray-900 hover:text-brand-teal transition-colors">
-                        info@ashika.com.au
+                        {SITE_CONFIG.supportEmail}
                       </a>
                     </div>
                   </div>
@@ -67,9 +68,9 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-2">Phone</h3>
-                      <a href="tel:+61400000000" className="text-[13px] font-bold uppercase tracking-widest text-gray-900 hover:text-brand-teal transition-colors">
-                        +61 400 000 000
-                      </a>
+                      <p className="text-[13px] font-bold uppercase tracking-widest text-gray-900">
+                        Available by email first
+                      </p>
                     </div>
                   </div>
 
@@ -79,7 +80,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-2">Location</h3>
-                      <p className="text-[13px] font-bold uppercase tracking-widest text-gray-900">Sydney, NSW, Australia</p>
+                      <p className="text-[13px] font-bold uppercase tracking-widest text-gray-900">{SITE_CONFIG.location}</p>
                       <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.15em] mt-1.5">(By appointment only)</p>
                     </div>
                   </div>
@@ -90,7 +91,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-2">Hours</h3>
-                      <p className="text-[13px] font-bold uppercase tracking-widest text-gray-900">Mon-Fri, 9am-6pm AEST</p>
+                      <p className="text-[13px] font-bold uppercase tracking-widest text-gray-900">{SITE_CONFIG.supportHours}</p>
                     </div>
                   </div>
                 </div>

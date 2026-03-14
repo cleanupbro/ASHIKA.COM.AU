@@ -1,22 +1,19 @@
 import Link from 'next/link';
-import { Facebook, Instagram } from 'lucide-react';
 import { Container } from './container';
+import { SITE_CONFIG } from '@/lib/constants';
 
 const footerLinks = {
   ashika: [
     { name: 'About Us', href: '/about' },
-    { name: 'The Ashika Story', href: '/story' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Blog', href: '/blog' },
-    { name: 'Sustainability', href: '/sustainability' },
-  ],
-  help: [
-    { name: 'Help Center', href: '/help' },
-    { name: 'How It Works', href: '/how-it-works' },
-    { name: 'Delivery & Returns', href: '/delivery' },
-    { name: 'Fit Guarantee', href: '/fit-guarantee' },
+    { name: 'Shop Collections', href: '/shop' },
     { name: 'FAQ', href: '/faq' },
     { name: 'Contact Us', href: '/contact' },
+  ],
+  help: [
+    { name: 'How It Works', href: '/#how-it-works' },
+    { name: 'Rental Terms', href: '/terms' },
+    { name: 'Privacy Policy', href: '/privacy' },
+    { name: 'Email Support', href: '/contact' },
   ],
   legal: [
     { name: 'Terms of Service', href: '/terms' },
@@ -73,16 +70,22 @@ export function Footer() {
               CONTACT US
             </h3>
             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-loose mb-6">
-              HELL0@ASHIKA.COM.AU <br />
-              SYDNEY, AUSTRALIA
+              {SITE_CONFIG.supportEmail} <br />
+              {SITE_CONFIG.location}
             </p>
-            <div className="flex gap-4">
-              <a href="#" className="p-2 border border-gray-200 rounded-full text-brand-black hover:bg-brand-black hover:text-white transition-all">
-                <Instagram className="w-4 h-4" />
+            <div className="space-y-3">
+              <a
+                href={`mailto:${SITE_CONFIG.supportEmail}`}
+                className="block text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-brand-black transition-colors"
+              >
+                Email Support
               </a>
-              <a href="#" className="p-2 border border-gray-200 rounded-full text-brand-black hover:bg-brand-black hover:text-white transition-all">
-                <Facebook className="w-4 h-4" />
-              </a>
+              <Link
+                href="/contact"
+                className="block text-[10px] font-bold uppercase tracking-widest text-gray-400 hover:text-brand-black transition-colors"
+              >
+                Book an Appointment
+              </Link>
             </div>
           </div>
 
@@ -120,7 +123,7 @@ export function Footer() {
             </Link>
           </div>
           <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
-            &copy; 2024 ASHIKA.inc. All Rights Reserved.
+            &copy; {SITE_CONFIG.copyrightYear} {SITE_CONFIG.name}. All Rights Reserved.
           </p>
         </div>
       </Container>

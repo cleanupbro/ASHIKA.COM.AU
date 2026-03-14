@@ -1,5 +1,6 @@
 import { Metadata } from 'next';
 import { Container } from '@/components/layout';
+import { SITE_CONFIG } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: 'Terms of Service',
@@ -68,11 +69,7 @@ export default function TermsPage() {
             <ul className="space-y-4 text-gray-900 font-bold">
               <li className="flex items-center gap-4">
                  <span className="text-brand-gold">Email:</span>
-                 <a href="mailto:info@ashika.com.au" className="hover:text-brand-teal transition-colors">info@ashika.com.au</a>
-              </li>
-              <li className="flex items-center gap-4">
-                 <span className="text-brand-gold">Phone:</span>
-                 <span>+61 400 000 000</span>
+                 <a href={`mailto:${SITE_CONFIG.supportEmail}`} className="hover:text-brand-teal transition-colors">{SITE_CONFIG.supportEmail}</a>
               </li>
             </ul>
           </div>
