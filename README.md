@@ -3,7 +3,7 @@
 
 - **Repository:** `cleanupbro/ASHIKA.COM.AU`
 - **Owner:** **cleanupbro**
-- **Visibility:** **Public**
+- **Visibility:** **Private**
 - **Purpose:** This repository is for my client, who is making her first ever online Indian web, kinda like It's like Shopify, but it's going to be our own website and it's going to become a SaaS while it grows
 - **Maintainer Note:** This README is labeled for clear ownership and repository intent.
 

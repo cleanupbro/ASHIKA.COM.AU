@@ -1,29 +1,39 @@
 # GEMINI.md — ASHIKA Workspace Directives
 ## Indian Wear Hire Australia
-### **[STATUS: VERSION 1 FRONTEND HANDOVER READY]**
+### **[STATUS: LIVE VERCEL DEPLOYMENT ACTIVE, MVP BUILD IN PROGRESS]**
 
 ---
 
 ## CURRENT PROJECT STATE (MARCH 2026)
 
-**🟢 WHAT IS BUILT (V1 FRONTEND):**
-- Full "Teal & Gold" minimalist luxury UI/UX (Landing, Shop, Cart, FAQ, Contact).
-- Dynamic Shopping Catalog with mock product data (`products.ts`) and AI-generated image placeholders.
-- Complex Booking Calendar Front-End (date selection, "From"/"To" logic, conflict awareness UI).
-- Glassmorphic design components (Hero search bar, Navigation).
-- E2E Playwright testing suite configured and base scenarios scripted.
-- Vercel automatic deployments active.
+**🟢 WHAT IS BUILT / LIVE NOW:**
+- Live Vercel project `ashika` is created and linked to this workspace.
+- Current production alias: `https://ashika-khaki.vercel.app`
+- Full frontend storefront is deployed: Landing, Shop, Product Detail, FAQ, Contact, Terms, Privacy, Checkout shell.
+- Navigation/footer cleanup shipped to remove dead public links and placeholder account entry points.
+- Shared site constants added for contact details, metadata, and legal page consistency.
+- E2E Playwright coverage exists and build passes in local + Vercel production builds.
+- Current catalog still uses mock product data and local images.
 
-**🔴 WHAT IS LEFT TO BE BUILT (FULL BACKEND):**
-- **Stripe Integration:** Payment Intents for rental fees and pre-authorized Bond Holds ($100).
-- **Supabase Real Database:** Replacing `mock-data/products.ts` with Live PostgreSQL rows.
-- **Supabase Auth:** User login, signup, and profile management for order tracking.
-- **Booking Engine:** Server-side validation of rental buffers (3 days before/after) to prevent double booking.
-- **Shipping API:** Australia Post label generation for dispatch and return.
+**🔴 WHAT IS LEFT TO BE BUILT (LAUNCH-CRITICAL):**
+- **Stripe Integration:** Real payment flow for rental fees and bond handling.
+- **Supabase Real Database:** Replace `src/lib/mock-data/products.ts` with live database-backed reads.
+- **Booking Engine:** Server-side inventory blocking and overlap protection.
+- **Order Persistence:** Replace `sessionStorage` checkout success flow with real records and API routes.
+- **Supabase Auth / Accounts:** Optional for launch, but `/account` is intentionally not live.
+- **Shipping Ops:** Manual launch workflow is acceptable; API automation can follow later.
+- **Custom Domain:** `ashika.com.au` is still blocked by Vercel ownership in another account/team.
 
 ---
 
 > **IMPORTANT:** This file mirrors CLAUDE.md for dual-LLM compatibility. When switching from Claude to Gemini (or vice versa), both LLMs read from `.shared-memory/` for synchronized state.
+
+## PROGRESS FILE RULES
+
+- **Startup Requirement:** Read `progress.md` at the start of every session before planning or coding.
+- **Planning Requirement:** Update `progress.md` whenever you create, revise, or materially change the project plan.
+- **Implementation Requirement:** Update `progress.md` whenever you complete work, change status, add a blocker, or shift the next priority.
+- **Source of Truth:** Treat `progress.md` as the human-readable project status ledger alongside `.shared-memory/progress.json`.
 
 ---
 
@@ -38,6 +48,8 @@ You are Gemini, working on **ASHIKA** — a rental-only marketplace for Indian e
 - Typography: Inter (Sans-Serif) - Bold Uppercase for headings
 - Style: Minimalist luxury, "allborrow.com" clone
 - Repo: `https://github.com/cleanupbro/ASHIKA.COM.AU.git`
+- Repository visibility: Private
+- Current Vercel URL: `https://ashika-khaki.vercel.app`
 - Stack: Next.js 14, Supabase, Stripe, Tailwind
 
 **Strict Safety Rules:**
