@@ -24,7 +24,7 @@ export default function ContactPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-brand-teal py-20 md:py-24">
+      <section className="bg-brand-black py-20 md:py-24">
         <Container>
           <div className="text-center">
             <h1 className="text-3xl md:text-5xl font-black uppercase tracking-[0.2em] text-white mb-6">
@@ -45,26 +45,26 @@ export default function ContactPage() {
             {/* Contact Info */}
             <div className="lg:col-span-1 space-y-16">
               <div>
-                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-10 border-b-2 border-brand-gold pb-3 inline-block">
+                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-black mb-10 border-b-2 border-brand-gold pb-3 inline-block">
                   Information
                 </h2>
 
                 <div className="space-y-12">
                   <div className="flex items-start gap-8">
-                    <div className="w-14 h-14 bg-[#F8FBFA] border border-brand-teal/10 flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <Mail className="w-6 h-6 text-brand-teal stroke-[1.5]" />
+                    <div className="w-14 h-14 bg-[#F8FBFA] border border-brand-black/10 flex items-center justify-center flex-shrink-0 shadow-sm">
+                      <Mail className="w-6 h-6 text-brand-black stroke-[1.5]" />
                     </div>
                     <div>
                       <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-2">Email</h3>
-                      <a href="mailto:info@ashika.com.au" className="text-[13px] font-bold uppercase tracking-widest text-gray-900 hover:text-brand-teal transition-colors">
+                      <a href="mailto:info@ashika.com.au" className="text-[13px] font-bold uppercase tracking-widest text-gray-900 hover:text-brand-black transition-colors">
                         {SITE_CONFIG.supportEmail}
                       </a>
                     </div>
                   </div>
 
                   <div className="flex items-start gap-8">
-                    <div className="w-14 h-14 bg-[#F8FBFA] border border-brand-teal/10 flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <Phone className="w-6 h-6 text-brand-teal stroke-[1.5]" />
+                    <div className="w-14 h-14 bg-[#F8FBFA] border border-brand-black/10 flex items-center justify-center flex-shrink-0 shadow-sm">
+                      <Phone className="w-6 h-6 text-brand-black stroke-[1.5]" />
                     </div>
                     <div>
                       <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-2">Phone</h3>
@@ -75,8 +75,8 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-8">
-                    <div className="w-14 h-14 bg-[#F8FBFA] border border-brand-teal/10 flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <MapPin className="w-6 h-6 text-brand-teal stroke-[1.5]" />
+                    <div className="w-14 h-14 bg-[#F8FBFA] border border-brand-black/10 flex items-center justify-center flex-shrink-0 shadow-sm">
+                      <MapPin className="w-6 h-6 text-brand-black stroke-[1.5]" />
                     </div>
                     <div>
                       <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-2">Location</h3>
@@ -86,8 +86,8 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start gap-8">
-                    <div className="w-14 h-14 bg-[#F8FBFA] border border-brand-teal/10 flex items-center justify-center flex-shrink-0 shadow-sm">
-                      <Clock className="w-6 h-6 text-brand-teal stroke-[1.5]" />
+                    <div className="w-14 h-14 bg-[#F8FBFA] border border-brand-black/10 flex items-center justify-center flex-shrink-0 shadow-sm">
+                      <Clock className="w-6 h-6 text-brand-black stroke-[1.5]" />
                     </div>
                     <div>
                       <h3 className="text-[10px] font-black uppercase tracking-[0.2em] text-brand-gold mb-2">Hours</h3>
@@ -102,9 +102,9 @@ export default function ContactPage() {
             <div className="lg:col-span-2">
               <div className="bg-white">
                 {isSubmitted ? (
-                  <div className="text-center py-24 border border-brand-teal/10 bg-[#F8FBFA] shadow-sm">
-                    <CheckCircle className="w-16 h-16 text-brand-teal mx-auto mb-8 stroke-[1.5]" />
-                    <h3 className="text-2xl font-black uppercase tracking-[0.2em] text-brand-teal mb-4">
+                  <div className="text-center py-24 border border-brand-black/10 bg-[#F8FBFA] shadow-sm">
+                    <CheckCircle className="w-16 h-16 text-brand-black mx-auto mb-8 stroke-[1.5]" />
+                    <h3 className="text-2xl font-black uppercase tracking-[0.2em] text-brand-black mb-4">
                       Message Sent
                     </h3>
                     <p className="text-[10px] text-gray-500 font-bold uppercase tracking-[0.2em] mb-12">
@@ -116,7 +116,7 @@ export default function ContactPage() {
                   </div>
                 ) : (
                   <>
-                    <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-12 border-b-2 border-brand-gold pb-3 inline-block">
+                    <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-black mb-12 border-b-2 border-brand-gold pb-3 inline-block">
                       Send us a Message
                     </h2>
                     <form onSubmit={handleSubmit} className="space-y-10">
@@ -126,7 +126,7 @@ export default function ContactPage() {
                           name="name"
                           placeholder="ENTER YOUR NAME"
                           required
-                          className="rounded-none border-gray-200 focus:border-brand-teal h-14 text-[10px] font-bold tracking-widest shadow-sm"
+                          className="rounded-none border-gray-200 focus:border-brand-black h-14 text-[10px] font-bold tracking-widest shadow-sm"
                         />
                         <Input
                           label="Email"
@@ -134,7 +134,7 @@ export default function ContactPage() {
                           type="email"
                           placeholder="YOUR@EMAIL.COM"
                           required
-                          className="rounded-none border-gray-200 focus:border-brand-teal h-14 text-[10px] font-bold tracking-widest shadow-sm"
+                          className="rounded-none border-gray-200 focus:border-brand-black h-14 text-[10px] font-bold tracking-widest shadow-sm"
                         />
                       </div>
 
@@ -143,7 +143,7 @@ export default function ContactPage() {
                         name="subject"
                         placeholder="WHAT IS THIS ABOUT?"
                         required
-                        className="rounded-none border-gray-200 focus:border-brand-teal h-14 text-[10px] font-bold tracking-widest shadow-sm"
+                        className="rounded-none border-gray-200 focus:border-brand-black h-14 text-[10px] font-bold tracking-widest shadow-sm"
                       />
 
                       <Textarea
@@ -152,7 +152,7 @@ export default function ContactPage() {
                         placeholder="HOW CAN WE HELP YOU?"
                         rows={6}
                         required
-                        className="rounded-none border-gray-200 focus:border-brand-teal text-[10px] font-bold tracking-widest shadow-sm"
+                        className="rounded-none border-gray-200 focus:border-brand-black text-[10px] font-bold tracking-widest shadow-sm"
                       />
 
                       <Button type="submit" size="lg" className="w-full sm:w-auto min-w-[240px] h-14 text-sm font-bold tracking-[0.2em]" loading={isLoading}>

@@ -1,11 +1,13 @@
 import Link from 'next/link';
 import { Container } from '@/components/layout';
 import { Button } from '@/components/ui';
-import { getFeaturedProducts } from '@/lib/mock-data/products';
+import { getFeaturedProducts } from '@/lib/supabase/queries/products';
 import { ProductCard } from '@/components/product';
 
-export function FeaturedProducts() {
-  const products = getFeaturedProducts(8);
+export async function FeaturedProducts() {
+  const products = await getFeaturedProducts(8);
+
+  if (products.length === 0) return null;
 
   return (
     <section className="py-24 bg-white">

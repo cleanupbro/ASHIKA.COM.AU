@@ -3,11 +3,14 @@ import { Metadata } from 'next';
 import { ShopContent } from './shop-content';
 import { Container } from '@/components/layout';
 import { ProductGridSkeleton } from '@/components/ui';
+import { getProducts } from '@/lib/supabase/queries/products';
 
 export const metadata: Metadata = {
   title: 'Shop',
   description: 'Browse our collection of premium Indian ethnic wear for rent.',
 };
+
+export const revalidate = 60; // Revalidate every 60 seconds
 
 function ShopLoading() {
   return (
@@ -29,10 +32,15 @@ function ShopLoading() {
   );
 }
 
+async function ShopPageContent() {
+  const products = await getProducts();
+  return <ShopContent initialProducts={products} />;
+}
+
 export default function ShopPage() {
   return (
     <Suspense fallback={<ShopLoading />}>
-      <ShopContent />
+      <ShopPageContent />
     </Suspense>
   );
 }

@@ -6,5 +6,5 @@ export { ActiveFilters } from './active-filters';
 export { ProductImages } from './product-images';
 export { ProductInfo } from './product-info';
 export { RentalInfo } from './rental-info';
-export { RelatedProducts } from './related-products';
+// RelatedProducts is a server component — import directly, not via barrel
 export { ProductReviews } from './product-reviews';

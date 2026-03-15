@@ -31,7 +31,7 @@ export function CategoriesGrid() {
     <section className="py-24 bg-white">
       <Container>
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-black uppercase tracking-[0.2em] text-brand-teal mb-4">
+          <h2 className="text-3xl font-black uppercase tracking-[0.2em] text-brand-black mb-4">
             Shop Collections
           </h2>
           <div className="w-16 h-1 bg-brand-gold mx-auto"></div>
@@ -56,7 +56,7 @@ export function CategoriesGrid() {
               </div>
 
               {/* Text Overlay */}
-              <div className="absolute inset-0 flex items-end justify-center p-6 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-brand-teal/70 transition-colors duration-500">
+              <div className="absolute inset-0 flex items-end justify-center p-6 bg-gradient-to-t from-black/60 via-transparent to-transparent group-hover:from-brand-black/70 transition-colors duration-500">
                 <div className="bg-white/95 backdrop-blur-sm px-6 py-4 w-full text-center group-hover:bg-brand-gold transition-colors duration-300">
                   <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-900 group-hover:text-white transition-colors">
                     {category.name}

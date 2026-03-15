@@ -29,7 +29,7 @@ export function HowItWorks() {
     <section id="how-it-works" className="py-24 bg-[#F8FBFA]">
       <Container>
         <div className="text-center mb-16">
-          <h2 className="text-3xl font-black uppercase tracking-[0.2em] text-brand-teal mb-4">
+          <h2 className="text-3xl font-black uppercase tracking-[0.2em] text-brand-black mb-4">
             How It Works
           </h2>
           <p className="text-brand-gold font-bold text-xs uppercase tracking-widest">Simple. Sustainable. Stylish.</p>
@@ -40,7 +40,7 @@ export function HowItWorks() {
             <div key={step.title} className="text-center group">
               {/* Icon */}
               <div className="inline-flex items-center justify-center w-24 h-24 rounded-full bg-white shadow-sm mb-8 group-hover:scale-110 transition-transform duration-300 relative">
-                <step.icon className="w-10 h-10 stroke-[1.5] text-brand-teal" />
+                <step.icon className="w-10 h-10 stroke-[1.5] text-brand-black" />
                 <span className="absolute -top-1 -right-1 w-8 h-8 bg-brand-gold text-white text-xs font-bold flex items-center justify-center rounded-full shadow-sm">
                   {index + 1}
                 </span>

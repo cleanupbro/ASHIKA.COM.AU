@@ -35,7 +35,7 @@ export function CartItem({ item, onRemove }: CartItemProps) {
             </h4>
             <button
               onClick={onRemove}
-              className="text-gray-400 hover:text-brand-teal transition-colors"
+              className="text-gray-400 hover:text-brand-black transition-colors"
               aria-label="Remove item"
             >
               <X className="w-4 h-4" />
@@ -58,7 +58,7 @@ export function CartItem({ item, onRemove }: CartItemProps) {
 
         {/* Price */}
         <div className="mt-2 text-right">
-          <span className="font-black text-brand-teal text-xs tracking-widest">
+          <span className="font-black text-brand-black text-xs tracking-widest">
             ${item.product.rental_price}
           </span>
         </div>

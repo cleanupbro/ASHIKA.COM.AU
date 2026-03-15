@@ -10,7 +10,7 @@ export function CartButton() {
   return (
     <button
       onClick={toggleCart}
-      className="relative p-2 text-brand-teal hover:text-brand-gold transition-colors"
+      className="relative p-2 text-brand-black hover:text-brand-gold transition-colors"
       aria-label={`BAG (${itemCount} ITEMS)`}
     >
       <ShoppingBag className="w-5 h-5 stroke-[1.5]" />

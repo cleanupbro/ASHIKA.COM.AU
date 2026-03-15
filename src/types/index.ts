@@ -3,9 +3,9 @@
 // ==========================================
 
 // ----- Product Categories -----
-export type ProductCategory = 'saree' | 'lehenga' | 'salwar_kameez' | 'sherwani';
+export type ProductCategory = 'saree' | 'lehenga' | 'salwar_kameez' | 'sherwani' | 'kurta' | 'kids' | 'accessories';
 export type ProductTier = 'lite' | 'premium';
-export type ProductStatus = 'available' | 'rented' | 'maintenance' | 'retired';
+export type ProductStatus = 'available' | 'rented' | 'cleaning' | 'damaged' | 'retired';
 
 // ----- Size Types by Category -----
 export type SareeSize = 'Free Size';

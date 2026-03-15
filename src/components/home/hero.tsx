@@ -1,5 +1,7 @@
-import Link from "next/link";
+'use client';
 
+import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui";
 import { Container } from "@/components/layout";
 
@@ -40,6 +42,12 @@ function SearchIcon({ className }: { className?: string }) {
 }
 
 export function Hero() {
+  const router = useRouter();
+
+  const handleSearchClick = () => {
+    router.push('/shop');
+  };
+
   return (
     <section className="relative h-[92vh] flex items-center justify-center overflow-hidden">
       {/* Background Video */}
@@ -54,7 +62,7 @@ export function Hero() {
         >
           <source src="/videos/hero-background.mp4" type="video/mp4" />
         </video>
-        {/* Warm cinematic overlay — complements the golden wedding tones */}
+        {/* Warm cinematic overlay */}
         <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/30 to-black/60" />
       </div>
 
@@ -62,37 +70,46 @@ export function Hero() {
       <Container className="relative z-10 w-full h-full flex flex-col items-center justify-between pb-24 pt-48">
         {/* Apple Glassmorphic Search Bar */}
         <div className="w-full max-w-4xl mb-auto animate-fade-in-down">
-          <div className="glassmorphic-search-bar group">
+          <div
+            className="glassmorphic-search-bar group cursor-pointer"
+            onClick={handleSearchClick}
+            role="button"
+            tabIndex={0}
+            onKeyDown={(e) => e.key === 'Enter' && handleSearchClick()}
+          >
             {/* FROM date */}
             <div className="flex-1 flex items-center gap-3 px-5 py-3 border-r border-white/10">
               <CalendarIcon className="w-4 h-4 text-white/50 group-hover:text-white/80 transition-colors duration-500" />
               <div className="flex flex-col">
                 <span className="text-[9px] font-semibold tracking-[0.2em] text-white/40 uppercase">
-                  From
+                  Event Date
                 </span>
                 <span className="text-[12px] font-semibold text-white/90 tracking-wide">
-                  Feb 14
+                  Select your date
                 </span>
               </div>
             </div>
 
-            {/* TO date */}
+            {/* Category */}
             <div className="flex-1 flex items-center gap-3 px-5 py-3 border-r border-white/10">
               <CalendarIcon className="w-4 h-4 text-white/50 group-hover:text-white/80 transition-colors duration-500" />
               <div className="flex flex-col">
                 <span className="text-[9px] font-semibold tracking-[0.2em] text-white/40 uppercase">
-                  To
+                  Category
                 </span>
                 <span className="text-[12px] font-semibold text-white/90 tracking-wide">
-                  Feb 21
+                  All Collections
                 </span>
               </div>
             </div>
 
             {/* Search button */}
-            <button className="glassmorphic-search-btn group/btn">
+            <button
+              onClick={handleSearchClick}
+              className="glassmorphic-search-btn group/btn"
+            >
               <SearchIcon className="w-4 h-4 mr-2 group-hover/btn:scale-110 transition-transform duration-300" />
-              <span>SEARCH</span>
+              <span>BROWSE</span>
             </button>
           </div>
         </div>
@@ -105,7 +122,7 @@ export function Hero() {
           <div className="flex justify-center">
             <Link href="/shop">
               <Button variant="primary" className="glassmorphic-cta-btn">
-                Get 10% Off!
+                SHOP NOW
               </Button>
             </Link>
           </div>

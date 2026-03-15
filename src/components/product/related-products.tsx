@@ -2,18 +2,15 @@ import Link from 'next/link';
 import { Container } from '@/components/layout';
 import { ProductCard } from './product-card';
 import { ProductCategory } from '@/types';
-import { products as allProducts } from '@/lib/mock-data/products';
+import { getProductsByCategory } from '@/lib/supabase/queries/products';
 
 interface RelatedProductsProps {
   currentProductId: string;
   category: ProductCategory;
 }
 
-export function RelatedProducts({ currentProductId, category }: RelatedProductsProps) {
-  // Get products from same category, excluding current product
-  const relatedProducts = allProducts
-    .filter((p) => p.category === category && p.id !== currentProductId)
-    .slice(0, 4);
+export async function RelatedProducts({ currentProductId, category }: RelatedProductsProps) {
+  const relatedProducts = await getProductsByCategory(category, currentProductId);
 
   if (relatedProducts.length === 0) {
     return null;

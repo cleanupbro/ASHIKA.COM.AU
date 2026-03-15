@@ -100,7 +100,7 @@ export default function FAQPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-brand-teal py-20 md:py-24">
+      <section className="bg-brand-black py-20 md:py-24">
         <Container>
           <div className="text-center">
             <h1 className="text-3xl md:text-5xl font-black uppercase tracking-[0.2em] text-white mb-6">
@@ -119,16 +119,16 @@ export default function FAQPage() {
           <div className="max-w-3xl mx-auto space-y-20">
             {faqCategories.map((category) => (
               <div key={category.title}>
-                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-10 border-b-2 border-brand-gold pb-3 inline-block">
+                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-black mb-10 border-b-2 border-brand-gold pb-3 inline-block">
                   {category.title}
                 </h2>
-                <div className="bg-white border-b border-brand-teal/5 last:border-0 overflow-hidden">
-                  <Accordion type="single" className="divide-y divide-brand-teal/5">
+                <div className="bg-white border-b border-brand-black/5 last:border-0 overflow-hidden">
+                  <Accordion type="single" className="divide-y divide-brand-black/5">
                     {category.faqs.map((faq, index) => {
                       const value = `${category.title}-${index}`;
                       return (
                         <AccordionItem key={index} value={value} className="border-0">
-                          <AccordionTrigger value={value} className="text-[13px] font-bold uppercase tracking-widest text-gray-900 py-6 text-left hover:text-brand-teal transition-colors">
+                          <AccordionTrigger value={value} className="text-[13px] font-bold uppercase tracking-widest text-gray-900 py-6 text-left hover:text-brand-black transition-colors">
                             {faq.question}
                           </AccordionTrigger>
                           <AccordionContent value={value} className="text-[13px] text-gray-500 font-medium leading-relaxed pb-8">
@@ -144,8 +144,8 @@ export default function FAQPage() {
           </div>
 
           {/* Contact CTA */}
-          <div className="max-w-3xl mx-auto mt-24 text-center p-16 bg-[#F8FBFA] border border-brand-teal/5 shadow-sm">
-            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-brand-teal mb-6">
+          <div className="max-w-3xl mx-auto mt-24 text-center p-16 bg-[#F8FBFA] border border-brand-black/5 shadow-sm">
+            <h3 className="text-xs font-black uppercase tracking-[0.2em] text-brand-black mb-6">
               Still have questions?
             </h3>
             <p className="text-[11px] text-gray-500 font-bold uppercase tracking-[0.2em] mb-10">

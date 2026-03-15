@@ -27,7 +27,7 @@ export default function Error({ error, reset }: ErrorProps) {
           </div>
 
           {/* Message */}
-          <h1 className="text-2xl md:text-4xl font-black text-brand-teal uppercase tracking-[0.2em] mb-6">
+          <h1 className="text-2xl md:text-4xl font-black text-brand-black uppercase tracking-[0.2em] mb-6">
             Something went wrong
           </h1>
           <p className="text-sm text-gray-500 uppercase tracking-widest font-bold mb-12 leading-relaxed">
@@ -50,7 +50,7 @@ export default function Error({ error, reset }: ErrorProps) {
           {/* Help text */}
           <p className="mt-12 text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">
             If the problem persists, please{' '}
-            <Link href="/contact" className="text-brand-gold hover:text-brand-teal transition-colors">
+            <Link href="/contact" className="text-brand-gold hover:text-brand-black transition-colors">
               contact support
             </Link>
           </p>

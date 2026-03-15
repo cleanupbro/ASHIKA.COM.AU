@@ -3,7 +3,7 @@ import Image from "next/image";
 
 export default function AboutPage() {
   return (
-    <div className="pt-32 pb-24">
+    <div className="pb-24">
       {/* Hero Banner */}
       <section className="relative h-[60vh] w-full mb-24">
         <Image

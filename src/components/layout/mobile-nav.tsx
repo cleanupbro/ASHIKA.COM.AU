@@ -58,11 +58,11 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
         )}
       >
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-brand-teal/10">
-          <span className="text-xs font-black uppercase tracking-[0.2em] text-brand-teal">Menu</span>
+        <div className="flex items-center justify-between p-6 border-b border-brand-black/10">
+          <span className="text-xs font-black uppercase tracking-[0.2em] text-brand-black">Menu</span>
           <button
             onClick={onClose}
-            className="p-2 text-brand-teal hover:text-brand-gold transition-colors"
+            className="p-2 text-brand-black hover:text-brand-gold transition-colors"
             aria-label="Close menu"
           >
             <X className="w-5 h-5 stroke-[1.5]" />
@@ -81,16 +81,16 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   key={item.name}
                   href={item.href}
                   onClick={onClose}
-                  className="flex items-center justify-between px-6 py-5 text-gray-900 hover:text-brand-teal transition-colors border-b border-brand-teal/5 last:border-0"
+                  className="flex items-center justify-between px-6 py-5 text-gray-900 hover:text-brand-black transition-colors border-b border-brand-black/5 last:border-0"
                 >
                   <span className="text-xs font-bold uppercase tracking-widest">{item.name}</span>
-                  <ChevronRight className="w-4 h-4 text-brand-teal" />
+                  <ChevronRight className="w-4 h-4 text-brand-black" />
                 </Link>
               ))}
             </nav>
           </div>
 
-          <div className="border-t border-brand-teal/5 py-8">
+          <div className="border-t border-brand-black/5 py-8">
             <h3 className="px-6 text-[10px] font-black uppercase tracking-[0.3em] text-brand-gold mb-4">
               Information
             </h3>
@@ -100,7 +100,7 @@ export function MobileNav({ isOpen, onClose }: MobileNavProps) {
                   key={item.name}
                   href={item.href}
                   onClick={onClose}
-                  className="flex items-center gap-3 px-6 py-5 text-gray-900 hover:text-brand-teal transition-colors"
+                  className="flex items-center gap-3 px-6 py-5 text-gray-900 hover:text-brand-black transition-colors"
                 >
                   <span className="text-xs font-bold uppercase tracking-widest">{item.name}</span>
                 </Link>

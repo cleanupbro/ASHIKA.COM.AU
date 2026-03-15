@@ -340,3 +340,17 @@ h6 {
 .animate-fade-in-down {
   animation: fadeInDown 0.8s ease-out 0.3s backwards;
 }
+
+/* Slide-in from right (mobile drawers) */
+@keyframes slideInRight {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInRight 0.3s ease-out forwards;
+}

@@ -121,15 +121,15 @@ export function AvailabilityCalendar({
               className={cn(
                 'relative h-10 rounded-lg text-sm font-medium transition-colors',
                 !isCurrentMonth && 'text-gray-300 cursor-default',
-                isCurrentMonth && !isBlocked && 'hover:bg-teal-50 cursor-pointer',
+                isCurrentMonth && !isBlocked && 'hover:bg-brand-offwhite cursor-pointer',
                 isCurrentMonth && isBlocked && 'text-gray-300 cursor-not-allowed line-through',
-                isSelected && 'bg-teal-600 text-white hover:bg-teal-700',
-                isDayToday && !isSelected && 'ring-1 ring-teal-400'
+                isSelected && 'bg-brand-black text-white hover:bg-brand-black',
+                isDayToday && !isSelected && 'ring-1 ring-gray-500'
               )}
             >
               {format(day, 'd')}
               {isCurrentMonth && !isBlocked && !isSelected && (
-                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-teal-400" />
+                <span className="absolute bottom-1 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-gray-500" />
               )}
             </button>
           );
@@ -139,7 +139,7 @@ export function AvailabilityCalendar({
       {/* Legend */}
       <div className="flex items-center gap-4 mt-4 pt-4 border-t border-gray-100 text-xs text-gray-500">
         <div className="flex items-center gap-2">
-          <span className="w-3 h-3 rounded-full bg-teal-400" />
+          <span className="w-3 h-3 rounded-full bg-gray-500" />
           <span>Available</span>
         </div>
         <div className="flex items-center gap-2">

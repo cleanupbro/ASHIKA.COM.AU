@@ -50,13 +50,13 @@ export function CartDrawer() {
       >
         <div className="flex flex-col h-full">
           {/* Header */}
-          <div className="flex items-center justify-between p-6 border-b border-brand-teal/10">
-            <h2 className="text-xs font-black uppercase tracking-[0.2em] text-brand-teal">
+          <div className="flex items-center justify-between p-6 border-b border-brand-black/10">
+            <h2 className="text-xs font-black uppercase tracking-[0.2em] text-brand-black">
               Your Bag ({itemCount})
             </h2>
             <button
               onClick={closeCart}
-              className="p-2 text-brand-teal hover:text-brand-gold transition-colors"
+              className="p-2 text-brand-black hover:text-brand-gold transition-colors"
               aria-label="Close cart"
             >
               <X className="w-5 h-5" />
@@ -67,7 +67,7 @@ export function CartDrawer() {
           <div className="flex-1 overflow-y-auto p-6">
             {state.items.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center">
-                <h3 className="font-black text-brand-teal uppercase tracking-[0.2em] mb-4">
+                <h3 className="font-black text-brand-black uppercase tracking-[0.2em] mb-4">
                   Your bag is empty
                 </h3>
                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mb-10">
@@ -94,7 +94,7 @@ export function CartDrawer() {
 
           {/* Footer with pricing */}
           {state.items.length > 0 && (
-            <div className="border-t border-brand-teal/10 p-6 bg-[#F8FBFA]">
+            <div className="border-t border-brand-black/10 p-6 bg-[#F8FBFA]">
               {/* Pricing breakdown */}
               <div className="space-y-4 mb-8">
                 <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest">
@@ -103,7 +103,7 @@ export function CartDrawer() {
                 </div>
                 <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest">
                   <span className="text-gray-500">Shipping</span>
-                  <span className="text-brand-teal">FREE</span>
+                  <span className="text-brand-black">FREE</span>
                 </div>
                 <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest">
                   <span className="text-gray-500">
@@ -111,12 +111,12 @@ export function CartDrawer() {
                   </span>
                   <span className="text-gray-400">${bondTotal}*</span>
                 </div>
-                <div className="pt-6 border-t border-brand-teal/5">
+                <div className="pt-6 border-t border-brand-black/5">
                   <div className="flex justify-between items-baseline">
                     <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-900">
                       Total
                     </span>
-                    <span className="font-black text-brand-teal text-2xl">
+                    <span className="font-black text-brand-black text-2xl">
                       ${subtotal}
                     </span>
                   </div>

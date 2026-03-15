@@ -52,8 +52,8 @@ export default function CheckoutSuccessPage() {
       <div className="min-h-screen bg-white py-24">
         <Container>
           <div className="max-w-xl mx-auto text-center">
-            <CheckCircle className="w-16 h-16 text-brand-teal mx-auto mb-8 stroke-[1.5]" />
-            <h1 className="text-3xl font-black uppercase tracking-[0.2em] text-brand-teal mb-6">
+            <CheckCircle className="w-16 h-16 text-brand-black mx-auto mb-8 stroke-[1.5]" />
+            <h1 className="text-3xl font-black uppercase tracking-[0.2em] text-brand-black mb-6">
               Order Confirmed
             </h1>
             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-[0.2em] mb-12">
@@ -77,7 +77,7 @@ export default function CheckoutSuccessPage() {
   return (
     <div className="min-h-screen bg-white">
       {/* Success header */}
-      <div className="bg-brand-teal py-20 md:py-24">
+      <div className="bg-brand-black py-20 md:py-24">
         <Container>
           <div className="text-center">
             <CheckCircle className="w-16 h-16 text-white mx-auto mb-8 stroke-[1.5]" />
@@ -97,7 +97,7 @@ export default function CheckoutSuccessPage() {
             {/* What's next */}
             <div className="grid md:grid-cols-2 gap-24">
               <div>
-                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-12 border-b-2 border-brand-gold pb-3 inline-block">
+                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-black mb-12 border-b-2 border-brand-gold pb-3 inline-block">
                   What Happens Next
                 </h2>
 
@@ -135,44 +135,44 @@ export default function CheckoutSuccessPage() {
               </div>
 
               {/* Order summary */}
-              <div className="bg-[#F8FBFA] p-10 border border-brand-teal/5 shadow-sm">
-                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-8">
+              <div className="bg-[#F8FBFA] p-10 border border-brand-black/5 shadow-sm">
+                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-black mb-8">
                   Order Summary
                 </h2>
 
                 <div className="space-y-6">
                   {order.items.map((item, index) => (
-                    <div key={index} className="flex justify-between items-start py-4 border-b border-brand-teal/5 last:border-0">
+                    <div key={index} className="flex justify-between items-start py-4 border-b border-brand-black/5 last:border-0">
                       <div>
                         <p className="text-[11px] font-black uppercase tracking-[0.15em] text-gray-900">{item.product.name}</p>
                         <p className="text-[9px] text-brand-gold font-bold uppercase tracking-widest mt-1.5">SIZE {item.size} · {format(new Date(item.eventDate), 'MMM d')}</p>
                       </div>
-                      <span className="text-[11px] font-black text-brand-teal">${item.product.rental_price}</span>
+                      <span className="text-[11px] font-black text-brand-black">${item.product.rental_price}</span>
                     </div>
                   ))}
                 </div>
 
-                <div className="mt-8 pt-8 border-t border-brand-teal/5 space-y-4">
+                <div className="mt-8 pt-8 border-t border-brand-black/5 space-y-4">
                   <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest">
                     <span className="text-gray-400">Rental Subtotal</span>
                     <span className="text-gray-900">${order.subtotal}</span>
                   </div>
                   <div className="flex justify-between text-[10px] font-bold uppercase tracking-widest">
                     <span className="text-gray-400">Shipping</span>
-                    <span className="text-brand-teal">FREE</span>
+                    <span className="text-brand-black">FREE</span>
                   </div>
-                  <div className="flex justify-between items-baseline pt-6 border-t border-brand-teal/5">
+                  <div className="flex justify-between items-baseline pt-6 border-t border-brand-black/5">
                     <span className="text-xs font-black uppercase tracking-[0.2em] text-gray-900">Total</span>
-                    <span className="text-2xl font-black text-brand-teal">${order.subtotal}</span>
+                    <span className="text-2xl font-black text-brand-black">${order.subtotal}</span>
                   </div>
                 </div>
               </div>
             </div>
 
             {/* Shipping & Delivery */}
-            <div className="grid md:grid-cols-2 gap-24 pt-12 border-t border-brand-teal/5">
+            <div className="grid md:grid-cols-2 gap-24 pt-12 border-t border-brand-black/5">
                <div>
-                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-teal mb-6">
+                <h2 className="text-xs font-black uppercase tracking-[0.3em] text-brand-black mb-6">
                   Delivery Address
                 </h2>
                 <address className="not-italic text-[10px] font-bold uppercase tracking-[0.2em] text-gray-500 leading-loose">

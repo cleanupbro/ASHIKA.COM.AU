@@ -11,11 +11,14 @@ import {
   type Filters,
   type SortOption,
 } from '@/components/product';
-import { products as allProducts } from '@/lib/mock-data/products';
-import { ProductCategory } from '@/types';
+import { Product, ProductCategory } from '@/types';
 import { Filter } from 'lucide-react';
 
-export function ShopContent() {
+interface ShopContentProps {
+  initialProducts: Product[];
+}
+
+export function ShopContent({ initialProducts }: ShopContentProps) {
   const searchParams = useSearchParams();
   const initialCategory = searchParams.get('category') as ProductCategory | null;
 
@@ -27,7 +30,7 @@ export function ShopContent() {
 
   // Filter and sort products
   const filteredProducts = useMemo(() => {
-    let result = [...allProducts];
+    let result = [...initialProducts];
 
     // Apply filters
     if (filters.category) {
@@ -71,7 +74,7 @@ export function ShopContent() {
     }
 
     return result;
-  }, [filters, sortBy]);
+  }, [filters, sortBy, initialProducts]);
 
   const getCategoryTitle = () => {
     if (filters.category) {
@@ -80,6 +83,9 @@ export function ShopContent() {
         lehenga: 'Lehengas',
         salwar_kameez: 'Salwar Kameez',
         sherwani: 'Sherwanis',
+        kurta: 'Kurtas',
+        kids: 'Kids',
+        accessories: 'Accessories',
       };
       return titles[filters.category];
     }

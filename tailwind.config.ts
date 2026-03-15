@@ -12,20 +12,21 @@ const config: Config = {
         background: "var(--background)",
         foreground: "var(--foreground)",
         primary: {
-          DEFAULT: "#881337", // Deep Maroon (Luxury Wedding)
+          DEFAULT: "#0A0A0A", // Black (GlamCorner aesthetic)
           foreground: "#FFFFFF",
         },
         secondary: {
-          DEFAULT: "#D97706", // Gold
-          foreground: "#FFFFFF",
+          DEFAULT: "#C8A951", // Refined Gold
+          foreground: "#000000",
         },
-        accent: "#FEF3C7", // Cream
+        accent: "#F5F0E8", // Warm Cream
         'brand-tan': '#DDC4B1',
         'brand-beige': '#F5F5F4',
-        'brand-offwhite': '#F8FBFA',
-        'brand-black': '#1A1A1A',
-        'brand-gold': '#D97706', // Retaining for compatibility during transition
-        'brand-teal': '#881337', // Updated to Maroon
+        'brand-offwhite': '#FAFAFA',
+        'brand-black': '#0A0A0A',
+        'brand-gold': '#C8A951',
+        'brand-cream': '#F5F0E8',
+        // brand-teal removed — fully migrated to brand-black (#0A0A0A)
       },
       fontFamily: {
         sans: ['var(--font-inter)', 'sans-serif'],

@@ -84,7 +84,7 @@ export function OrderReview({ items, subtotal, bondTotal }: OrderReviewProps) {
         <div className="pt-4 border-t border-gray-200">
           <div className="flex justify-between items-baseline">
             <span className="text-sm font-bold uppercase tracking-widest text-black">Total</span>
-            <span className="font-black text-brand-teal text-2xl">${subtotal}</span>
+            <span className="font-black text-brand-black text-2xl">${subtotal}</span>
           </div>
         </div>
 

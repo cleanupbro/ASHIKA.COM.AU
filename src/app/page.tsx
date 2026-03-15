@@ -1,6 +1,7 @@
 import {
   Hero,
   Borrowhood,
+  HowItWorks,
   CategoriesGrid,
   FeaturedProducts,
   Testimonials,
@@ -13,6 +14,7 @@ export default function Home() {
     <>
       <Hero />
       <Borrowhood />
+      <HowItWorks />
       <CategoriesGrid />
       <FeaturedProducts />
       <Testimonials />

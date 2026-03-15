@@ -101,7 +101,7 @@ export function Footer() {
                 className="w-full bg-transparent border-b border-gray-300 py-3 text-[10px] font-bold tracking-widest uppercase focus:outline-none focus:border-brand-black transition-colors"
               />
               <button
-                type="button"
+                type="submit"
                 className="absolute right-0 top-1/2 -translate-y-1/2 text-brand-black hover:translate-x-1 transition-transform"
               >
                 <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -124,6 +124,16 @@ export function Footer() {
           </div>
           <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
             &copy; {SITE_CONFIG.copyrightYear} {SITE_CONFIG.name}. All Rights Reserved.
+          </p>
+          <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">
+            Powered by{' '}
+            <a href="https://claudeking.org" target="_blank" rel="noopener noreferrer" className="text-brand-gold hover:text-brand-black transition-colors">
+              claudeking.org
+            </a>
+            {' '}·{' '}
+            <a href="mailto:sam@claudeking.org" className="hover:text-brand-black transition-colors">
+              sam@claudeking.org
+            </a>
           </p>
         </div>
       </Container>

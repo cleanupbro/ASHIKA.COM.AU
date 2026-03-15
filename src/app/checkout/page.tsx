@@ -96,12 +96,12 @@ export default function CheckoutPage() {
           <div className="py-6 flex items-center justify-between">
             <Link
               href="/shop"
-              className="flex items-center gap-2 text-gray-500 hover:text-brand-teal transition-colors uppercase tracking-widest text-[10px] font-bold"
+              className="flex items-center gap-2 text-gray-500 hover:text-brand-black transition-colors uppercase tracking-widest text-[10px] font-bold"
             >
               <ArrowLeft className="w-3 h-3" />
               <span>Back to Shop</span>
             </Link>
-            <span className="font-sans text-xl tracking-[0.3em] font-black text-brand-teal uppercase">
+            <span className="font-sans text-xl tracking-[0.3em] font-black text-brand-black uppercase">
               ASHIKA
             </span>
             <div className="w-24" /> {/* Spacer for centering */}
@@ -116,22 +116,22 @@ export default function CheckoutPage() {
             <div className="flex items-center justify-center gap-4 md:gap-8">
               {/* Cart step */}
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 bg-brand-teal text-white flex items-center justify-center text-[10px] rounded-full">
+                <div className="w-6 h-6 bg-brand-black text-white flex items-center justify-center text-[10px] rounded-full">
                   <Check className="w-3 h-3" />
                 </div>
-                <span className="hidden md:block text-[10px] font-bold uppercase tracking-widest text-brand-teal">
+                <span className="hidden md:block text-[10px] font-bold uppercase tracking-widest text-brand-black">
                   Bag
                 </span>
               </div>
 
-              <div className="w-12 h-px bg-brand-teal" />
+              <div className="w-12 h-px bg-brand-black" />
 
               {/* Shipping step */}
               <div className="flex items-center gap-2">
                 <div
                   className={`w-6 h-6 flex items-center justify-center text-[10px] font-bold border rounded-full ${
                     step === 'shipping' || step === 'payment'
-                      ? 'bg-brand-teal text-white border-brand-teal'
+                      ? 'bg-brand-black text-white border-brand-black'
                       : 'bg-white text-gray-300 border-gray-200'
                   }`}
                 >
@@ -140,7 +140,7 @@ export default function CheckoutPage() {
                 <span
                   className={`hidden md:block text-[10px] font-bold uppercase tracking-widest ${
                     step === 'shipping' || step === 'payment'
-                      ? 'text-brand-teal'
+                      ? 'text-brand-black'
                       : 'text-gray-300'
                   }`}
                 >
@@ -150,7 +150,7 @@ export default function CheckoutPage() {
 
               <div
                 className={`w-12 h-px ${
-                  step === 'payment' ? 'bg-brand-teal' : 'bg-gray-200'
+                  step === 'payment' ? 'bg-brand-black' : 'bg-gray-200'
                 }`}
               />
 
@@ -159,7 +159,7 @@ export default function CheckoutPage() {
                 <div
                   className={`w-6 h-6 flex items-center justify-center text-[10px] font-bold border rounded-full ${
                     step === 'payment'
-                      ? 'bg-brand-teal text-white border-brand-teal'
+                      ? 'bg-brand-black text-white border-brand-black'
                       : 'bg-white text-gray-300 border-gray-200'
                   }`}
                 >
@@ -167,7 +167,7 @@ export default function CheckoutPage() {
                 </div>
                 <span
                   className={`hidden md:block text-[10px] font-bold uppercase tracking-widest ${
-                    step === 'payment' ? 'text-brand-teal' : 'text-gray-300'
+                    step === 'payment' ? 'text-brand-black' : 'text-gray-300'
                   }`}
                 >
                   Payment

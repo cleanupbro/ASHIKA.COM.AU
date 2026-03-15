@@ -3,6 +3,7 @@ import './globals.css';
 import { Header } from '@/components/layout/header';
 import { Footer } from '@/components/layout/footer';
 import { CartProvider } from '@/contexts/cart-context';
+import { AuthProvider } from '@/contexts/auth-context';
 import { CartDrawer } from '@/components/cart';
 import { SITE_CONFIG } from '@/lib/constants';
 
@@ -43,12 +44,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased font-sans">
-        <CartProvider>
-          <Header />
-          <main className="min-h-screen pt-[120px]">{children}</main>
-          <Footer />
-          <CartDrawer />
-        </CartProvider>
+        <AuthProvider>
+          <CartProvider>
+            <Header />
+            <main className="min-h-screen pt-[120px]">{children}</main>
+            <Footer />
+            <CartDrawer />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

@@ -5,26 +5,28 @@ import {
   ProductInfo,
   RentalInfo,
   ProductReviews,
-  RelatedProducts,
 } from '@/components/product';
-import { getProductById, products } from '@/lib/mock-data/products';
+import { RelatedProducts } from '@/components/product/related-products';
+import { getProductById, getAllProductIds } from '@/lib/supabase/queries/products';
 import { Metadata } from 'next';
 import Link from 'next/link';
 import { ChevronRight } from 'lucide-react';
+
+export const revalidate = 60;
+export const dynamicParams = true;
 
 interface ProductPageProps {
   params: Promise<{ id: string }>;
 }
 
 export async function generateStaticParams() {
-  return products.map((product) => ({
-    id: product.id,
-  }));
+  const ids = await getAllProductIds();
+  return ids.map((id) => ({ id }));
 }
 
 export async function generateMetadata({ params }: ProductPageProps): Promise<Metadata> {
   const resolvedParams = await params;
-  const product = getProductById(resolvedParams.id);
+  const product = await getProductById(resolvedParams.id);
 
   if (!product) {
     return {
@@ -45,7 +47,7 @@ export async function generateMetadata({ params }: ProductPageProps): Promise<Me
 
 export default async function ProductPage({ params }: ProductPageProps) {
   const resolvedParams = await params;
-  const product = getProductById(resolvedParams.id);
+  const product = await getProductById(resolvedParams.id);
 
   if (!product) {
     notFound();

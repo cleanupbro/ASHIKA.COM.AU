@@ -11,7 +11,7 @@ export default function TermsPage() {
   return (
     <div className="bg-white">
       {/* Hero */}
-      <section className="bg-brand-teal py-20 md:py-24">
+      <section className="bg-brand-black py-20 md:py-24">
         <Container>
           <div className="text-center">
             <h1 className="text-3xl md:text-5xl font-black uppercase tracking-[0.2em] text-white mb-6">
@@ -28,16 +28,16 @@ export default function TermsPage() {
       <section className="py-24 md:py-32">
         <Container size="md">
           <div className="prose prose-sm prose-gray max-w-none uppercase tracking-widest font-medium leading-relaxed">
-            <h2 className="text-xs font-black text-brand-teal border-b-2 border-brand-gold pb-3 inline-block mb-10">1. Acceptance of Terms</h2>
+            <h2 className="text-xs font-black text-brand-black border-b-2 border-brand-gold pb-3 inline-block mb-10">1. Acceptance of Terms</h2>
             <p className="mb-14 text-gray-600">
               By accessing and using ASHIKA (&quot;the Service&quot;), you agree to be bound by these
               Terms of Service. If you do not agree to these terms, please do not use our Service.
             </p>
 
-            <h2 className="text-xs font-black text-brand-teal border-b-2 border-brand-gold pb-3 inline-block mb-10">2. Rental Agreement</h2>
+            <h2 className="text-xs font-black text-brand-black border-b-2 border-brand-gold pb-3 inline-block mb-10">2. Rental Agreement</h2>
             <h3 className="text-[10px] font-black text-brand-gold mb-6 tracking-[0.2em]">2.1 Rental Period</h3>
             <p className="mb-8 text-gray-600">The standard rental period is 7 days, which includes:</p>
-            <ul className="list-disc pl-5 mb-14 space-y-4 text-gray-600 marker:text-brand-teal">
+            <ul className="list-disc pl-5 mb-14 space-y-4 text-gray-600 marker:text-brand-black">
               <li>3 days before your event (for delivery)</li>
               <li>Your event day</li>
               <li>3 days after your event (for returns)</li>
@@ -49,27 +49,27 @@ export default function TermsPage() {
               This bond covers potential damage, loss, or late returns.
             </p>
 
-            <h2 className="text-xs font-black text-brand-teal border-b-2 border-brand-gold pb-3 inline-block mb-10">3. Care of Rented Items</h2>
+            <h2 className="text-xs font-black text-brand-black border-b-2 border-brand-gold pb-3 inline-block mb-10">3. Care of Rented Items</h2>
             <p className="mb-8 text-gray-600">Customers are responsible for:</p>
-            <ul className="list-disc pl-5 mb-14 space-y-4 text-gray-600 marker:text-brand-teal">
+            <ul className="list-disc pl-5 mb-14 space-y-4 text-gray-600 marker:text-brand-black">
               <li>Handling all items with reasonable care</li>
               <li>Not altering, washing, or dry cleaning items</li>
               <li>Returning items in the same condition as received</li>
             </ul>
 
-            <h2 className="text-xs font-black text-brand-teal border-b-2 border-brand-gold pb-3 inline-block mb-10">4. Shipping and Delivery</h2>
+            <h2 className="text-xs font-black text-brand-black border-b-2 border-brand-gold pb-3 inline-block mb-10">4. Shipping and Delivery</h2>
             <p className="mb-14 text-gray-600">
               We provide free express shipping both ways across Australia. Delivery times vary by location (1-5 business days).
             </p>
 
-            <h2 className="text-xs font-black text-brand-teal border-b-2 border-brand-gold pb-3 inline-block mb-10">5. Contact</h2>
+            <h2 className="text-xs font-black text-brand-black border-b-2 border-brand-gold pb-3 inline-block mb-10">5. Contact</h2>
             <p className="mb-8 text-gray-600">
               For questions about these Terms of Service, please contact us at:
             </p>
             <ul className="space-y-4 text-gray-900 font-bold">
               <li className="flex items-center gap-4">
                  <span className="text-brand-gold">Email:</span>
-                 <a href={`mailto:${SITE_CONFIG.supportEmail}`} className="hover:text-brand-teal transition-colors">{SITE_CONFIG.supportEmail}</a>
+                 <a href={`mailto:${SITE_CONFIG.supportEmail}`} className="hover:text-brand-black transition-colors">{SITE_CONFIG.supportEmail}</a>
               </li>
             </ul>
           </div>
